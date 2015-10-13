@@ -5,10 +5,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4a91d74a-f21d-4de5-b00b-b0b86555415d}</ProjectGuid>
+    <ProjectGuid>{1a086ed6-4731-4c48-b08e-a4fa0b8daf83}</ProjectGuid>
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
     <Name>Architecture</Name>
     <RootNamespace>Architecture</RootNamespace>
+    <ValidateArchitecture>
+    </ValidateArchitecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -23,9 +25,9 @@
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
     <Folder Include="ModelDefinition\" />
-    <Content Include="ClassDiagram.classdiagram">
+    <Compile Include="ClassDiagram.classdiagram">
       <SubType>Content</SubType>
-    </Content>
+    </Compile>
     <Content Include="ClassDiagram.classdiagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>ClassDiagram.classdiagram</DependentUpon>
