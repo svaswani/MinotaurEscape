@@ -1,0 +1,8 @@
+E:\GDAPSII\Minotaur Escape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MinotaurEscape.exe
+E:\GDAPSII\Minotaur Escape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MinotaurEscape.pdb
+E:\GDAPSII\Minotaur Escape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MonoGame.Framework.dll
+E:\GDAPSII\Minotaur Escape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\OpenTK.dll
+E:\GDAPSII\Minotaur Escape\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.csprojResolveAssemblyReference.cache
+E:\GDAPSII\Minotaur Escape\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.exe
+E:\GDAPSII\Minotaur Escape\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.pdb
+E:\GDAPSII\Minotaur Escape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\Content\temporaryCharacter.jpg
