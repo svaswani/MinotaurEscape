@@ -11,7 +11,15 @@ namespace MinotaurEscape
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+<<<<<<< HEAD
         MainMenu menu;
+=======
+        // atributes
+        Texture2D image;
+        Vector2 pos;
+        bool[] wasd = { false, false, false, false };
+        string[] wasdStr = { "W", "A", "S", "D" };
+>>>>>>> f66c239bbe045b55a91a0c6f9dd2c035044d2bab
 
         public Game1()
         {
@@ -28,10 +36,14 @@ namespace MinotaurEscape
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+<<<<<<< HEAD
 
             menu = new MainMenu();
             menu.Show();
 
+=======
+            pos = new Vector2(20, 20);
+>>>>>>> f66c239bbe045b55a91a0c6f9dd2c035044d2bab
             base.Initialize();
         }
 
@@ -43,6 +55,8 @@ namespace MinotaurEscape
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            image = Content.Load<Texture2D>("temporaryCharacter");
+            
 
             // TODO: use this.Content to load your game content here
         }
@@ -67,9 +81,44 @@ namespace MinotaurEscape
                 Exit();
 
             // TODO: Add your update logic here
+            ProcessInput();
 
             base.Update(gameTime);
         }
+
+        public void ProcessInput()
+        {
+            KeyboardState kbState = Keyboard.GetState();
+            if (kbState.IsKeyDown(Keys.W))
+            {
+                wasd[0] = true;
+                pos.Y--;
+            }
+            else wasd[0] = false;
+
+            if (kbState.IsKeyDown(Keys.A))
+            {
+                wasd[1] = true;
+                pos.X--;
+
+            }
+            else wasd[1] = false;
+
+
+            if (kbState.IsKeyDown(Keys.S))
+            {
+                wasd[2] = true;
+                pos.Y++;
+            }
+            else wasd[2] = false;
+            if (kbState.IsKeyDown(Keys.D))
+            {
+                wasd[3] = true;
+                pos.X++;
+            }
+            else wasd[3] = false;
+        }
+
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -77,9 +126,12 @@ namespace MinotaurEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(image, pos, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
