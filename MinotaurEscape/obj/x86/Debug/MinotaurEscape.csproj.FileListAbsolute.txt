@@ -1,0 +1,11 @@
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MinotaurEscape.exe
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MinotaurEscape.pdb
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MonoGame.Framework.dll
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\OpenTK.dll
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.csprojResolveAssemblyReference.cache
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.MainMenu.resources
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.csproj.GenerateResource.Cache
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.exe
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.pdb
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.exe
+\\banner.main.ad.rit.edu\students\kmg7828\IGMProfile\Desktop\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.pdb

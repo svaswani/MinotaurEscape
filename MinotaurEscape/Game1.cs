@@ -11,6 +11,7 @@ namespace MinotaurEscape
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        MainMenu menu;
 
         public Game1()
         {
@@ -27,6 +28,9 @@ namespace MinotaurEscape
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            menu = new MainMenu();
+            menu.Show();
 
             base.Initialize();
         }
