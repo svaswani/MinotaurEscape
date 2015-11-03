@@ -9,6 +9,8 @@ Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Architecture", "..\Architec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalTool", "ExternalTool\ExternalTool.csproj", "{D68DC0E2-4568-4792-9CC5-03A85C33EB10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinoutarLib", "..\MinoutarLib\MinoutarLib.csproj", "{64F74542-E55B-4463-B05C-3665B0D01995}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{D68DC0E2-4568-4792-9CC5-03A85C33EB10}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D68DC0E2-4568-4792-9CC5-03A85C33EB10}.Release|x86.ActiveCfg = Release|Any CPU
 		{D68DC0E2-4568-4792-9CC5-03A85C33EB10}.Release|x86.Build.0 = Release|Any CPU
+		{64F74542-E55B-4463-B05C-3665B0D01995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F74542-E55B-4463-B05C-3665B0D01995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F74542-E55B-4463-B05C-3665B0D01995}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{64F74542-E55B-4463-B05C-3665B0D01995}.Debug|x86.Build.0 = Debug|Any CPU
+		{64F74542-E55B-4463-B05C-3665B0D01995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F74542-E55B-4463-B05C-3665B0D01995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64F74542-E55B-4463-B05C-3665B0D01995}.Release|x86.ActiveCfg = Release|Any CPU
+		{64F74542-E55B-4463-B05C-3665B0D01995}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
