@@ -1152,84 +1152,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="7d6bf3d0-0b7f-4657-a89d-6bb3021a35eb"
-            name="Torches"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <description>All the torches in the maze currently</description>
-            <appliedStereotypesInternal>
-              <stereotypeInstance
-                Id="2483599e-b316-4c34-819c-0531715946d4"
-                name="property"
-                profile="CSharpProfile">
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="223283a5-d200-4e10-9e75-5716ed080838">
-                    <propertyInstance
-                      Id="d0ce8ac1-de3a-4f28-b2e2-17cee468f520"
-                      name="ClrAttributes" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="468e3d1e-afc4-4e85-a3d8-1657a82105e8">
-                    <propertyInstance
-                      Id="c7600b91-861e-41ea-afc2-f3748b3ec193"
-                      name="Get"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="e7971033-bc07-4bd3-acd6-4973f2dd7410">
-                    <propertyInstance
-                      Id="5414537b-4614-4d73-a8bd-d0fca3244a4c"
-                      name="HasBody"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="5bc9d2dd-5580-43c7-887b-b4d5c90ad279">
-                    <propertyInstance
-                      Id="83e434cc-e567-43ee-8fa1-e13d9893007e"
-                      name="IsUnsafe"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="598095f5-526d-4262-b0b5-ce95417137b4">
-                    <propertyInstance
-                      Id="acec2cb3-a07f-49a7-94df-151bb464bbec"
-                      name="Inheritance"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="9307ff46-1471-4804-86ee-ccf50d7bff20">
-                    <propertyInstance
-                      Id="41f14738-f706-44b5-8c89-b950225ba57d"
-                      name="PackageVisibility"
-                      value="internal" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="3a107bd5-67d2-4819-84b1-6c0142d9b856">
-                    <propertyInstance
-                      Id="97e3516f-e644-425d-b722-e19d4b78a7e4"
-                      name="Set"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="155233bb-9893-4f09-b77d-a10d868dd167"
-                LastKnownName="List&lt;Torch&gt;"
-                LastKnownLocation="Architecture.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="716b2911-09e7-4d19-9e4f-e103160ad52f"
-            name="Comrades"
+            name="Moveables"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1238,7 +1162,7 @@
             isDerivedUnion="false"
             aggregation="None"
             isComposite="false">
-            <description>The comrades in the maze</description>
+            <description>Everything that moves with the maze</description>
             <appliedStereotypesInternal>
               <stereotypeInstance
                 Id="dfaf023b-5194-4912-a99a-9095fe2ab859"
@@ -1298,8 +1222,48 @@
             </appliedStereotypesInternal>
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="a48dad2b-4b5a-4fdd-b5c2-8614f631fdc5"
-                LastKnownName="List&lt;Comrade&gt;"
+                Id="9aca5499-2e5b-44ad-97eb-3caa4bd47109"
+                LastKnownName="List&lt;Movables&gt;"
+                LastKnownLocation="Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="8ccd023e-c2b8-4f06-af72-6ce77ff9adf9"
+            name="position"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>The position of the maze</description>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="19e6b51b-1fb7-4f0f-9f75-9bb773ceb32a"
+                LastKnownName="Vector2"
+                LastKnownLocation="Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3a79906b-fd93-40fe-8538-16d44e0bd8ba"
+            name="exit"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>The position of the maze's exit</description>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="19e6b51b-1fb7-4f0f-9f75-9bb773ceb32a"
+                LastKnownName="Vector2"
                 LastKnownLocation="Architecture.uml" />
             </type_NamedElement>
           </property>
@@ -1307,13 +1271,13 @@
         <ownedOperationsInternal>
           <operation
             Id="35f84de1-973f-484d-b50d-5cc36a377be3"
-            name="IsPassable"
+            name="IsInWall"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
-            <description>Gets if the given position can be occuipied by the player.</description>
+            <description>Gets if the given tile is intersecting with a wall.</description>
             <appliedStereotypesInternal>
               <stereotypeInstance
                 Id="534fdf64-6596-44a7-9bae-bc0e742ec4d4"
@@ -1367,28 +1331,26 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="68c88131-75f3-42ee-adc2-0a9bc2babb5f"
-                  name="x"
+                  Id="16411670-ae46-45d5-92b3-ef95c085e8f3"
+                  name="tile"
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                      LastKnownName="int"
+                    <classMoniker
+                      Id="e911c0f8-b06b-45e3-8495-37cfb3167754"
+                      LastKnownName="AnimatedTile"
                       LastKnownLocation="Architecture.uml" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="ad489562-29de-4b13-a7ed-f0fa660784ce"
-                  name="y"
-                  direction="In"
-                  isUnique="false">
+                  Id="99afc2d0-e90f-4481-bf2f-e4626e2153b7"
+                  direction="Return">
                   <type_NamedElement>
                     <undefinedTypeMoniker
-                      Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                      LastKnownName="int"
+                      Id="943c946f-193e-4985-9b5e-30aa8b26dcaf"
+                      LastKnownName="bool"
                       LastKnownLocation="Architecture.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -1454,91 +1416,17 @@
                 </propertyInstances>
               </stereotypeInstance>
             </appliedStereotypesInternal>
-          </operation>
-          <operation
-            Id="416ea209-43c8-4033-94d8-37be7a204501"
-            name="IsVisible"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <description>Gets if the given position is visible</description>
-            <appliedStereotypesInternal>
-              <stereotypeInstance
-                Id="96ce28bb-687b-4f7e-b23f-f02d0d463a8d"
-                name="method"
-                profile="CSharpProfile">
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="f570993d-5fbf-4ea7-8809-b0366153c518">
-                    <propertyInstance
-                      Id="9c9a110d-16b5-427f-911e-2b2da088e1b3"
-                      name="ClrAttributes" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="1b67c62e-808c-46e8-8585-5cb5182d6dce">
-                    <propertyInstance
-                      Id="8ec0a6b6-2464-42ee-afea-c85fc526cc1b"
-                      name="IsPartial"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="efcf7afa-d146-415d-9446-ff7f6e16817f">
-                    <propertyInstance
-                      Id="17c2f813-d398-44f5-a3d8-f3a7f71c9217"
-                      name="IsUnsafe"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="e0a7cca4-1223-4ff2-bce2-ebac5941ddc0">
-                    <propertyInstance
-                      Id="d1789cec-ae3b-4c61-ba12-4a786bed366d"
-                      name="Inheritance"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="1414f7dd-4692-40e7-abad-a8df2e6e8c23">
-                    <propertyInstance
-                      Id="61d3aa61-b090-4867-b46c-909f5dd14a21"
-                      name="PackageVisibility"
-                      value="internal" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="5841d1b9-55aa-4279-b974-c3a30c9e6e27">
-                    <propertyInstance
-                      Id="d85d61ec-7f8d-476b-946e-0b3b0819f39e"
-                      name="params"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="82e2e8c9-793b-41a5-a272-186a1adc6063"
-                  name="x"
+                  Id="6743f98d-c0e8-461f-964f-6b33b5646d5f"
+                  name="spriteBatch"
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
                     <undefinedTypeMoniker
-                      Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                      LastKnownName="int"
-                      LastKnownLocation="Architecture.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="c659d127-cf6f-493e-920e-3d9d3e6340a9"
-                  name="y"
-                  direction="In"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                      LastKnownName="int"
+                      Id="e4e444ba-402e-445c-bafd-0ed4f3da1bcf"
+                      LastKnownName="SpriteBatch"
                       LastKnownLocation="Architecture.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -1553,7 +1441,7 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
-            <description>Moves the maze by the given speed</description>
+            <description>Moves the maze by the given speed in the given directional axis (true = left + right, false = up + down)</description>
             <appliedStereotypesInternal>
               <stereotypeInstance
                 Id="2b6c8467-662d-4b8a-aaac-8d71f1088668"
@@ -1607,7 +1495,7 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="8e5bb073-5aa7-4518-9444-461a40eab209"
+                  Id="693f5178-c45e-42bd-931e-23a8f23ddd37"
                   name="gameTime"
                   direction="In"
                   isUnique="false">
@@ -1621,7 +1509,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="52d9d1f5-9236-45e1-ba19-121e3f5c2cc5"
+                  Id="4a794073-d8e6-4cb6-a26d-e0c6ce3fcb43"
                   name="speed"
                   direction="In"
                   isUnique="false">
@@ -1629,6 +1517,108 @@
                     <undefinedTypeMoniker
                       Id="61bf2388-ab29-4e7d-933a-0927eac06657"
                       LastKnownName="int"
+                      LastKnownLocation="Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2f27c29c-f9fc-45f7-b1c5-4f766d9f0ccd"
+                  name="dir"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="943c946f-193e-4985-9b5e-30aa8b26dcaf"
+                      LastKnownName="bool"
+                      LastKnownLocation="Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="f1444b5a-9561-4e0a-9a2a-08e357ae9ed3"
+            name="IsInExit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Gets if the given tile is intersecting with the exit.</description>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d70df2ba-3d3a-4f98-8252-103df44b72ab"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f93e1f98-9da9-4bc6-a0e2-4e3be856fe61">
+                    <propertyInstance
+                      Id="97f6220e-a79a-41b8-bf40-6b0fb150f9aa"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c1437e73-bb46-4c5f-b5dc-112ef6016223">
+                    <propertyInstance
+                      Id="7710e8f7-4556-4bc5-9a0b-ae1407dfbe20"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c67df16f-36dd-4cc3-95e0-6a980d82bb18">
+                    <propertyInstance
+                      Id="6842448e-0551-4651-a47c-fbb122402e93"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9f603c54-602a-40c9-9278-7edb242e7952">
+                    <propertyInstance
+                      Id="4b0a4d9f-796a-45b0-9c1f-fa7304a58eb5"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fb3b138a-98b0-4e19-844b-22f83256f310">
+                    <propertyInstance
+                      Id="533e1746-769e-4726-ab3f-fac5ab7ce197"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ab9071f8-629e-49bd-b305-d94801f482e8">
+                    <propertyInstance
+                      Id="28d78eef-29f5-4e60-97f0-f2f9b1a2eb5f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5577cd80-4e32-4a00-9460-65e18ae76a38"
+                  name="tile"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="e911c0f8-b06b-45e3-8495-37cfb3167754"
+                      LastKnownName="AnimatedTile"
+                      LastKnownLocation="Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="96cebc72-1fc6-4d8b-a561-a9ceb6ca0f60"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="943c946f-193e-4985-9b5e-30aa8b26dcaf"
+                      LastKnownName="bool"
                       LastKnownLocation="Architecture.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -2458,7 +2448,7 @@
       <class
         Id="e911c0f8-b06b-45e3-8495-37cfb3167754"
         name="AnimatedTile"
-        isAbstract="false"
+        isAbstract="true"
         isLeaf="false"
         isActiveClass="false">
         <description>A tile that has an animation and direction</description>
@@ -2744,158 +2734,6 @@
                 LastKnownLocation="Architecture.uml" />
             </type_NamedElement>
           </property>
-          <property
-            Id="f070a6cb-1817-4ffc-ab43-d322c50b1026"
-            name="X"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <description>The Position of this tile on the X axis</description>
-            <appliedStereotypesInternal>
-              <stereotypeInstance
-                Id="4379e526-5550-4f75-bf0b-0cdc55493793"
-                name="property"
-                profile="CSharpProfile">
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="374c45e4-ac6a-4e0b-9a45-4a6d52cef688">
-                    <propertyInstance
-                      Id="41cbaa2e-bcf8-4ff9-8778-080f5348bedd"
-                      name="ClrAttributes" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="76711541-e5cb-42c8-8d58-46b93c54d6b6">
-                    <propertyInstance
-                      Id="8cbc5a45-7619-433b-a485-386490f6bff4"
-                      name="Get"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="87508f51-ea55-4a55-9783-96d945123e50">
-                    <propertyInstance
-                      Id="edceb6ab-3fca-443a-8feb-99b83f8ee6f4"
-                      name="HasBody"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="3ab10ff8-f237-4876-b6bb-8ee0d364f1b4">
-                    <propertyInstance
-                      Id="2a93e279-127c-4f50-b4a2-f229b313526c"
-                      name="IsUnsafe"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="5845e390-9702-465e-88b5-128cfae23fc5">
-                    <propertyInstance
-                      Id="44b1c11a-d7df-44dc-84dd-e226386f3f06"
-                      name="Inheritance"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="1ecbb947-019b-435a-9eb8-a307751f56b6">
-                    <propertyInstance
-                      Id="946bd93a-769a-483f-91da-3e1c7f611595"
-                      name="PackageVisibility"
-                      value="internal" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="746cf738-c093-49c3-8ead-fe97246973fb">
-                    <propertyInstance
-                      Id="ae6e9f14-8215-456c-8bdb-30a641e025fc"
-                      name="Set"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                LastKnownName="int"
-                LastKnownLocation="Architecture.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="95c447f8-2a0f-4e46-a95d-f567ed563489"
-            name="Y"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <description>The position of this tile on the Y axis</description>
-            <appliedStereotypesInternal>
-              <stereotypeInstance
-                Id="216c81b1-f8dd-4ada-8047-86fc07ec1f92"
-                name="property"
-                profile="CSharpProfile">
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="09b3d835-9dde-4c2f-8943-5a174028cf22">
-                    <propertyInstance
-                      Id="541bd28e-a9ab-46a6-9f1a-d57d46aab160"
-                      name="ClrAttributes" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="41052a21-5a86-48cd-a442-519d907f45e7">
-                    <propertyInstance
-                      Id="7afe82b0-fca6-49b3-a8a9-424c91ccb924"
-                      name="Get"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="8761e170-dd2d-4554-86e9-58da5b2da4fa">
-                    <propertyInstance
-                      Id="b3c22ab6-e2d7-4512-a57b-b9f6c660f40f"
-                      name="HasBody"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="199f7249-46c9-4e64-9b8a-73fa91cb086c">
-                    <propertyInstance
-                      Id="34bfa43a-3002-4658-a967-1cc32145eff1"
-                      name="IsUnsafe"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="e64ce0df-4369-439c-bed6-6e214d6bcc3c">
-                    <propertyInstance
-                      Id="4821d5df-782d-41b8-b307-0fee7a2ea576"
-                      name="Inheritance"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="fda9a747-3407-4d4c-889d-d3f057159f08">
-                    <propertyInstance
-                      Id="396dcc62-1f58-4480-a7a1-f2038d96c93b"
-                      name="PackageVisibility"
-                      value="internal" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="0daaeaeb-c07d-4d32-9eed-fc54cf546a40">
-                    <propertyInstance
-                      Id="bd0ae628-a7db-4250-afdc-1a7fdfe3c081"
-                      name="Set"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                LastKnownName="int"
-                LastKnownLocation="Architecture.uml" />
-            </type_NamedElement>
-          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -2973,6 +2811,16 @@
                 </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
+          </operation>
+          <operation
+            Id="9e3dbb62-3fbf-4f4f-ad6c-cf1e19624e0e"
+            name="SetupAnimations"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Sets up the animations for this tile</description>
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -3143,195 +2991,6 @@
               <undefinedTypeMoniker
                 Id="30d557c6-1852-4788-a8a9-b724b01b1da2"
                 LastKnownName="Rectangle"
-                LastKnownLocation="Architecture.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="4e0f0762-3ccf-4951-916e-ce66d7cf932c"
-            name="frameWidth"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <description>The width of every frame</description>
-            <appliedStereotypesInternal>
-              <stereotypeInstance
-                Id="1be9d513-06fc-4677-96bc-bb8abb100665"
-                name="field"
-                profile="CSharpProfile">
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="5a7114ba-f19f-4e0f-860f-f562f0a19950">
-                    <propertyInstance
-                      Id="2c399702-2ac7-406d-abd9-722e8db875e3"
-                      name="ClrAttributes" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="8e947121-6801-4ff5-8ea9-ae867dd64e9d">
-                    <propertyInstance
-                      Id="2c2f6a06-3c58-4f1a-b534-3f1a25b7cc4a"
-                      name="IsConst"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="4690a507-fb76-4a9a-b9d3-0bdc7a6836dc">
-                    <propertyInstance
-                      Id="48d22fd9-5095-442d-8376-2fcc500c8eb2"
-                      name="IsNullable"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="0106c17d-b718-4c4d-9d77-9b9e94e74dd1">
-                    <propertyInstance
-                      Id="2210e192-3f47-4dcb-b5d9-12dc71c9f2a6"
-                      name="IsVolatile"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="616ad79e-5656-49a2-acb1-cff9ba9de5e2">
-                    <propertyInstance
-                      Id="15e8e242-c5bb-4570-97d1-ee1417d73012"
-                      name="PackageVisibility"
-                      value="internal" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                LastKnownName="int"
-                LastKnownLocation="Architecture.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="3339dddf-f375-46c3-81be-2b5025450938"
-            name="frameHeight"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <description>The height of every frame</description>
-            <appliedStereotypesInternal>
-              <stereotypeInstance
-                Id="777f974b-1d65-4866-9bb6-53c4299c54b3"
-                name="field"
-                profile="CSharpProfile">
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="d4ce5e1c-5f31-4532-a8e9-e2626e9c7133">
-                    <propertyInstance
-                      Id="29c93049-34a1-48ca-a142-4c4571f0a549"
-                      name="ClrAttributes" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="a330ae0f-c0f1-4a1e-bfa1-af0015cfa334">
-                    <propertyInstance
-                      Id="c05d3e19-7d96-41e4-8c12-afef76934449"
-                      name="IsConst"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="62d3d211-3f4a-4373-ac1c-f70e09b262ba">
-                    <propertyInstance
-                      Id="b365f75d-35a8-4345-b53d-0763a16d543c"
-                      name="IsNullable"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="fd9cfee2-7213-4c9c-abfa-e2e2c34d64f1">
-                    <propertyInstance
-                      Id="77f950d7-cf4a-455c-afb8-dd8e260d1552"
-                      name="IsVolatile"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="9eda6040-271c-4b01-b93c-d2acb82ef2d5">
-                    <propertyInstance
-                      Id="314fdda5-cfb8-4251-9644-a0a9f9e4e7db"
-                      name="PackageVisibility"
-                      value="internal" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                LastKnownName="int"
-                LastKnownLocation="Architecture.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="cfe555bf-5edb-44bc-801e-92bd00302a2f"
-            name="stepAmount"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <description>The amount to step each update for the animation</description>
-            <appliedStereotypesInternal>
-              <stereotypeInstance
-                Id="d2e07a25-f746-46f9-8d29-4d4788d9c6d0"
-                name="field"
-                profile="CSharpProfile">
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="07847d49-00df-4094-b41d-8fac3e612096">
-                    <propertyInstance
-                      Id="b7886407-3692-4247-aea1-98a39a40a7b3"
-                      name="ClrAttributes" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="89de63a4-5f3e-4738-9075-4111011386fd">
-                    <propertyInstance
-                      Id="68bb67bd-e63d-4584-859c-f685370443d3"
-                      name="IsConst"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="d0c9e508-30e3-4660-b7a6-b68814c68b56">
-                    <propertyInstance
-                      Id="c7049427-481c-4461-aba9-2ff4ba16df59"
-                      name="IsNullable"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="227e2825-7437-492d-92d0-372a80a9ae57">
-                    <propertyInstance
-                      Id="af40a406-1ee9-4e6c-acb1-a65164de8e25"
-                      name="IsVolatile"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="3c5e3dc0-f818-45e1-83f1-0c80d8e76642">
-                    <propertyInstance
-                      Id="9e9abb07-05ca-46dc-ad14-a6ea1531ecae"
-                      name="PackageVisibility"
-                      value="internal" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
-                LastKnownName="int"
                 LastKnownLocation="Architecture.uml" />
             </type_NamedElement>
           </property>
@@ -3547,6 +3206,86 @@
               <undefinedTypeMoniker
                 Id="943c946f-193e-4985-9b5e-30aa8b26dcaf"
                 LastKnownName="bool"
+                LastKnownLocation="Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fc199bea-bc36-42a0-aa59-eb8464b5a658"
+            name="numFrames"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>The number of frames in this animation</description>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
+                LastKnownName="int"
+                LastKnownLocation="Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="57f02b1b-d5d0-4ba1-af44-728695fa568f"
+            name="currentFrameNum"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>The number of the current frame</description>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
+                LastKnownName="int"
+                LastKnownLocation="Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e78ce328-e689-4124-bb03-6faafb4f7b9b"
+            name="animationSpeed"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>The amount of steps between frames </description>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
+                LastKnownName="int"
+                LastKnownLocation="Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fa9a396f-4dda-4b7c-85c7-66a16a31798a"
+            name="steps"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>The current steps of the animation</description>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
+                LastKnownName="int"
                 LastKnownLocation="Architecture.uml" />
             </type_NamedElement>
           </property>
@@ -4131,6 +3870,63 @@
             aggregation="None"
             isComposite="false">
             <description>The animation of the player being picked up</description>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="bda68df7-a5b9-461a-915e-d3eaf5ea6149"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="759c5333-b44b-415d-b281-f419425f30c2">
+                    <propertyInstance
+                      Id="d7f34d40-c38a-4368-8481-3ada75d0cc5a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fb13fc77-7542-48a1-b24f-3a049f93355b">
+                    <propertyInstance
+                      Id="577f9306-9820-4c59-97dd-a73ae32eb3f6"
+                      name="Get"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="12f53b3e-8d23-4212-82da-55d73a7b107e">
+                    <propertyInstance
+                      Id="34040a36-23b1-4efc-ba2b-ecb2e2a8e849"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd0cd013-e0c4-4ece-b27a-93397e4f20e9">
+                    <propertyInstance
+                      Id="de698926-8af4-49e7-8845-f0e9dbec6e05"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0d1344f0-6b48-427f-b2a9-35c980d1da54">
+                    <propertyInstance
+                      Id="eff6b03c-4dc7-447a-8e20-2c938ce51fc6"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="67688e62-051b-42ee-8bdc-4ec4b8a5cb67">
+                    <propertyInstance
+                      Id="f448112e-28a1-4eb2-a131-06d4dfed1772"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c11b0e25-6920-4a8c-91bc-c56d554fe858">
+                    <propertyInstance
+                      Id="a0985b73-1a28-40cc-999d-9eb4c1d28c3e"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
             <type_NamedElement>
               <classMoniker
                 Id="63104ec4-0acf-4eb7-9b02-1794a432ce32"
@@ -4150,6 +3946,63 @@
             aggregation="None"
             isComposite="false">
             <description>The animation of the player moving</description>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d5699894-78d9-47d8-888b-538b9ce7f727"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4ac9893b-60b5-42d9-905a-359d4f588157">
+                    <propertyInstance
+                      Id="0c2077af-66fa-49ae-9ab9-97be20e43a6a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f3987ddc-2506-49a5-a709-d85dc5c64b02">
+                    <propertyInstance
+                      Id="db107c5c-3771-403b-abf2-f52a4d058885"
+                      name="Get"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1dd0cc20-9426-4016-a1d5-a43dfd1842af">
+                    <propertyInstance
+                      Id="8a8f4b1b-95d0-42ac-b559-cb2a3bf85f24"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bbed3cd5-0003-4bec-952c-900536c2c91b">
+                    <propertyInstance
+                      Id="468d6a64-1f23-4d1c-9c2f-ee49da6a267d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1e6bb7d1-a105-4710-a15c-acbe7c0b825e">
+                    <propertyInstance
+                      Id="dfe3aef5-01f8-4f57-b549-b4a21265286f"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e34a2c02-0a42-4598-af1c-0f7f304c635a">
+                    <propertyInstance
+                      Id="dbbd2d03-bdbd-4f81-9876-a8fadbdd9173"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="497eb53e-b5ca-4146-b427-47c4c989f4cd">
+                    <propertyInstance
+                      Id="0a823283-659c-4122-a410-207ef9c6f39c"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
             <type_NamedElement>
               <classMoniker
                 Id="63104ec4-0acf-4eb7-9b02-1794a432ce32"
@@ -4169,6 +4022,63 @@
             aggregation="None"
             isComposite="false">
             <description>The animation of the playerpicking up a comrade</description>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="82de7521-99f1-4bfa-8ce7-b18a04b5f34e"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dd8b3706-6bc5-4bae-b1e6-1afd1118f8fc">
+                    <propertyInstance
+                      Id="c862af0a-0b3c-46a9-ab22-d637b1260e6a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="218f1766-b84a-432d-afa2-263115ae0ee1">
+                    <propertyInstance
+                      Id="75a14b28-dab5-4ead-9fec-9aac017cac52"
+                      name="Get"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2af0ecd4-4bff-474b-a86d-99f6595c35aa">
+                    <propertyInstance
+                      Id="ff9d6d8d-8999-4f9e-9303-f278c524ffb2"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8eaf1ab2-a4d9-409d-b3ae-3b45a96a20f8">
+                    <propertyInstance
+                      Id="ef3c86ac-c5d7-4735-9f1d-735dfc1b6dac"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4cae76c6-a2ce-4526-953d-41ee41c52602">
+                    <propertyInstance
+                      Id="aabbde85-4b7b-4422-80f4-4f51114421f4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1137c8f1-f38a-4de1-8e63-ae3e71321d25">
+                    <propertyInstance
+                      Id="0694a373-b68f-45ea-96a1-015294514587"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7b6c6275-c425-44c5-b24a-85a3299d02f4">
+                    <propertyInstance
+                      Id="dce6053b-b8a3-4e00-9ab7-fded035267fb"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
             <type_NamedElement>
               <classMoniker
                 Id="63104ec4-0acf-4eb7-9b02-1794a432ce32"
@@ -4177,6 +4087,18 @@
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="08485ab9-4b4d-46a0-918d-360e861c4717"
+            name="SetupAnimations"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Sets up the animations for the player</description>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -4258,7 +4180,7 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
-            <description>Moves the torch the given speed</description>
+            <description>Move the torch by the given speed in the given directional axis (true = left + right, false = up + down)</description>
             <appliedStereotypesInternal>
               <stereotypeInstance
                 Id="2aa6eaf1-5eca-4335-b815-dea4cc0652d0"
@@ -4338,7 +4260,31 @@
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="feb16b92-f015-4156-8dd1-46f567f4c08d"
+                  name="dir"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="943c946f-193e-4985-9b5e-30aa8b26dcaf"
+                      LastKnownName="bool"
+                      LastKnownLocation="Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
             </ownedParameters>
+          </operation>
+          <operation
+            Id="7567b0cb-2d3e-4e3f-9e46-b1d31976926b"
+            name="SetupAnimations"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Sets up the animations for this torch</description>
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -4430,7 +4376,7 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
-            <description>Moves the minotaur the given speed</description>
+            <description>Move the minotuar by the given speed in the given directional axis (true = left + right, false = up + down)</description>
             <appliedStereotypesInternal>
               <stereotypeInstance
                 Id="a59e61f4-b384-475f-8c1b-6e056f6d6195"
@@ -4510,7 +4456,31 @@
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="da145b0b-37d9-499a-b969-5565059b4ba3"
+                  name="dir"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="943c946f-193e-4985-9b5e-30aa8b26dcaf"
+                      LastKnownName="bool"
+                      LastKnownLocation="Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
             </ownedParameters>
+          </operation>
+          <operation
+            Id="d2189049-5a70-402c-8bfa-1b24daffdc59"
+            name="SetupAnimations"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Sets up the animations for the minotaur</description>
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -4630,7 +4600,7 @@
           </property>
           <property
             Id="549e7fcb-4276-437b-8f52-847e71b1878c"
-            name="WallTexture"
+            name="WallTextures"
             isLeaf="false"
             isStatic="true"
             isReadOnly="false"
@@ -4685,8 +4655,8 @@
             </appliedStereotypesInternal>
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="4c7aae14-5ece-41d9-bb54-4fbdf461cb0d"
-                LastKnownName="Texture2D"
+                Id="606c5211-ada2-42bd-bd17-5b36c0f13479"
+                LastKnownName="Dictionary&lt;string, Texture2D&gt;"
                 LastKnownLocation="Architecture.uml" />
             </type_NamedElement>
           </property>
@@ -5372,7 +5342,123 @@
                 LastKnownLocation="Architecture.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="97c73f73-af20-433b-837b-823a8022663d"
+            name="ExitTexture"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>The texture of the exit</description>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="4c7aae14-5ece-41d9-bb54-4fbdf461cb0d"
+                LastKnownName="Texture2D"
+                LastKnownLocation="Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="736a5485-8f43-4dd0-81de-0f733dbf534a"
+            name="TileSize"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>The size of the tiles in the game</description>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="61bf2388-ab29-4e7d-933a-0927eac06657"
+                LastKnownName="int"
+                LastKnownLocation="Architecture.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="4cd58228-e433-4b23-b5f9-07a8275a6d68"
+            name="LoadTextures"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Loads the textures of the game</description>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="577e707f-82ee-4f70-8dfe-4374321df541"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2d9bd6be-48c3-4936-b9bf-430162c556b1">
+                    <propertyInstance
+                      Id="fb0c7bae-1365-4806-a8ca-dd758702cd00"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="29d406c3-5b01-4648-b6e9-0ff774edd15d">
+                    <propertyInstance
+                      Id="efe79957-68be-4b8a-b8da-b0a18c176e63"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9d41599a-e1ba-483f-b051-c737a6b1dd89">
+                    <propertyInstance
+                      Id="d4fabf0d-5fce-42a7-ae81-3eca8d43d4ee"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="381ce209-e626-4adb-8315-3f2b5e55b4a1">
+                    <propertyInstance
+                      Id="88e28798-c30a-4226-92d1-d839a26e0fa4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bb39a2e3-b80f-4c2c-b6b2-d3fe958a68c8">
+                    <propertyInstance
+                      Id="e03b7e9a-b0f7-4e21-adca-e6f0d5e9cac6"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cf6c4fad-0138-41b6-b2bb-bda285b6ad60">
+                    <propertyInstance
+                      Id="7fa56849-cc5b-4cac-bf9a-4ab07c0078b4"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="62115542-1430-4f26-9636-75f7c71aa0fc"
+                  name="content"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="aa525278-5bcc-4753-9db0-a1932c10a45c"
+                      LastKnownName="ContentManager"
+                      LastKnownLocation="Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -5786,7 +5872,7 @@
             isAbstract="true"
             concurrency="Sequential"
             isQuery="false">
-            <description>Move the given object the given speed</description>
+            <description>Move the given object by the given speed in the given directional axis (true = left + right, false = up + down)</description>
             <appliedStereotypesInternal>
               <stereotypeInstance
                 Id="45414434-094c-4a77-bce6-4f42dfec1616"
@@ -5840,7 +5926,7 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="2917b2a5-2f58-49df-98d1-39ab0906339c"
+                  Id="e7cfcfc7-cb2e-476a-b606-10a3cb52b582"
                   name="gameTime"
                   direction="In"
                   isUnique="false">
@@ -5854,7 +5940,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="7ef654a8-a8af-41da-9ce7-bdd17db11513"
+                  Id="1c609f28-97c4-4bd6-a838-37f466fc3273"
                   name="speed"
                   direction="In"
                   isUnique="false">
@@ -5862,6 +5948,20 @@
                     <undefinedTypeMoniker
                       Id="61bf2388-ab29-4e7d-933a-0927eac06657"
                       LastKnownName="int"
+                      LastKnownLocation="Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3b052012-6332-4b71-a68e-20297de33966"
+                  name="dir"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="943c946f-193e-4985-9b5e-30aa8b26dcaf"
+                      LastKnownName="bool"
                       LastKnownLocation="Architecture.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -6119,7 +6219,7 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
-            <description>Moves the comrade the given speed</description>
+            <description>Move the comrade by the given speed in the given directional axis (true = left + right, false = up + down)</description>
             <appliedStereotypesInternal>
               <stereotypeInstance
                 Id="d73475bf-7531-45c2-b833-91ae442eb2e5"
@@ -6199,7 +6299,31 @@
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d2b0a51f-1f8d-41f8-864d-4b9f97cb4811"
+                  name="dir"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="943c946f-193e-4985-9b5e-30aa8b26dcaf"
+                      LastKnownName="bool"
+                      LastKnownLocation="Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
             </ownedParameters>
+          </operation>
+          <operation
+            Id="feff424d-7e4d-407c-9ee0-1f52db4a0284"
+            name="SetupAnimations"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Sets up the animations for this comrade</description>
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -6213,6 +6337,36 @@
       <undefinedType
         Id="685f54c9-b13b-4492-92d4-0f9e0166ed17"
         name="bool[][]" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="9aca5499-2e5b-44ad-97eb-3caa4bd47109"
+        name="List&lt;Movables&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="521dfae8-7fbf-4c4f-9dd2-b65e1d5d4630"
+        name="Dictonary&lt;string, Texture2D&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="606c5211-ada2-42bd-bd17-5b36c0f13479"
+        name="Dictionary&lt;string, Texture2D&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="aa525278-5bcc-4753-9db0-a1932c10a45c"
+        name="ContentManager" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="19e6b51b-1fb7-4f0f-9f75-9bb773ceb32a"
+        name="Vector2" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="032bb61d-a1ea-4f14-85a3-edba91422aec"
+        name="iny" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

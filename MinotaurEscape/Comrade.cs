@@ -27,13 +27,21 @@ public class Comrade : AnimatedTile, Movable
 		set;
 	}
 
-	/// <summary>
-	/// Moves the comrade the given speed
-	/// </summary>
-	public virtual void Move(GameTime gameTime, int speed)
+    /// <summary>
+    /// Moves the comrade the given speed in the given dir (true = right + left, false = up + down)
+    /// </summary>
+    public virtual void Move(GameTime gameTime, int speed, bool dir)
 	{
 		throw new System.NotImplementedException();
 	}
+
+    /// <summary>
+    /// Sets up the animations for this comrade
+    /// </summary>
+    public override void SetupAnimations()
+    {
+        throw new NotImplementedException();
+    }
 
 }
 

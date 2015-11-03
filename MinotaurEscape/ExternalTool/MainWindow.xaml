@@ -27,8 +27,6 @@
                 <MenuItem Header="Help" Click="helpCommand" ToolTip="Ctrl+H" />
             </Menu>
         </DockPanel>
-        <VirtualizingStackPanel>
         <ScrollViewer Name="scrollViewer" Margin="0,20,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
-        </VirtualizingStackPanel>
     </Grid>
 </Window>

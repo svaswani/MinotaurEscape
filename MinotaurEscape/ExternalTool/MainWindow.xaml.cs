@@ -447,9 +447,9 @@ namespace ExternalTool
             if (dialog.ShowDialog(this).Value && (loadStream = dialog.OpenFile()) != null)
             {
                 // load the maze's size
-                BinaryReader reader = new BinaryReader(loadStream);
-                mazeWidth = reader.ReadInt32();
-                mazeHeight = reader.ReadInt32();
+                    BinaryReader reader = new BinaryReader(loadStream);
+                    mazeWidth = reader.ReadInt32();
+                    mazeHeight = reader.ReadInt32();
 
                 // setup the maze first to fix the grid's size
                     runTaskWithLoadingScreen("Loading the maze", "Loading Maze...", () =>

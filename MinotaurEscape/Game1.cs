@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
 
 namespace MinotaurEscape
 {
@@ -15,9 +16,10 @@ namespace MinotaurEscape
 
         // atributes
         Texture2D image;
-        Vector2 pos;
         bool[] wasd = { false, false, false, false };
         string[] wasdStr = { "W", "A", "S", "D" };
+        Maze maze;
+        Player player;
 
         public Game1()
         {
@@ -37,8 +39,27 @@ namespace MinotaurEscape
             menu = new MainMenu();
             menu.Show();
 
-            pos = new Vector2(20, 20);
+            /* Temporaily ask the player for a maze to load if maze doesn't exist */
+
+            // Create a stream for loading the file
+                Stream loadStream;
+
+            // Create a dialog for asking for save location
+                System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
+                dialog.Filter = "maze files (*.maz)|*.maz";
+
+            // Ask the user for a file to load
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && (loadStream = dialog.OpenFile()) != null)
+                    maze = new Maze(loadStream);
+                else
+                    Exit();
+
+            // Create the player
+                player = new Player();
+                player.Animating = false;
+                
             base.Initialize();
+            
         }
 
         /// <summary>
@@ -49,10 +70,13 @@ namespace MinotaurEscape
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            image = Content.Load<Texture2D>("temporaryCharacter");
-            
 
-            // TODO: use this.Content to load your game content here
+            // Load the textures of the game
+                GameVariables.LoadTextures(Content);
+
+            // Setup all the animations of the game
+                player.SetupAnimations();
+                player.Animation = player.IdleAnimation; // Do this here for now, will be moved later to a more apporiate place
         }
 
         /// <summary>
@@ -75,25 +99,25 @@ namespace MinotaurEscape
                 Exit();
 
             // TODO: Add your update logic here
-            ProcessInput();
+            ProcessInput(gameTime);
 
             base.Update(gameTime);
         }
 
-        public void ProcessInput()
+        public void ProcessInput(GameTime gameTime)
         {
             KeyboardState kbState = Keyboard.GetState();
             if (kbState.IsKeyDown(Keys.W))
             {
                 wasd[0] = true;
-                pos.Y--;
+                maze.Move(gameTime, 100, false);
             }
             else wasd[0] = false;
 
             if (kbState.IsKeyDown(Keys.A))
             {
                 wasd[1] = true;
-                pos.X--;
+                maze.Move(gameTime, 100, true);
 
             }
             else wasd[1] = false;
@@ -102,13 +126,13 @@ namespace MinotaurEscape
             if (kbState.IsKeyDown(Keys.S))
             {
                 wasd[2] = true;
-                pos.Y++;
+                maze.Move(gameTime, -100, false);
             }
             else wasd[2] = false;
             if (kbState.IsKeyDown(Keys.D))
             {
                 wasd[3] = true;
-                pos.X++;
+                maze.Move(gameTime, -100, true);
             }
             else wasd[3] = false;
         }
@@ -124,7 +148,14 @@ namespace MinotaurEscape
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            spriteBatch.Draw(image, pos, Color.White);
+
+            // Draw the maze
+                maze.Draw(spriteBatch);
+
+            // Place the player at the center of the screen and draw him
+                player.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
+                player.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

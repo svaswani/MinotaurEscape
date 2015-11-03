@@ -10,7 +10,7 @@ namespace ExternalTool
     public static class MazeGeneration
     {
         // The different Algorithm's that can be used to generate a maze
-        public enum Algorithm { Blank, Recursive_division, Depth___first_search, Kruskal__algorithm, Prim__algorithm, Eller__algorithm_by_row, Eller__algorithm_by_colmun, Hunt___and___kill_algorithm, Growing_tree_algorithm_75____25, Growing_tree_algorithm_50____50, Growing_tree_algorithm_25____75 }
+        public enum Algorithm { Blank, Depth___first_search, Kruskal__algorithm, Eller__algorithm_by_row, Eller__algorithm_by_colmun, Hunt___and___kill_algorithm, Growing_tree_algorithm_75____25, Growing_tree_algorithm_50____50, Growing_tree_algorithm_25____75 }
 
         // Random used for maze generation
         private static Random rand = new Random();
@@ -29,15 +29,15 @@ namespace ExternalTool
                     case Algorithm.Depth___first_search:
                         maze = generateDepthFirstSearch(innerWidth, innerHeight);
                         break;
-                    case Algorithm.Recursive_division:
-                        maze = generateRecursiveDivision(innerWidth, innerHeight);
-                        break;
+                    //case Algorithm.Recursive_division:
+                    //    maze = generateRecursiveDivision(innerWidth, innerHeight);
+                    //    break;
                     case Algorithm.Kruskal__algorithm:
                         maze = generateKruskalAlgorithm(innerWidth, innerHeight);
                         break;
-                    case Algorithm.Prim__algorithm:
-                        maze = generatePrimAlgorithm(innerWidth, innerHeight);
-                        break;
+                   // case Algorithm.Prim__algorithm:
+                    //    maze = generatePrimAlgorithm(innerWidth, innerHeight);
+                   //     break;
                     case Algorithm.Eller__algorithm_by_row:
                         maze = generateElleralgorithm(innerWidth, innerHeight, false);
                         break;

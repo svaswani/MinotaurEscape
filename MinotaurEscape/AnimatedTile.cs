@@ -8,12 +8,12 @@ using System.Text;
 /// <summary>
 /// A tile that has an animation and direction
 /// </summary>
-public class AnimatedTile
+public abstract class AnimatedTile
 {
 	/// <summary>
 	/// The animation of this tile
 	/// </summary>
-	public virtual Animation Animation
+	public Animation Animation
 	{
 		get;
 		set;
@@ -22,7 +22,7 @@ public class AnimatedTile
 	/// <summary>
 	/// If this tile is currently looping through an animation
 	/// </summary>
-	public virtual bool Animating
+	public bool Animating
 	{
 		get;
 		set;
@@ -38,30 +38,19 @@ public class AnimatedTile
 	}
 
 	/// <summary>
-	/// The Position of this tile on the X axis
-	/// </summary>
-	public int X
-	{
-		get;
-		set;
-	}
-
-	/// <summary>
-	/// The position of this tile on the Y axis
-	/// </summary>
-	public int Y
-	{
-		get;
-		set;
-	}
-
-	/// <summary>
 	/// Draws the current frame of this tile to the given sprite batch
 	/// </summary>
 	public void Draw(SpriteBatch spriteBatch)
 	{
-		throw new System.NotImplementedException();
-	}
+        if (Animating)
+            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.NextFrame(), Color.White);
+        else
+            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.CurrentFrame, Color.White);
+    }
 
+    /// <summary>
+	/// Sets up the animations for this tile
+	/// </summary>
+	public abstract void SetupAnimations();
 }
 

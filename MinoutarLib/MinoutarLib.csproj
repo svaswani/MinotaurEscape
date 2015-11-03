@@ -43,8 +43,10 @@
     <Compile Include="GeneratedCode\AnimatedTile.cs" />
     <Compile Include="GeneratedCode\Animation.cs" />
     <Compile Include="GeneratedCode\Comrade.cs" />
+    <Compile Include="GeneratedCode\GameVariables.cs" />
     <Compile Include="GeneratedCode\Maze.cs" />
     <Compile Include="GeneratedCode\Movable.cs" />
+    <Compile Include="GeneratedCode\Player.cs" />
     <Compile Include="GeneratedCode\Torch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

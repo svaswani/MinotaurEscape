@@ -13,7 +13,7 @@
         />
         <Label x:Name="label3" Content="Maze Generation" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <TextBox x:Name="textbox3" Margin="25,240,25,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" TextWrapping="WrapWithOverflow" IsReadOnly="True"
-            Text = "Click on the Generate Button under Edit to generate a new maze using one of 11 different Algorithms and whatever size you want! (Warning! The Larger the maze the longer the wait time when generating it and changing settings!)" Focusable="False" IsTabStop="False" BorderThickness="0" Cursor="Arrow"
+            Text = "Click on the Generate Button under Edit to generate a new maze using one of 9 different Algorithms and whatever size you want! (Warning! The Larger the maze the longer the wait time when generating it and changing settings!)" Focusable="False" IsTabStop="False" BorderThickness="0" Cursor="Arrow"
         />
         <Label x:Name="label2" Content="Shortcuts" HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <TextBox x:Name="textbox2" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" TextWrapping="WrapWithOverflow" IsReadOnly="True"

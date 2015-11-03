@@ -6,30 +6,24 @@
   <MessageClass Name="Error" Label="Error" Option="Show errors" />
   <MessageClass Name="Property" Label="Property" Option="Show metadata" />
   <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="High" Text="Code generation or text transformation started." />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="Diagnostic" Text="Name = ClassTemplate" />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="Diagnostic" Text="Overwrite = True" />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="Diagnostic" Text="ProjectPath = ..\MinoutarLib\MinoutarLib.csproj" />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
-  <Message Timestamp="2015-11-03T02:17:22" Importance="Medium" Text="Minotaur's Text Template Binding: 'ClassTemplate' will apply ClassTemplate.t4 to: 'Minotaur::Animation' -  (Class), 'Minotaur::AnimatedTile' -  (Class), 'Minotaur::Torch' -  (Class), 'Minotaur::Comrade' -  (Class) " />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Medium" Text="'Minotaur::Animation' -  (Class) : success (file created) - C:\Users\Andrew\OneDrive\Documents\RIT\GDAPS\MinotaurEscape\MinoutarLib\GeneratedCode\Animation.cs" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Medium" Text="'Minotaur::AnimatedTile' -  (Class) : success (file created) - C:\Users\Andrew\OneDrive\Documents\RIT\GDAPS\MinotaurEscape\MinoutarLib\GeneratedCode\AnimatedTile.cs" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Medium" Text="'Minotaur::Torch' -  (Class) : success (file created) - C:\Users\Andrew\OneDrive\Documents\RIT\GDAPS\MinotaurEscape\MinoutarLib\GeneratedCode\Torch.cs" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Medium" Text="'Minotaur::Comrade' -  (Class) : success (file created) - C:\Users\Andrew\OneDrive\Documents\RIT\GDAPS\MinotaurEscape\MinoutarLib\GeneratedCode\Comrade.cs" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="Name = StructTemplate" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="Overwrite = True" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="ProjectPath = ..\MinoutarLib\MinoutarLib.csproj" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Medium" Text="Minotaur's Text Template Binding: 'StructTemplate' will apply StructTemplate.t4 to: 'Minotaur::Animation' -  (Class), 'Minotaur::AnimatedTile' -  (Class), 'Minotaur::Torch' -  (Class), 'Minotaur::Comrade' -  (Class) " />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="'Minotaur::Animation' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="'Minotaur::AnimatedTile' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="'Minotaur::Torch' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
-  <Message Timestamp="2015-11-03T02:17:23" Importance="Diagnostic" Text="'Minotaur::Comrade' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
-  <Message Timestamp="2015-11-03T02:17:24" Importance="High" Text="Code generation complete. Errors: 0. Warnings: 0." />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="High" Text="Code generation or text transformation started." />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="Diagnostic" Text="Name = ClassTemplate" />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="Diagnostic" Text="Overwrite = True" />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="Diagnostic" Text="ProjectPath = ..\MinoutarLib\MinoutarLib.csproj" />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2015-11-03T03:45:59" Importance="Medium" Text="Minotaur's Text Template Binding: 'ClassTemplate' will apply ClassTemplate.t4 to: 'Minotaur::Player' -  (Class) " />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Medium" Text="'Minotaur::Player' -  (Class) : success (file created) - C:\Users\Andrew\OneDrive\Documents\RIT\GDAPS\MinotaurEscape\MinoutarLib\GeneratedCode\Player.cs" />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Diagnostic" Text="Name = StructTemplate" />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Diagnostic" Text="Overwrite = True" />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Diagnostic" Text="ProjectPath = ..\MinoutarLib\MinoutarLib.csproj" />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Medium" Text="Minotaur's Text Template Binding: 'StructTemplate' will apply StructTemplate.t4 to: 'Minotaur::Player' -  (Class) " />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="Diagnostic" Text="'Minotaur::Player' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2015-11-03T03:46:00" Importance="High" Text="Code generation complete. Errors: 0. Warnings: 0." />
 </Log>
