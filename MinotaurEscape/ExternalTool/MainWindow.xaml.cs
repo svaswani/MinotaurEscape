@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -59,10 +61,10 @@ namespace ExternalTool
         private Image exitImage;
         private bool exitMode;
 
-        // Loading Window and worker for background tasks
-        private Loading loading;
+        // The worker for background tasks, a timer, and loading screen
         private BackgroundWorker worker;
-        private DateTime startLoadTime;
+        private DateTime lastTime = DateTime.Now;
+        private Loading loading;
 
         public MainWindow()
         {
@@ -75,14 +77,15 @@ namespace ExternalTool
             // Setup the keybindings and images
                 setupKeybindings();
                 setupImages();
-            //Console.WriteLine((new Point(1, 1).Equals((new Point(1, 1))))+":"+(new Point[] { (new Point(1, 1))}.First((new Point(1, 1)))));
 
             // Perform the setup on another thread since it will take a while
-                runTaskInBackground("Seting up a basic grid...", "Loading Start...", mazeWidth*mazeHeight, () =>
+                runTaskWithLoadingScreen("Seting up a basic grid", "Loading Start...", () =>
                     {
+                        DateTime now = DateTime.Now;
                         // Setup the maze
                             setupMaze();
                             generateMaze(MazeGeneration.Algorithm.Blank);
+                        Console.WriteLine(DateTime.Now - now);
                     });
         }
 
@@ -156,10 +159,14 @@ namespace ExternalTool
         private void setSaved(bool saved)
         {
             // Update the title's * to indicate the current save state
-                if (this.saved && !saved)
-                    Title += "*";
-                else if (!this.saved && saved)
-                    Title = Title.Substring(0, Title.Length - 1);
+            if(saved!=this.saved)
+                Dispatcher.Invoke(() =>
+                {
+                    if (this.saved && !saved)
+                        Title += "*";
+                    else if (!this.saved && saved)
+                        Title = Title.Substring(0, Title.Length - 1);
+                });
 
             // Update the saved variable
                 this.saved = saved;
@@ -174,58 +181,76 @@ namespace ExternalTool
             // Set the tile's size to the maze's size
                 tiles = new bool[mazeWidth][];
 
-            // Setup the new grid and replace the old one in the scrollViewer
-                mazeGrid = new Grid();
-                mazeGrid.HorizontalAlignment = HorizontalAlignment.Left;
-                mazeGrid.VerticalAlignment = VerticalAlignment.Top;
-                scrollViewer.Content = mazeGrid;
+                Dispatcher.Invoke(() =>
+                {
+                    // Setup the new grid and replace the old one in the scrollViewer
+                        mazeGrid = new Grid();
+                        mazeGrid.HorizontalAlignment = HorizontalAlignment.Left;
+                        mazeGrid.VerticalAlignment = VerticalAlignment.Top;
+                        scrollViewer.Content = mazeGrid;
 
-            // Setup the grid's sizes to the current maze sizes
-                mazeGrid.Height = mazeHeight * tileSize;
-                mazeGrid.Width = mazeWidth * tileSize;
+                    // Setup the grid's sizes to the current maze sizes
+                        mazeGrid.Height = mazeHeight * tileSize;
+                        mazeGrid.Width = mazeWidth * tileSize;
+                });
 
             // Setup the grid and set all the tiles in both the grid and array to walls
-            for (int x = 0; x < mazeWidth; x++)
+                for (int x = 0; x < mazeWidth; x++)
                 {
                     // Set up the current col
                         tiles[x] = new bool[mazeHeight];
-                        ColumnDefinition col = new ColumnDefinition();
-                        col.Width = new GridLength(tileSize);
-                        mazeGrid.ColumnDefinitions.Add(col);
+                        Dispatcher.Invoke(() =>
+                        {
+                            ColumnDefinition col = new ColumnDefinition();
+                            col.Width = new GridLength(tileSize, GridUnitType.Pixel);
+                            mazeGrid.ColumnDefinitions.Add(col);
+                        });
 
                     for (int y = 0; y < mazeHeight; y++)
                     {
-                        // Setup the current row
-                            RowDefinition row = new RowDefinition();
-                            row.Height = new GridLength(tileSize);
-                            mazeGrid.RowDefinitions.Add(row);
+                        Dispatcher.Invoke(() =>
+                        {
+                            // Setup the current row
+                                RowDefinition row = new RowDefinition();
+                                row.Height = new GridLength(tileSize, GridUnitType.Pixel);
+                                mazeGrid.RowDefinitions.Add(row);
 
-                        // Create the image of the tile and set its mouse event to the tile clicked event
-                            Image tileImage = new Image();
-                            tileImage.Width = tileSize;
-                            tileImage.Height = tileSize;
-                            tileImage.MouseDown += tilePressed;
-                            tileImage.MouseEnter += tilePressed;
-                            MouseUp += tileReleased;
+                            // Create the image of the tile and set its mouse event to the tile clicked event
+                                Image tileImage = new Image();
+                                tileImage.Width = tileSize;
+                                tileImage.Height = tileSize;
+                                tileImage.MouseDown += tilePressed;
+                                tileImage.MouseEnter += tilePressed;
+                                MouseUp += tileReleased;
 
-                        // Add the image to the grid
-                            Grid.SetRow(tileImage, y);
-                            Grid.SetColumn(tileImage, x);
-                            mazeGrid.Children.Add(tileImage);
+                            // Add the image to the grid
+                                Grid.SetRow(tileImage, y);
+                                Grid.SetColumn(tileImage, x);
+                                mazeGrid.Children.Add(tileImage);
+                        });
+
+                        // Update loading screen and Make sure updates aren't right next to each other
+                            worker.ReportProgress(75);
+                            if ((y+x*mazeHeight) % 50 == 0)
+                                Thread.Sleep(1);
                     }
+
                 }
 
             // Setup the exit image
-                if (exitImage == null)
+                Dispatcher.Invoke(() =>
                 {
-                    exitImage = new Image();
-                    exitImage.Source = new BitmapImage(new Uri("Assets/exit.png", UriKind.Relative));
-                }
-                if (exitImage.Parent != null)
-                    ((Grid)exitImage.Parent).Children.Remove(exitImage);
-                mazeGrid.Children.Add(exitImage);
-                exitImage.Width = tileSize;
-                exitImage.Height = tileSize;
+                    if (exitImage == null)
+                    {
+                        exitImage = new Image();
+                        exitImage.Source = new BitmapImage(new Uri("Assets/exit.png", UriKind.Relative));
+                    }
+                    if (exitImage.Parent != null)
+                        ((Grid)exitImage.Parent).Children.Remove(exitImage);
+                    mazeGrid.Children.Add(exitImage);
+                    exitImage.Width = tileSize;
+                    exitImage.Height = tileSize;
+                });
 
         }
 
@@ -237,8 +262,11 @@ namespace ExternalTool
                 tiles = MazeGeneration.generateMaze(algorithm, mazeWidth, mazeHeight, out exit);
 
             // Set the exit image
-                Grid.SetColumn(exitImage, (int)exit.X);
-                Grid.SetRow(exitImage, (int)exit.Y);
+                Dispatcher.Invoke(() =>
+                {
+                    Grid.SetColumn(exitImage, (int)exit.X);
+                    Grid.SetRow(exitImage, (int)exit.Y);
+                });
 
             // Update the maze grid
                 updateGrid();
@@ -248,8 +276,18 @@ namespace ExternalTool
         private void updateGrid()
         {
             for (int x = 0; x < mazeWidth; x++)
+            {
                 for (int y = 0; y < mazeHeight; y++)
-                    updateTile(x, y);
+                {
+                    // Update the current tile and the loading screen
+                        Dispatcher.Invoke(() => updateTile(x, y));
+                        worker.ReportProgress(25);
+
+                    // Make sure updates aren't right next to each other
+                        if ((y + x * mazeHeight) % 50 == 0)
+                            Thread.Sleep(1);
+                }
+            }
         }
 
         // Sets the tile at the given position to the given type
@@ -414,7 +452,7 @@ namespace ExternalTool
                 mazeHeight = reader.ReadInt32();
 
                 // setup the maze first to fix the grid's size
-                    runTaskInBackground("Loading the maze...", "Loading Maze...", mazeWidth * mazeHeight * 2, () =>
+                    runTaskWithLoadingScreen("Loading the maze", "Loading Maze...", () =>
                     {
                         setupMaze();
 
@@ -474,16 +512,18 @@ namespace ExternalTool
 
                     // Perform the rest on another thread since it will take a while
                         Algorithm algo = generate.algorithm;
-                        runTaskInBackground("Generating new maze...", "Generating Maze...", mazeWidth * mazeHeight * 2, () =>
+                        runTaskWithLoadingScreen("Generating new maze", "Generating Maze...", () =>
                         {
-                                // Setup the empty maze
-                                    setupMaze();
+                            DateTime now = DateTime.Now;
+                            // Setup the empty maze
+                            setupMaze();
 
                                 // Generate a maze
                                     generateMaze(algo);
 
                                 // Set as not saved since new maze created
                                     setSaved(false);
+                            Console.WriteLine(DateTime.Now - now);
                         });
                 }
         }
@@ -517,7 +557,7 @@ namespace ExternalTool
 
                     // Perform the rest on another thread since it will take a while
                         int newTileSize = settings.TileSize, newWidth = settings.MazeWidth, newHeight = settings.MazeHeight;
-                        runTaskInBackground("Resizing Maze...", "Resizing Maze...", mazeWidth * mazeHeight, () =>
+                        runTaskWithLoadingScreen("Resizing Maze", "Resizing Maze...", () =>
                         {
                             // Update the tile size and then resize the maze with the new size (adding the command to the stack)
                                 tileSize = newTileSize;
@@ -703,19 +743,25 @@ namespace ExternalTool
         // Called when the window is going to close
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Check if the maze is saved and if not prompt for confirmation
-                if (!saved)
+            // Make sure the worker is not working
+                if (worker.IsBusy)
+                    e.Cancel = true;
+                else
                 {
-                    MessageBoxResult save = MessageBox.Show(this, "Warning! The current maze has not been saved! Do you want to save your unsaved changes before closing? (If not, all unsaved changes will be lost on close!)", "Unsaved Progress", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-                    if (save == MessageBoxResult.Yes)
-                    {
-                        if (curFile != null)
-                            saveToStream(File.Open(curFile, FileMode.Create));
-                        else if (!saveToFile())
-                            e.Cancel = true;
-                    }
-                    else if (save != MessageBoxResult.No)
-                        e.Cancel = true;
+                    // Check if the maze is saved and if not prompt for confirmation
+                        if (!saved)
+                        {
+                            MessageBoxResult save = MessageBox.Show(this, "Warning! The current maze has not been saved! Do you want to save your unsaved changes before closing? (If not, all unsaved changes will be lost on close!)", "Unsaved Progress", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                            if (save == MessageBoxResult.Yes)
+                            {
+                                if (curFile != null)
+                                    saveToStream(File.Open(curFile, FileMode.Create));
+                                else if (!saveToFile())
+                                    e.Cancel = true;
+                            }
+                            else if (save != MessageBoxResult.No)
+                                e.Cancel = true;
+                        }
                 }
         }
 
@@ -783,24 +829,49 @@ namespace ExternalTool
         }
 
         // Runs the given Action on the background worker
-        private void runTaskInBackground(string loadingMessage, string loadingTitle, double maxLoadValue, Action work)
+        private void runTaskWithLoadingScreen(string loadingMessage, string loadingTitle, Action work)
         {
-            loading = new Loading();
-            loading.Show(this, loadingMessage, loadingTitle);
-            Mouse.OverrideCursor = Cursors.Wait;
-            worker = new BackgroundWorker();
-            worker.DoWork += (sender, e) => Dispatcher.Invoke(() => work());
-            worker.RunWorkerCompleted += backgroundOver;
-            worker.RunWorkerAsync();
-            startLoadTime = DateTime.Now;
-        }
 
-        // Closes the loading screen and returns the mosue on background taks over
-        private void backgroundOver(object sender, RunWorkerCompletedEventArgs e)
-        {
-            loading.Close();
-            Mouse.OverrideCursor = null;
-        }
+            // Create variables used in loading (maz load value, background worker, and loading screen)
+                int maxLoadValue = mazeWidth * mazeHeight;
+                worker = new BackgroundWorker();
+                loading = new Loading();
+
+            // Set the background worker to run the given method
+                worker.DoWork += (sender, e) => work();
+
+            // Se the background worker to return the cursor and close the loading screen when it's done
+                worker.RunWorkerCompleted += (sender, e) =>
+                {
+                    loading.Close();
+                    Mouse.OverrideCursor = null;
+                };
+
+            // Set the background worker to increment the loading value and update time remaining on update
+                    worker.ProgressChanged += (sender, e) =>
+                    {
+                        loading.LoadingValue+=e.ProgressPercentage/100.0;
+                        if ((int)loading.LoadingValue % 200 == 0)
+                        {
+                            if ((int)loading.LoadingValue / 200 % 3 == 0)
+                                loading.LoadingMessage = loadingMessage + "..";
+                            else if ((int)loading.LoadingValue / 200 % 3 == 1)
+                                loading.LoadingMessage = loadingMessage + "...";
+                            else if ((int)loading.LoadingValue / 200 % 3 == 2)
+                                loading.LoadingMessage = loadingMessage + ".";
+                        }
+                    };
+                        worker.WorkerReportsProgress = true;
+
+
+                        // Show the loading screen, change the cursour, and run the background worker
+                        loading.Show(this, loadingMessage+"...", loadingTitle, maxLoadValue);
+                        Mouse.OverrideCursor = Cursors.Wait;
+                        worker.RunWorkerAsync();
+
+                    }
+
+
 
     }
 }
