@@ -1,7 +1,7 @@
-MinotaurEscape\bin\*.*
-MinotaurEscape\obj\*.*
-MinotaurEscape\.vs\*.*
-MinotaurEscape\ExternalTool\bin\*.*
-MinotaurEscape\ExternalTool\obj\*.*
-Architecture\bin\*.*
-Architecture\obj\*.*
+MinotaurEscape/bin/
+MinotaurEscape/obj/
+MinotaurEscape/.vs/
+MinotaurEscape/ExternalTool/bin/
+MinotaurEscape/ExternalTool/obj/
+Architecture/bin/
+Architecture/obj/
