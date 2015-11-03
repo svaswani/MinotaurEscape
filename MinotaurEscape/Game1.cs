@@ -11,15 +11,13 @@ namespace MinotaurEscape
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-<<<<<<< HEAD
         MainMenu menu;
-=======
+
         // atributes
         Texture2D image;
         Vector2 pos;
         bool[] wasd = { false, false, false, false };
         string[] wasdStr = { "W", "A", "S", "D" };
->>>>>>> f66c239bbe045b55a91a0c6f9dd2c035044d2bab
 
         public Game1()
         {
@@ -36,14 +34,10 @@ namespace MinotaurEscape
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-<<<<<<< HEAD
-
             menu = new MainMenu();
             menu.Show();
 
-=======
             pos = new Vector2(20, 20);
->>>>>>> f66c239bbe045b55a91a0c6f9dd2c035044d2bab
             base.Initialize();
         }
 
