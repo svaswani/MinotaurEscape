@@ -1,9 +1,0 @@
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.MainMenu.resources
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.csproj.GenerateResource.Cache
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\Content\temporaryCharacter.jpg
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MinotaurEscape.exe
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MinotaurEscape.pdb
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\MonoGame.Framework.dll
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\bin\WindowsGL\Debug\OpenTK.dll
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.exe
-C:\Users\svaswani\GDAPSII\MinotaurEscape\MinotaurEscape\obj\x86\Debug\MinotaurEscape.pdb
