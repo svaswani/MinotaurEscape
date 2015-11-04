@@ -31,7 +31,7 @@ namespace ExternalTool
         private Dictionary<string, BitmapImage> wallImages;
 
         // The size of the maze
-        private int mazeWidth = 79, mazeHeight = 59;
+        private int mazeWidth = 81, mazeHeight = 61;
 
         // The image the maze is in
         private Grid mazeGrid;
@@ -60,6 +60,10 @@ namespace ExternalTool
         // The Exit's Image
         private Image exitImage;
         private bool exitMode;
+
+        // The Entrance's Image
+        private Image entranceImage;
+        private bool entranceMode;
 
         // The worker for background tasks, a timer, and loading screen
         private BackgroundWorker worker;
@@ -133,10 +137,6 @@ namespace ExternalTool
             CommandBindings.Add(new CommandBinding(command, generateCommand));
 
             command = new RoutedCommand();
-            command.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(command, fillCommand));
-
-            command = new RoutedCommand();
             command.InputGestures.Add(new KeyGesture(Key.H, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(command, helpCommand));
 
@@ -184,7 +184,7 @@ namespace ExternalTool
                 Dispatcher.Invoke(() =>
                 {
                     // Setup the new grid and replace the old one in the scrollViewer
-                        mazeGrid = new Grid();
+                    mazeGrid = new Grid();
                         mazeGrid.HorizontalAlignment = HorizontalAlignment.Left;
                         mazeGrid.VerticalAlignment = VerticalAlignment.Top;
                         scrollViewer.Content = mazeGrid;
@@ -230,16 +230,27 @@ namespace ExternalTool
                         });
 
                         // Update loading screen and Make sure updates aren't right next to each other
-                            worker.ReportProgress(75);
+                            worker.ReportProgress(50);
                             if ((y+x*mazeHeight) % 50 == 0)
                                 Thread.Sleep(1);
                     }
 
                 }
 
-            // Setup the exit image
+            // Setup the exit and entrance images
                 Dispatcher.Invoke(() =>
                 {
+                    if (entranceImage == null)
+                    {
+                        entranceImage = new Image();
+                        entranceImage.Source = new BitmapImage(new Uri("Assets/entrance.png", UriKind.Relative));
+                    }
+                    if (entranceImage.Parent != null)
+                        ((Grid)entranceImage.Parent).Children.Remove(entranceImage);
+                    mazeGrid.Children.Add(entranceImage);
+                    entranceImage.Width = tileSize;
+                    entranceImage.Height = tileSize;
+
                     if (exitImage == null)
                     {
                         exitImage = new Image();
@@ -258,12 +269,14 @@ namespace ExternalTool
         private void generateMaze(MazeGeneration.Algorithm algorithm)
         {
             // Generate a maze
-                Point exit;
-                tiles = MazeGeneration.generateMaze(algorithm, mazeWidth, mazeHeight, out exit);
+                Point exit, entrance;
+                tiles = MazeGeneration.generateMaze(algorithm, mazeWidth, mazeHeight, out entrance, out exit);
 
-            // Set the exit image
+            // Set the exit and entrance image
                 Dispatcher.Invoke(() =>
                 {
+                    Grid.SetColumn(entranceImage, (int)entrance.X);
+                    Grid.SetRow(entranceImage, (int)entrance.Y);
                     Grid.SetColumn(exitImage, (int)exit.X);
                     Grid.SetRow(exitImage, (int)exit.Y);
                 });
@@ -281,7 +294,7 @@ namespace ExternalTool
                 {
                     // Update the current tile and the loading screen
                         Dispatcher.Invoke(() => updateTile(x, y));
-                        worker.ReportProgress(25);
+                        worker.ReportProgress(50);
 
                     // Make sure updates aren't right next to each other
                         if ((y + x * mazeHeight) % 50 == 0)
@@ -356,7 +369,8 @@ namespace ExternalTool
                 {
                     dialog.FileName = curFile.Substring(dialog.FileName.LastIndexOf('\\') + 1);
                     dialog.InitialDirectory = curFile.Substring(0, dialog.FileName.LastIndexOf('\\') + 1);
-                }
+                }else
+                    dialog.RestoreDirectory = true;
 
             // Ask the user for a place to save at
                 if (dialog.ShowDialog(this).Value && (saveStream = dialog.OpenFile()) != null)
@@ -383,6 +397,8 @@ namespace ExternalTool
                 BinaryWriter writer = new BinaryWriter(saveStream);
                 writer.Write(mazeWidth);
                 writer.Write(mazeHeight);
+                writer.Write((int)Grid.GetColumn(entranceImage));
+                writer.Write((int)Grid.GetRow(entranceImage));
                 writer.Write((int)Grid.GetColumn(exitImage));
                 writer.Write((int)Grid.GetRow(exitImage));
                 foreach (bool[] col in tiles)
@@ -442,38 +458,45 @@ namespace ExternalTool
                     dialog.FileName = curFile.Substring(dialog.FileName.LastIndexOf('\\') + 1);
                     dialog.InitialDirectory = curFile.Substring(0, dialog.FileName.LastIndexOf('\\') + 1);
                 }
+                else
+                    dialog.RestoreDirectory = true;
 
             // Ask the user for a file to load
-            if (dialog.ShowDialog(this).Value && (loadStream = dialog.OpenFile()) != null)
-            {
-                // load the maze's size
-                    BinaryReader reader = new BinaryReader(loadStream);
-                    mazeWidth = reader.ReadInt32();
-                    mazeHeight = reader.ReadInt32();
+                if (dialog.ShowDialog(this).Value && (loadStream = dialog.OpenFile()) != null)
+                {
+                    // load the maze's size
+                        BinaryReader reader = new BinaryReader(loadStream);
+                        mazeWidth = reader.ReadInt32();
+                        mazeHeight = reader.ReadInt32();
 
-                // setup the maze first to fix the grid's size
-                    runTaskWithLoadingScreen("Loading the maze", "Loading Maze...", () =>
-                    {
-                        setupMaze();
+                    // setup the maze first to fix the grid's size
+                        runTaskWithLoadingScreen("Loading the maze", "Loading Maze...", () =>
+                        {
+                            setupMaze();
 
-                        // load the exit
-                            Grid.SetColumn(exitImage, reader.ReadInt32());
-                            Grid.SetRow(exitImage, reader.ReadInt32());
+                            // load the exit and entrance
+                                Dispatcher.Invoke(() =>
+                                {
+                                    Grid.SetColumn(entranceImage, reader.ReadInt32());
+                                    Grid.SetRow(entranceImage, reader.ReadInt32());
+                                    Grid.SetColumn(exitImage, reader.ReadInt32());
+                                    Grid.SetRow(exitImage, reader.ReadInt32());
+                                });
 
-                        // load the tile array
-                            for (int x = 0; x < mazeWidth; x++)
-                                for (int y = 0; y < mazeHeight; y++)
-                                    tiles[x][y] = reader.ReadBoolean();
-                            reader.Close();
+                            // load the tile array
+                                for (int x = 0; x < mazeWidth; x++)
+                                    for (int y = 0; y < mazeHeight; y++)
+                                        tiles[x][y] = reader.ReadBoolean();
+                                reader.Close();
 
-                        // Update the grid
-                            updateGrid();
+                            // Update the grid
+                                updateGrid();
 
-                        // Set saved to true since it is just loaded and set the current file to the load
-                            setSaved(true);
-                            curFile = dialog.FileName;
-                    });
-            }
+                            // Set saved to true since it is just loaded and set the current file to the load
+                                setSaved(true);
+                                curFile = dialog.FileName;
+                        });
+                }
         }
 
         // Called when user hits the generate button
@@ -505,6 +528,9 @@ namespace ExternalTool
                             MessageBox.Show(this, "Invalid Width or Height! Both most be positive integers!", "Invaild Dimensions", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
+
+                    // Set the current file to nothing
+                        curFile = null;
 
                     // Store the height and width
                         mazeWidth = generate.MazeWidth;
@@ -608,12 +634,23 @@ namespace ExternalTool
                     fillMode = true;
                 }
 
-            // If Crtl click is pressed set exit using a command
-                if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            // If Alt click is pressed set exit using a command
+                if (Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt))
                 {
-                    if(e is MouseButtonEventArgs)
+                    if (e is MouseButtonEventArgs)
                     {
-                        InvertableCommand command = new ExitCommand(Grid.GetColumn(exitImage), Grid.GetRow(exitImage), Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), changeExit);
+                        InvertableCommand command = new EntranceCommand(Grid.GetColumn(entranceImage), Grid.GetRow(entranceImage), Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), changeEntrance);
+                        currentCommands.Push(command);
+                        command.Execute();
+                    }
+                }
+
+            // If Crtl click is pressed set exit using a command
+                else if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                {
+                    if (e is MouseButtonEventArgs)
+                    {
+                        InvertableCommand command = new EntranceCommand(Grid.GetColumn(exitImage), Grid.GetRow(exitImage), Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), changeExit);
                         currentCommands.Push(command);
                         command.Execute();
                     }
@@ -622,27 +659,33 @@ namespace ExternalTool
             // Check if fill mode or exit mode is on and mouse button was clicked
                 else if (fillMode && e is MouseButtonEventArgs)
                     fillTilePressed((Image)sender, (MouseButtonEventArgs)e);
+                else if (entranceMode && e is MouseButtonEventArgs)
+                {
+                    InvertableCommand command = new EntranceCommand(Grid.GetColumn(entranceImage), Grid.GetRow(entranceImage), Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), changeEntrance);
+                    currentCommands.Push(command);
+                    command.Execute();
+                }
                 else if (exitMode && e is MouseButtonEventArgs)
                 {
-                    InvertableCommand command = new ExitCommand(Grid.GetColumn(exitImage), Grid.GetRow(exitImage), Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), changeExit);
+                    InvertableCommand command = new EntranceCommand(Grid.GetColumn(exitImage), Grid.GetRow(exitImage), Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), changeExit);
                     currentCommands.Push(command);
                     command.Execute();
                 }
                 else
                 {
                     // Change the tile of the currently selected tile
-                        if (e.RightButton == MouseButtonState.Pressed && tiles[Grid.GetColumn((Image)sender)][Grid.GetRow((Image)sender)] != true)
-                        {
-                            InvertableCommand command = new ChangeTileCommand(Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), true, setTile);
-                            currentCommands.Push(command);
-                            command.Execute();
-                        }
-                        else if (e.LeftButton == MouseButtonState.Pressed && tiles[Grid.GetColumn((Image)sender)][Grid.GetRow((Image)sender)] != false)
-                        {
-                            InvertableCommand command = new ChangeTileCommand(Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), false, setTile);
-                            currentCommands.Push(command);
-                            command.Execute();
-                        }
+                    if (e.RightButton == MouseButtonState.Pressed && tiles[Grid.GetColumn((Image)sender)][Grid.GetRow((Image)sender)] != true)
+                    {
+                        InvertableCommand command = new ChangeTileCommand(Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), true, setTile);
+                        currentCommands.Push(command);
+                        command.Execute();
+                    }
+                    else if (e.LeftButton == MouseButtonState.Pressed && tiles[Grid.GetColumn((Image)sender)][Grid.GetRow((Image)sender)] != false)
+                    {
+                        InvertableCommand command = new ChangeTileCommand(Grid.GetColumn((Image)sender), Grid.GetRow((Image)sender), false, setTile);
+                        currentCommands.Push(command);
+                        command.Execute();
+                    }
                 }
         }
 
@@ -653,6 +696,7 @@ namespace ExternalTool
             if(fillSelectedImage!=null)
                 fillSelectedImage.Visibility = Visibility.Hidden;
             exitMode = false;
+            entranceMode = false;
             Mouse.OverrideCursor = null;
         }
 
@@ -664,10 +708,21 @@ namespace ExternalTool
                     storeCurrentCommands();
         }
 
+        // Called to change the position of the entrance
+        private void changeEntrance(int x, int y)
+        {
+            if (tiles[x][y])
+            {
+                Grid.SetColumn(entranceImage, x);
+                Grid.SetRow(entranceImage, y);
+            }
+            clearMode();
+        }
+
         // Called to change the position of the exit
         private void changeExit(int x, int y)
         {
-            if(x%2==1 && y % 2 == 1)
+            if(tiles[x][y])
             {
                 Grid.SetColumn(exitImage, x);
                 Grid.SetRow(exitImage, y);
@@ -812,6 +867,14 @@ namespace ExternalTool
             clearMode();
             Help help = new Help();
             help.Show(this);
+        }
+
+        // Starts entrance mode to set the entrance tile
+        private void entranceCommand(object sender, RoutedEventArgs e)
+        {
+            clearMode();
+            entranceMode = true;
+            Mouse.OverrideCursor = Cursors.Hand;
         }
 
         // Starts exit mode to set the exit tile

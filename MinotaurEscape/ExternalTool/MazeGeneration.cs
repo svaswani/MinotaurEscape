@@ -10,12 +10,12 @@ namespace ExternalTool
     public static class MazeGeneration
     {
         // The different Algorithm's that can be used to generate a maze
-        public enum Algorithm { Blank, Depth___first_search, Kruskal__algorithm, Eller__algorithm_by_row, Eller__algorithm_by_colmun, Hunt___and___kill_algorithm, Growing_tree_algorithm_75____25, Growing_tree_algorithm_50____50, Growing_tree_algorithm_25____75 }
+        public enum Algorithm { Blank, Depth___first_search, Kruskal__algorithm, Prim__algorithm, Eller__algorithm_by_row, Eller__algorithm_by_colmun, Hunt___and___kill_algorithm, Growing_tree_algorithm_75____25, Growing_tree_algorithm_50____50, Growing_tree_algorithm_25____75 }
 
         // Random used for maze generation
         private static Random rand = new Random();
 
-        public static bool[][] generateMaze(Algorithm algorithm, int width, int height, out Point exit)
+        public static bool[][] generateMaze(Algorithm algorithm, int width, int height, out Point exit, out Point entrance)
         {
             // Create a variable for holding the maze
                 bool[][] maze;
@@ -35,9 +35,9 @@ namespace ExternalTool
                     case Algorithm.Kruskal__algorithm:
                         maze = generateKruskalAlgorithm(innerWidth, innerHeight);
                         break;
-                   // case Algorithm.Prim__algorithm:
-                    //    maze = generatePrimAlgorithm(innerWidth, innerHeight);
-                   //     break;
+                    case Algorithm.Prim__algorithm:
+                        maze = generatePrimAlgorithm(innerWidth, innerHeight);
+                        break;
                     case Algorithm.Eller__algorithm_by_row:
                         maze = generateElleralgorithm(innerWidth, innerHeight, false);
                         break;
@@ -76,8 +76,10 @@ namespace ExternalTool
                 }
 
             // Set the exit to a random open slot in the maze
-                Point[] posExits = newMaze.SelectMany((col, x) => col.Select((tile, y) => tile ? new Point(x, y) : new Point(-1, -1)).Where(cell => !cell.Equals(new Point(-1, -1)))).ToArray();
-                exit = posExits[rand.Next(posExits.Length)];
+                List<Point> posEntrances = newMaze.SelectMany((col, x) => col.Select((tile, y) => tile ? new Point(x, y) : new Point(-1, -1)).Where(cell => !cell.Equals(new Point(-1, -1)))).ToList();
+                entrance = posEntrances[rand.Next(posEntrances.Count)];
+                posEntrances.Remove(entrance);
+                exit = posEntrances[rand.Next(posEntrances.Count)];
 
             // Return the newley created maze
                 return newMaze;
@@ -253,6 +255,7 @@ namespace ExternalTool
 
             // Select a random starting cell, mark it as part of the maze, and add it's walls to the wall list
                 Point cell = selectOuterCell(width / 2 + 1, height / 2 + 1);
+                cell = new Point(cell.X * 2, cell.Y * 2);
                 cells.Add(cell);
                 walls.AddRange(getNeighbours(cell, width, height));
 
@@ -261,18 +264,18 @@ namespace ExternalTool
                 {
                     // Pick a random wall and neighbor and check if it's a cell yet
                         Point wall = walls.ElementAt(rand.Next(walls.Count));
-                        Point[] neighbors = getNeighbours(wall, width, height).Where(tile => maze[(int)tile.X][(int)tile.Y]).ToArray();
-                        cell = neighbors[rand.Next(neighbors.Length)];
-                        if (!cells.Contains(cell))
+                        Point[] neighbors = getNeighbours(wall, width, height).Where(tile => maze[(int)tile.X][(int)tile.Y] && !cells.Contains(tile)).ToArray();
+                        if (neighbors.Length!=0)
                         {
+                            cell = neighbors[0];
                             maze[(int)wall.X][(int)wall.Y] = true;
                             cells.Add(cell);
                             walls.AddRange(getNeighbours(cell, width, height).Where(tile => !maze[(int)tile.X][(int)tile.Y]));
                         }
-                        
 
-                    // Remove the wall from the list
-                        if(neighbors.Where(tile => !cells.Contains(tile)).Count()==0)
+
+                // Remove the wall from the list
+                if (neighbors.Where(tile => !cells.Contains(tile)).Count()==0)
                             walls.Remove(wall);
                 }
 

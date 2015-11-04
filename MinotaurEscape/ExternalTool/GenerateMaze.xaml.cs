@@ -24,12 +24,12 @@ namespace ExternalTool
         public int MazeWidth{ get {
                 int width;
                 int.TryParse(widthTextBox.Text, out width);
-                return width*2-1;
+                return width*2+1;
         } }
         public int MazeHeight { get {
                 int height;
                 int.TryParse(heightTextBox.Text, out height);
-                return height*2-1;
+                return height*2+1;
         } }
         public Algorithm algorithm
         {

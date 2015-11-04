@@ -21,12 +21,13 @@
                     <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Click="undoCommand" />
                     <MenuItem Header="Redo" InputGestureText="Ctrl+Y or Ctrl+Shift+Z" Click="redoCommand" />
                     <MenuItem Header="Fill" InputGestureText="Shift+Click" Click="fillCommand" />
+                    <MenuItem Header="Change Entrance" InputGestureText="Alt+Click" Click="entranceCommand" />
                     <MenuItem Header="Change Exit" InputGestureText="Ctrl+Click" Click="exitCommand" />
                     <MenuItem Header="Settings" InputGestureText="Ctrl+T" Click="settingsCommand" />
                 </MenuItem>
                 <MenuItem Header="Help" Click="helpCommand" ToolTip="Ctrl+H" />
             </Menu>
         </DockPanel>
-        <ScrollViewer Name="scrollViewer" Margin="0,20,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+        <ScrollViewer Name="scrollViewer" Margin="0,20,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SnapsToDevicePixels="True" />
     </Grid>
 </Window>

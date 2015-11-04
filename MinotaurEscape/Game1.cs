@@ -50,7 +50,7 @@ namespace MinotaurEscape
 
             // Ask the user for a file to load
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && (loadStream = dialog.OpenFile()) != null)
-                    maze = new Maze(loadStream);
+                    maze = new Maze(loadStream, GraphicsDevice.Viewport);
                 else
                     Exit();
 

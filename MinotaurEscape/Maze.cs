@@ -50,7 +50,7 @@ namespace MinotaurEscape
         /// <summary>
         /// Creates a maze object from the given stream
         /// </summary>
-        public Maze(Stream mazeStream)
+        public Maze(Stream mazeStream, Viewport viewport)
         {
 
             // load the maze's size
@@ -58,7 +58,10 @@ namespace MinotaurEscape
                 width = reader.ReadInt32();
                 height = reader.ReadInt32();
 
-             // load the exit
+            // load the entrance and set the position to it at the start
+                position = new Vector2(-reader.ReadInt32() * GameVariables.TileSize + viewport.Width/2, -reader.ReadInt32() * GameVariables.TileSize + viewport.Height/2);
+
+            // load the exit
                 exit = new Vector2(reader.ReadInt32()*GameVariables.TileSize, reader.ReadInt32()*GameVariables.TileSize);
 
             // load the tile array
@@ -111,7 +114,7 @@ namespace MinotaurEscape
                 }
 
             // Draw the exit
-                spriteBatch.Draw(GameVariables.ExitTexture, exit);
+                spriteBatch.Draw(GameVariables.ExitTexture, position+exit);
         }
 
         // Gets the wall texture that should be in the given position

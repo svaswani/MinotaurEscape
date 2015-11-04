@@ -23,12 +23,12 @@ namespace ExternalTool
         public int MazeWidth{ get {
                 int width;
                 int.TryParse(widthTextBox.Text, out width);
-                return width*2-1;
+                return width*2+1;
         } }
         public int MazeHeight { get {
                 int height;
                 int.TryParse(heightTextBox.Text, out height);
-                return height*2-1;
+                return height*2+1;
         } }
         public int TileSize
         {
@@ -60,8 +60,8 @@ namespace ExternalTool
         {
             Left = owner.Left + (owner.Width - Width) / 2;
             Top = owner.Top + (owner.Height - Height) / 2;
-            widthTextBox.Text = (width/2+1).ToString();
-            heightTextBox.Text = (height/2+1).ToString();
+            widthTextBox.Text = (width/2).ToString();
+            heightTextBox.Text = (height/2).ToString();
             sizeTextBox.Text = tileSize.ToString();
             return base.ShowDialog();
         }
