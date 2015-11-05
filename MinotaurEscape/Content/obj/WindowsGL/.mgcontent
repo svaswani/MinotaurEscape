@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>WindowsGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/floor.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFFF.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFFT.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFTF.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFTT.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTFF.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTFT.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTTF.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTTT.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFFF.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFFT.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFTF.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFTT.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTFF.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTFT.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTTF.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTTT.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/exit.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/Characters/temporaryCharacter.jpg</File>
+  </SourceFiles>
+</SourceFileCollection>
