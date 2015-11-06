@@ -4,25 +4,31 @@
   <Platform>WindowsGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/floor.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFFF.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFFT.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFTF.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFTT.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTFF.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTFT.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTTF.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTTT.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFFF.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFFT.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFTF.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFTT.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTFF.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTFT.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTTF.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTTT.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/MazeTiles/exit.png</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/Characters/temporaryCharacter.jpg</File>
-    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/Menu/playButton.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/floor.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFFF.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFFT.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFTF.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FFTT.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTFF.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTFT.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTTF.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-FTTT.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFFF.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFFT.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFTF.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TFTT.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTFF.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTFT.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTTF.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/wall-TTTT.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/MazeTiles/exit.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Characters/temporaryCharacter.jpg</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Menu/playButton.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Characters/player sprite sheet.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Characters/player sprite sheet column.jpg</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Characters/player sprite.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Characters/comrade 16.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Characters/minotaur 16.png</File>
+    <File>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Characters/torch 16.png</File>
   </SourceFiles>
 </SourceFileCollection>
