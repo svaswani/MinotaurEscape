@@ -28,19 +28,32 @@ public class Comrade : AnimatedTile, Movable
 	}
 
     /// <summary>
+    /// Creates a comrade with the given position
+    /// </summary>
+    public Comrade(Vector2 position)
+    {
+        Position = position;
+        Animation = IdleAnimation;
+    }
+
+    /// <summary>
     /// Moves the comrade the given speed in the given dir (true = right + left, false = up + down)
     /// </summary>
     public void Move(GameTime gameTime, int speed, bool dir)
 	{
-		throw new System.NotImplementedException();
-	}
+        // Change the comrade's position according to the given speed and direction
+            if (dir)
+                Position += new Vector2((int)(speed * gameTime.ElapsedGameTime.TotalSeconds), 0);
+            else
+                Position += new Vector2(0, (int)(speed * gameTime.ElapsedGameTime.TotalSeconds));
+    }
 
     /// <summary>
     /// Sets up the animations for this comrade
     /// </summary>
     public static void SetupAnimations()
     {
-        throw new NotImplementedException();
+        IdleAnimation = new Animation(GameVariables.ComradeIdleTexture, 1, 1, true);
     }
 
 }

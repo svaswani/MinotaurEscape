@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace MinotaurEscape
 {
@@ -19,6 +19,7 @@ namespace MinotaurEscape
         Maze maze;
         Player player;
         MenuButton playButton;
+        List<Comrade> comrades = new List<Comrade>();
 
         // Used for keyboard input
         private KeyboardState kbState, previousKbState;
@@ -78,6 +79,7 @@ namespace MinotaurEscape
             // Setup all the animations of the game
                 Player.SetupAnimations();
                 Torch.SetupAnimations();
+                Comrade.SetupAnimations();
                 player.Animation = Player.MovingAnimation; // Do this here for now, will be remove when Idle animation is created
 
             //Menu Textures
@@ -100,7 +102,7 @@ namespace MinotaurEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if ((GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) && stateGame == GameState.MainMenu)
                 Exit();
 
             if (stateGame == GameState.MainMenu )
@@ -120,7 +122,7 @@ namespace MinotaurEscape
                         dialog.Filter = "maze files (*.maz)|*.maz";
                         dialog.InitialDirectory = Directory.GetCurrentDirectory()+"\\DefaultMazes\\";
 
-                    // Ask the user for a file to load
+                    // Ask the user for a file to load and load the maze
                         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && (loadStream = dialog.OpenFile()) != null)
                             maze = new Maze(loadStream, GraphicsDevice.Viewport);
                         else
@@ -129,13 +131,25 @@ namespace MinotaurEscape
                 }
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape) && stateGame == GameState.Play)
-            {
-                stateGame = GameState.MainMenu;
-            }
+            
 
+            if(stateGame == GameState.Play)
+            {
+                // Process input
+                    ProcessInput(gameTime);
+
+                // Check if player has hit or "collected" a comrade
+                    Comrade comrade = maze.IntersectingComrade(player);
+                    if (comrade != null)
+                    {
+                        // Add to the player's torches and remove the comrade
+                            player.Torches++;
+                            maze.RemoveComrade(comrade);
+
+                    }
+
+            }
             // TODO: Add your update logic here
-            ProcessInput(gameTime);
 
             base.Update(gameTime);
         }
@@ -146,8 +160,14 @@ namespace MinotaurEscape
                 previousKbState = kbState;
                 kbState = Keyboard.GetState();
 
+            // Check if quit was pressed
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                {
+                    stateGame = GameState.MainMenu;
+                }
+
             // Add the arrows just pressed to the list of arrows pressed
-                if (previousKbState.IsKeyUp(Keys.W) && kbState.IsKeyDown(Keys.W))
+            if (previousKbState.IsKeyUp(Keys.W) && kbState.IsKeyDown(Keys.W))
                     moveInput.Add(Keys.W);
                 if (previousKbState.IsKeyUp(Keys.A) && kbState.IsKeyDown(Keys.A))
                     moveInput.Add(Keys.A);
@@ -222,6 +242,10 @@ namespace MinotaurEscape
 
                 // Draw the maze
                     maze.Draw(spriteBatch, GraphicsDevice.Viewport);
+
+                // Draw the comrades
+                    foreach (Comrade comrade in comrades)
+                        comrade.Draw(spriteBatch);
 
                 // Place the player at the center of the screen and draw him
                     player.Position = new Vector2((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2);

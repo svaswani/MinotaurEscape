@@ -109,8 +109,9 @@ public class GameVariables
         // Load the player's textures
             PlayerMovingTexture = content.Load<Texture2D>("Characters/player");
 
-        // Load the torch's texture
+        // Load the torch's and comrade's textures
             TorchTexture = content.Load<Texture2D>("Characters/torch");
+            ComradeIdleTexture = content.Load<Texture2D>("Characters/comrade");
 
         //Load menu textures
             MenuPlayButtonTexture = content.Load<Texture2D>("Menu/playButton");
