@@ -85,7 +85,8 @@ namespace MinotaurEscape
         /// </summary>
         public bool IsInWall(AnimatedTile tile)
         {
-            return !tiles[tile.Rectangle.X / GameVariables.TileSize][tile.Rectangle.Y / GameVariables.TileSize] || !tiles[(tile.Rectangle.X + tile.Rectangle.Width) / GameVariables.TileSize][tile.Rectangle.Y / GameVariables.TileSize] || !tiles[tile.Rectangle.X / GameVariables.TileSize][(tile.Rectangle.Y + tile.Rectangle.Height) / GameVariables.TileSize] || !tiles[(tile.Rectangle.X + tile.Rectangle.Width) / GameVariables.TileSize][(tile.Rectangle.Y + tile.Rectangle.Height) / GameVariables.TileSize];
+            Vector2 relativePosition = new Vector2(tile.Rectangle.X + position.X, tile.Rectangle.Y + position.Y);
+            return !tiles[(int)relativePosition.X / GameVariables.TileSize][(int)relativePosition.Y / GameVariables.TileSize] || !tiles[((int)relativePosition.X + tile.Rectangle.Width) / GameVariables.TileSize][(int)relativePosition.Y / GameVariables.TileSize] || !tiles[(int)relativePosition.X / GameVariables.TileSize][((int)relativePosition.Y + tile.Rectangle.Height) / GameVariables.TileSize] || !tiles[((int)relativePosition.X + tile.Rectangle.Width) / GameVariables.TileSize][((int)relativePosition.Y + tile.Rectangle.Height) / GameVariables.TileSize];
         }
 
         /// <summary>
@@ -93,7 +94,7 @@ namespace MinotaurEscape
         /// </summary>
         public bool IsInExit(AnimatedTile tile)
         {
-            return tile.Rectangle.Intersects(new Rectangle(exit.ToPoint(), new Point(GameVariables.TileSize)));
+            return tile.Rectangle.Intersects(new Rectangle((exit+position).ToPoint(), new Point(GameVariables.TileSize)));
         }
 
         /// <summary>

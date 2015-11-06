@@ -405,7 +405,6 @@ namespace ExternalTool
                     foreach (bool tile in col)
                         writer.Write(tile);
                 writer.Close();
-
         }
 
         // Called when user hits the save button
