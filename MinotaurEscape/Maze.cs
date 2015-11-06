@@ -173,18 +173,19 @@ namespace MinotaurEscape
                 foreach (Torch torch in torches)
                     torch.Draw(spriteBatch);
 
-            // Draw the minotaurs and comrades now
+            // Draw the minotaurs, comrades, and exit now
                 foreach (Comrade comrade in comrades)
                     comrade.Draw(spriteBatch);
                 foreach (Minotaur minotaur in minotaurs)
                      minotaur.Draw(spriteBatch);
+                spriteBatch.Draw(GameVariables.ExitTexture, position + exit);
 
             // Draw a "cover" on the screen where tiles where not rendered to hide the minotuars and comrades
                 Vector2 topLeft = new Vector2((int)-position.X / GameVariables.TileSize, (int)-position.Y / GameVariables.TileSize);
                 for (int x = -1; x < spriteBatch.GraphicsDevice.Viewport.Width / GameVariables.TileSize+1; x++)
-                        for (int y = -1; y < spriteBatch.GraphicsDevice.Viewport.Height / GameVariables.TileSize+1; y++)
-                            if (!tilesRendered.Contains(new Vector2(topLeft.X+x, topLeft.Y + y)))
-                                spriteBatch.Draw(GameVariables.SoildBlackTexture, new Rectangle((position+(topLeft+new Vector2(x, y)) * GameVariables.TileSize).ToPoint(), new Point(GameVariables.TileSize)), Color.White);
+                    for (int y = -1; y < spriteBatch.GraphicsDevice.Viewport.Height / GameVariables.TileSize+1; y++)
+                        if (!tilesRendered.Contains(new Vector2(topLeft.X+x, topLeft.Y + y)))
+                            spriteBatch.Draw(GameVariables.SoildBlackTexture, new Rectangle((position+(topLeft+new Vector2(x, y)) * GameVariables.TileSize).ToPoint(), new Point(GameVariables.TileSize)), Color.White);
             
         }
 
@@ -215,10 +216,6 @@ namespace MinotaurEscape
                                         spriteBatch.Draw(GameVariables.FloorTexture, position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize));
                                     else
                                         spriteBatch.Draw(getWallImage(drawX, drawY), position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize));
-
-                                // Draw the exit if in sight
-                                    if (new Vector2(drawX, drawY).Equals(exit))
-                                        spriteBatch.Draw(GameVariables.ExitTexture, position + exit);
 
                                 // Add the tile to the list
                                     tilesRendered.Add(new Vector2(drawX, drawY));

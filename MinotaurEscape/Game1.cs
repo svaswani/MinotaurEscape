@@ -172,6 +172,9 @@ namespace MinotaurEscape
                     if (minotaur != null)
                         stateGame = GameState.MainMenu; // Return to main menu
 
+                // Check if the player has won
+                    if(maze.IsInExit(player))
+                        stateGame = GameState.MainMenu; // Return to main menu
             }
             // TODO: Add your update logic here
 
