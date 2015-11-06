@@ -89,6 +89,11 @@ public class GameVariables
 	public static Texture2D PlayerPickupTexture;
 
     /// <summary>
+    /// The texture of the Play menu button
+    /// </summary>
+    public static Texture2D MenuPlayButtonTexture;
+
+    /// <summary>
     /// Loads the textures of the game
     /// </summary>
     public static void LoadTextures(ContentManager content)
@@ -103,6 +108,9 @@ public class GameVariables
 
         // Load the characters' texture
             PlayerIdleTexture = content.Load<Texture2D>("Characters/temporaryCharacter");
+
+        //Load menu textures
+        MenuPlayButtonTexture = content.Load<Texture2D>("Menu/playButton");
     }
 
 }

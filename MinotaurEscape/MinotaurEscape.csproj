@@ -42,14 +42,9 @@
     <Compile Include="Animation.cs" />
     <Compile Include="Comrade.cs" />
     <Compile Include="GameVariables.cs" />
-    <Compile Include="MainMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainMenu.Designer.cs">
-      <DependentUpon>MainMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Maze.cs" />
+    <Compile Include="MenuButton.cs" />
     <Compile Include="Movable.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
@@ -74,11 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="MainMenu.resx">
-      <DependentUpon>MainMenu.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
