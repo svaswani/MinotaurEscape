@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.IO;
 
 namespace MinotaurEscape
@@ -110,6 +111,7 @@ namespace MinotaurEscape
                     // Create a dialog for asking for save location
                         System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
                         dialog.Filter = "maze files (*.maz)|*.maz";
+                        dialog.InitialDirectory = Directory.GetCurrentDirectory()+"\\DefaultMazes\\";
 
                     // Ask the user for a file to load
                         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && (loadStream = dialog.OpenFile()) != null)
@@ -194,5 +196,7 @@ namespace MinotaurEscape
             spriteBatch.End();
             base.Draw(gameTime);
         }
+
     }
+
 }
