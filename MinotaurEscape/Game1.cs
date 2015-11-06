@@ -19,6 +19,8 @@ namespace MinotaurEscape
         Maze maze;
         Player player;
         MenuButton playButton;
+        MenuButton stopButton;
+        MenuButton menuTitle;
         List<Comrade> comrades = new List<Comrade>();
 
         // Used for keyboard input
@@ -56,6 +58,8 @@ namespace MinotaurEscape
 
             //Set up the menu
                 playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
+                stopButton = new MenuButton(GameVariables.MenuStopButtonTexture);
+                menuTitle = new MenuButton(GameVariables.MenuTitleTexture);
 
             //Set initial state
                 stateGame = GameState.MainMenu;
@@ -85,6 +89,8 @@ namespace MinotaurEscape
 
             //Menu Textures
                 playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
+                stopButton.ButtonGraphic = GameVariables.MenuStopButtonTexture;
+                menuTitle.ButtonGraphic = GameVariables.MenuTitleTexture;
         }
 
         /// <summary>
@@ -103,7 +109,11 @@ namespace MinotaurEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if ((GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) && stateGame == GameState.MainMenu)
+            // Store the previous keyboard state and get the new one
+                previousKbState = kbState;
+                kbState = Keyboard.GetState();
+
+            if (kbState.IsKeyDown(Keys.Escape) && previousKbState.IsKeyUp(Keys.Escape) && stateGame == GameState.MainMenu)
                 Exit();
 
             if (stateGame == GameState.MainMenu )
@@ -129,6 +139,10 @@ namespace MinotaurEscape
                         else
                             Exit();
 
+                }
+                if (stopButton.IsMouseInside() == true && playButton.stateMouse.LeftButton == ButtonState.Pressed)
+                {
+                    Exit();
                 }
             }
 
@@ -166,12 +180,9 @@ namespace MinotaurEscape
 
         public void ProcessInput(GameTime gameTime)
         {
-            // Store the previous keyboard state and get the new one
-                previousKbState = kbState;
-                kbState = Keyboard.GetState();
 
             // Check if quit was pressed
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                if (kbState.IsKeyDown(Keys.Escape) && previousKbState.IsKeyUp(Keys.Escape))
                 {
                     stateGame = GameState.MainMenu;
                 }
@@ -264,19 +275,22 @@ namespace MinotaurEscape
                 // Draw the player's torch count
                     spriteBatch.Draw(GameVariables.SoildWhiteTexture, new Rectangle(GraphicsDevice.Viewport.Width-160, 10, 150, 50), Color.White);
                     spriteBatch.DrawString(GameVariables.BasicFont, "Torches: " + player.Torches, new Vector2(GraphicsDevice.Viewport.Width - 120, 25), Color.Black);
-
+                
             }
 
             if (stateGame == GameState.MainMenu)
             {
-                // make beckground white
+                // make background white
                     GraphicsDevice.Clear(Color.White);
 
                 playButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
+                stopButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (playButton.Rectangle.Y + playButton.Rectangle.Height + 50), GameVariables.TileSize, GameVariables.TileSize);
+                menuTitle.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - 490) / 2, 20, 490, 78);
+                stopButton.Draw(spriteBatch);
                 playButton.Draw(spriteBatch);
+                menuTitle.Draw(spriteBatch);
             }
             spriteBatch.End();
-            base.Draw(gameTime);
         }
 
     }

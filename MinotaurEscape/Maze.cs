@@ -26,11 +26,13 @@ namespace MinotaurEscape
         /// <summary>
         /// the width of the maze
         /// </summary>
+        public int Width;
         private int width;
 
         /// <summary>
         /// The height of the maze
         /// </summary>
+        public int Height;
         private int height;
 
         /// <summary>

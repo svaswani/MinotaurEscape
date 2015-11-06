@@ -37,7 +37,7 @@ public class GameVariables
     /// <summary>
     /// The rate of the minotuar's in the maze (higher means less)
     /// </summary>
-    public static int MinotuarRate = 300;
+    public static int MinotuarRate = 200;
 
     /// <summary>
     /// The rate of the comrade's in the maze (higher means less)
@@ -100,9 +100,11 @@ public class GameVariables
 	public static Texture2D PlayerPickupTexture;
 
     /// <summary>
-    /// The texture of the Play menu button
+    /// The textures of the main menu
     /// </summary>
     public static Texture2D MenuPlayButtonTexture;
+    public static Texture2D MenuStopButtonTexture;
+    public static Texture2D MenuTitleTexture;
 
     /// <summary>
     /// The texture of soild white shapes
@@ -144,6 +146,8 @@ public class GameVariables
 
         //Load menu textures
             MenuPlayButtonTexture = content.Load<Texture2D>("Menu/playButton");
+            MenuStopButtonTexture = content.Load<Texture2D>("Menu/stopButton");
+            MenuTitleTexture = content.Load<Texture2D>("Menu/menuTitle");
     }
 
 }
