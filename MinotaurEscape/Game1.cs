@@ -12,14 +12,20 @@ namespace MinotaurEscape
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        MainMenu menu;
 
         // atributes
-        Texture2D image;
         bool[] wasd = { false, false, false, false };
         string[] wasdStr = { "W", "A", "S", "D" };
         Maze maze;
         Player player;
+        MenuButton playButton;
+        public enum GameState
+        {
+            MainMenu,
+            Play
+        }
+
+        GameState stateGame;
 
         public Game1()
         {
@@ -35,10 +41,6 @@ namespace MinotaurEscape
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            menu = new MainMenu();
-            menu.Show();
-
             /* Temporaily ask the player for a maze to load if maze doesn't exist */
 
             // Create a stream for loading the file
@@ -57,7 +59,13 @@ namespace MinotaurEscape
             // Create the player
                 player = new Player();
                 player.Animating = false;
-                
+
+            //Set up the menu
+                playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
+
+            //Set initial state
+            stateGame = GameState.Play;
+
             base.Initialize();
             
         }
@@ -77,6 +85,9 @@ namespace MinotaurEscape
             // Setup all the animations of the game
                 player.SetupAnimations();
                 player.Animation = player.IdleAnimation; // Do this here for now, will be moved later to a more apporiate place
+
+            //Menu Textures
+            playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
         }
 
         /// <summary>
@@ -97,6 +108,20 @@ namespace MinotaurEscape
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (stateGame == GameState.MainMenu )
+            {
+                IsMouseVisible = true;
+                if (playButton.IsMouseInside() == true && playButton.stateMouse.LeftButton == ButtonState.Pressed)
+                {
+                    stateGame = GameState.Play;
+                }
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && stateGame == GameState.Play)
+            {
+                stateGame = GameState.MainMenu;
+            }
 
             // TODO: Add your update logic here
             ProcessInput(gameTime);
@@ -145,19 +170,26 @@ namespace MinotaurEscape
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-
-            // TODO: Add your drawing code here
             spriteBatch.Begin();
+            if (stateGame == GameState.Play)
+            {
+                // TODO: Add your drawing code here
 
-            // Draw the maze
+                // Draw the maze
                 maze.Draw(spriteBatch);
 
-            // Place the player at the center of the screen and draw him
+                // Place the player at the center of the screen and draw him
                 player.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
                 player.Draw(spriteBatch);
 
-            spriteBatch.End();
+            }
 
+            if (stateGame == GameState.MainMenu)
+            {
+                playButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
+                playButton.Draw(spriteBatch);
+            }
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
