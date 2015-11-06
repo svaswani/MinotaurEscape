@@ -4481,6 +4481,56 @@
             concurrency="Sequential"
             isQuery="false">
             <description>Sets up the animations for the minotaur</description>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="57886011-72c5-42c2-9ae3-725a1530693a"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ea15599a-406b-4efd-92a1-65ebb89bb6b9">
+                    <propertyInstance
+                      Id="d80fd973-e04d-4155-b278-d4537eb1ad0a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6f30fa36-1312-400c-8612-4291bfb1dad6">
+                    <propertyInstance
+                      Id="6ef3c97f-66c4-45b6-a724-3cfba41a9928"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e49f8c44-1f1f-42eb-a0b7-1a2690730de1">
+                    <propertyInstance
+                      Id="a443b910-fd87-4b76-9293-6c5bbecaa8aa"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="557c9c8e-f028-477e-a7fa-c82f47ecea6f">
+                    <propertyInstance
+                      Id="54c4a4bf-40e2-4f9c-8010-2ea34a7de1b9"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1abc0bfa-91f0-4559-a352-d3ce63a28285">
+                    <propertyInstance
+                      Id="16b47cd9-5c37-48ea-aea4-88af007827e8"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2a76e3af-9916-46e8-b18a-7d7d936b1046">
+                    <propertyInstance
+                      Id="307be92c-16ad-408a-bd00-83f29e002ef8"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
           </operation>
         </ownedOperationsInternal>
       </class>

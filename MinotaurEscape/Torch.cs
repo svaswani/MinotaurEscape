@@ -24,11 +24,8 @@ public class Torch : AnimatedTile, Movable
     /// <summary>
     /// Creates a torch with the given position
     /// </summary>
-    public Torch(Vector2 position)
-    {
-        Position = position;
-        Animation = IdleAnimation;
-    }
+    public Torch(Vector2 position) : base(position, IdleAnimation)
+    {}
 
     /// <summary>
     /// Moves the torch the given speed in the given dir (true = right + left, false = up + down)

@@ -51,7 +51,7 @@ namespace MinotaurEscape
         {
 
             // Create the player with 5 torches to start
-                player = new Player();
+                player = new Player(new Vector2((GraphicsDevice.Viewport.Width-GameVariables.TileSize)/2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2));
                 player.Torches = 5;
 
             //Set up the menu
@@ -80,6 +80,7 @@ namespace MinotaurEscape
                 Player.SetupAnimations();
                 Torch.SetupAnimations();
                 Comrade.SetupAnimations();
+                Minotaur.SetupAnimations();
                 player.Animation = Player.MovingAnimation; // Do this here for now, will be remove when Idle animation is created
 
             //Menu Textures
@@ -148,6 +149,15 @@ namespace MinotaurEscape
 
                     }
 
+                // Check if a player has hit a minotuar then move the minotuars and check again
+                    Minotaur minotaur = maze.IntersectingMinotuar(player);
+                    if (minotaur != null)
+                            stateGame = GameState.MainMenu; // Return to main menu
+                    maze.MoveMinotuars(gameTime);
+                    minotaur = maze.IntersectingMinotuar(player);
+                    if (minotaur != null)
+                        stateGame = GameState.MainMenu; // Return to main menu
+
             }
             // TODO: Add your update logic here
 
@@ -197,22 +207,22 @@ namespace MinotaurEscape
                         switch (moveInput[moveInput.Count - 1])
                         {
                             case Keys.W:
-                                maze.AttemptMove(gameTime, 100, false, player);
+                                maze.AttemptMove(gameTime, GameVariables.PlayerSpeed, false, player);
                                 player.Direction = 0;
                                 break;
 
                             case Keys.S:
-                                maze.AttemptMove(gameTime, -100, false, player);
+                                maze.AttemptMove(gameTime, -GameVariables.PlayerSpeed, false, player);
                                 player.Direction = 3;
                                 break;
 
                             case Keys.D:
-                                maze.AttemptMove(gameTime, -100, true, player);
+                                maze.AttemptMove(gameTime, -GameVariables.PlayerSpeed, true, player);
                                 player.Direction = 2;
                                 break;
 
                             case Keys.A:
-                                maze.AttemptMove(gameTime, 100, true, player);
+                                maze.AttemptMove(gameTime, GameVariables.PlayerSpeed, true, player);
                                 player.Direction = 1;
                                 break;
                         }
@@ -241,7 +251,7 @@ namespace MinotaurEscape
                     GraphicsDevice.Clear(Color.Black);
 
                 // Draw the maze
-                    maze.Draw(spriteBatch, GraphicsDevice.Viewport);
+                    maze.Draw(spriteBatch);
 
                 // Draw the comrades
                     foreach (Comrade comrade in comrades)
@@ -252,7 +262,7 @@ namespace MinotaurEscape
                     player.Draw(spriteBatch);
 
                 // Draw the player's torch count
-                    spriteBatch.Draw(GameVariables.SoildTexture, new Rectangle(GraphicsDevice.Viewport.Width-160, 10, 150, 50), Color.White);
+                    spriteBatch.Draw(GameVariables.SoildWhiteTexture, new Rectangle(GraphicsDevice.Viewport.Width-160, 10, 150, 50), Color.White);
                     spriteBatch.DrawString(GameVariables.BasicFont, "Torches: " + player.Torches, new Vector2(GraphicsDevice.Viewport.Width - 120, 25), Color.Black);
 
             }

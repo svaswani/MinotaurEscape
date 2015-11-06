@@ -48,10 +48,19 @@ public abstract class AnimatedTile
 		set;
 	}
 
-	/// <summary>
-	/// Draws the current frame of this tile to the given sprite batch
-	/// </summary>
-	public void Draw(SpriteBatch spriteBatch)
+    /// <summary>
+    /// Creates an animated tile with the given position and current animation
+    /// </summary>
+    public AnimatedTile(Vector2 position, Animation animation)
+    {
+        Position = position;
+        Animation = animation;
+    }
+
+    /// <summary>
+    /// Draws the current frame of this tile to the given sprite batch
+    /// </summary>
+    public void Draw(SpriteBatch spriteBatch)
 	{
         Rectangle drawRect = new Rectangle(Position.ToPoint(),new Point(GameVariables.TileSize));
 

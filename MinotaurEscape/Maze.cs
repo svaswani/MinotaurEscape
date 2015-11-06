@@ -61,6 +61,12 @@ namespace MinotaurEscape
         /// </summary>
         private List<Comrade> comrades;
 
+
+        /// <summary>
+        /// The minotaurs in the maze
+        /// </summary>
+        private List<Minotaur> minotaurs;
+
         /// <summary>
         /// Creates a maze object from the given stream
         /// </summary>
@@ -91,17 +97,26 @@ namespace MinotaurEscape
                 }
                 reader.Close();
 
-            // Initalize the movables, torch, and comrade lists
+            // Initalize the movables, torch, minotuars, and comrade lists
                 Moveables = new List<Movable>();
                 torches = new List<Torch>();
                 comrades = new List<Comrade>();
+                minotaurs = new List<Minotaur>();
 
             // Create the comrades in the maze
-                for (int i = 0; i < width * height / 100; i++)
+                for (int i = 0; i < width * height / GameVariables.ComradeRate; i++)
                 {
                     Comrade comrade = new Comrade(getRandomCell(entrance));
                     comrades.Add(comrade);
                     Moveables.Add(comrade);
+                }
+
+            // Create the minotaurs in the maze
+                for (int i = 0; i < width * height / GameVariables.MinotuarRate; i++)
+                {
+                    Minotaur minotaur = new Minotaur(getRandomCell(entrance));
+                    minotaurs.Add(minotaur);
+                    Moveables.Add(minotaur);
                 }
         }
 
@@ -132,25 +147,51 @@ namespace MinotaurEscape
         }
 
         /// <summary>
+        /// Gets the minotuar intersecting with the given tile (returns null if none)
+        /// </summary>
+        public Minotaur IntersectingMinotuar(AnimatedTile tile)
+        {
+            Minotaur[] minotaur = minotaurs.Where(m => new Rectangle(tile.Position.ToPoint(), new Point(GameVariables.TileSize)).Intersects(new Rectangle(m.Position.ToPoint(), new Point(GameVariables.TileSize)))).ToArray();
+            return minotaur.Length > 0 ? minotaur[0] : null;
+        }
+
+        /// <summary>
         /// Draws the visible parts of the maze.
         /// </summary>
-        public void Draw(SpriteBatch spriteBatch, Viewport viewport)
+        public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the tiles around the center of the vieport first
-                DrawAround(spriteBatch, new Vector2(viewport.Width/2, viewport.Height/2));
+                List<Vector2> tilesRendered = getAndDrawTiles(spriteBatch, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width/2, spriteBatch.GraphicsDevice.Viewport.Height/2));
 
             // Draw the tiles around every torch in the maze
                 foreach (Torch torch in torches)
-                    DrawAround(spriteBatch, torch.Position);
+                    tilesRendered.AddRange(getAndDrawTiles(spriteBatch, torch.Position));
 
             // Draw each torch in the maze now
                 foreach (Torch torch in torches)
                     torch.Draw(spriteBatch);
+
+            // Draw the minotaurs and comrades now
+                foreach (Comrade comrade in comrades)
+                    comrade.Draw(spriteBatch);
+                foreach (Minotaur minotaur in minotaurs)
+                     minotaur.Draw(spriteBatch);
+
+            // Draw a "cover" on the screen where tiles where not rendered to hide the minotuars and comrades
+                Vector2 topLeft = new Vector2((int)-position.X / GameVariables.TileSize, (int)-position.Y / GameVariables.TileSize);
+                for (int x = -1; x < spriteBatch.GraphicsDevice.Viewport.Width / GameVariables.TileSize+1; x++)
+                        for (int y = -1; y < spriteBatch.GraphicsDevice.Viewport.Height / GameVariables.TileSize+1; y++)
+                            if (!tilesRendered.Contains(new Vector2(topLeft.X+x, topLeft.Y + y)))
+                                spriteBatch.Draw(GameVariables.SoildBlackTexture, new Rectangle((position+(topLeft+new Vector2(x, y)) * GameVariables.TileSize).ToPoint(), new Point(GameVariables.TileSize)), Color.White);
+            
         }
 
-        // Draws the tiles around the given position (In relation to the screen)
-        private void DrawAround(SpriteBatch spriteBatch, Vector2 center)
+        // Gets and draws the tiles around the given position
+        private List<Vector2> getAndDrawTiles(SpriteBatch spriteBatch, Vector2 center)
         {
+            // Create List for holding the tiles
+                List<Vector2> tilesRendered = new List<Vector2>();
+
             // Get the position in relation to the maze
                 Vector2 centerPosition = (center - position) / GameVariables.TileSize;
 
@@ -177,13 +218,14 @@ namespace MinotaurEscape
                                     if (new Vector2(drawX, drawY).Equals(exit))
                                         spriteBatch.Draw(GameVariables.ExitTexture, position + exit);
 
-                                // Draw comrade if in sight
-                                    Comrade[] comrade = comrades.Where(c => c.Position.Equals(position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize))).ToArray();
-                                    if (comrade.Length > 0)
-                                        comrade[0].Draw(spriteBatch);
-                            }
+                                // Add the tile to the list
+                                    tilesRendered.Add(new Vector2(drawX, drawY));
+                        }
                     }
                 }
+
+            // Return the tiles rendered
+                return tilesRendered;
         }
 
         // Gets the wall texture that should be in the given position
@@ -296,12 +338,18 @@ namespace MinotaurEscape
             // Get the collection of cells
                 List<Vector2> cells = tiles.SelectMany((col, x) => col.Select((tile, y) => tile ? new Vector2(x, y) : new Vector2(-1, -1))).Where(cell => !cell.Equals(new Vector2(-1, -1))).ToList();
 
-            // Remove the exit, all the comrades, and the start
+            // Remove the exit, all the comrades and minotaurs, and the start
                 cells.Remove(exit);
                 cells.Remove(entrance);
                 foreach (Comrade comrade in comrades)
                 {
                     Vector2 tilePos = (comrade.Position - position) / GameVariables.TileSize;
+                    tilePos = new Vector2((int)tilePos.X, (int)tilePos.Y);
+                    cells.Remove(tilePos);
+                }
+                foreach (Minotaur minotaur in minotaurs)
+                {
+                    Vector2 tilePos = (minotaur.Position - position) / GameVariables.TileSize;
                     tilePos = new Vector2((int)tilePos.X, (int)tilePos.Y);
                     cells.Remove(tilePos);
                 }
@@ -318,6 +366,47 @@ namespace MinotaurEscape
         {
             Moveables.Remove(comrade);
             comrades.Remove(comrade);
+        }
+
+        /// <summary>
+        /// Moves the minotuars randomly in the maze
+        /// </summary>
+        public void MoveMinotuars(GameTime gameTime)
+        {
+            foreach (Minotaur minotaur in minotaurs)
+            {
+                // Move the minotaur forward
+                    if(minotaur.Direction==0)
+                        minotaur.Move(gameTime, -GameVariables.MinotuarSpeed, false);
+                    else if(minotaur.Direction==1)
+                        minotaur.Move(gameTime, -GameVariables.MinotuarSpeed, true);
+                    else if (minotaur.Direction == 2)
+                        minotaur.Move(gameTime, GameVariables.MinotuarSpeed, true);
+                    else if (minotaur.Direction == 3)
+                        minotaur.Move(gameTime, GameVariables.MinotuarSpeed, false);
+
+                // If the minotuar hit a wall move back and pick a new direction
+                    if (IsInWall(minotaur))
+                    {
+                        if (minotaur.Direction == 0)
+                            minotaur.Move(gameTime, GameVariables.MinotuarSpeed, false);
+                        else if (minotaur.Direction == 1)
+                            minotaur.Move(gameTime, GameVariables.MinotuarSpeed, true);
+                        else if (minotaur.Direction == 2)
+                            minotaur.Move(gameTime, -GameVariables.MinotuarSpeed, true);
+                        else if (minotaur.Direction == 3)
+                            minotaur.Move(gameTime, -GameVariables.MinotuarSpeed, false);
+                        minotaur.Direction = rand.Next(4);
+                    }
+                    else
+                    {
+                        // Check if the minotaur has hit a comrade and remove it if it has
+                            Comrade comrade = IntersectingComrade(minotaur);
+                            if (comrade != null)
+                                RemoveComrade(comrade);
+                    }
+                
+            }
         }
     }
 }

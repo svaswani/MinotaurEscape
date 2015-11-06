@@ -30,11 +30,8 @@ public class Comrade : AnimatedTile, Movable
     /// <summary>
     /// Creates a comrade with the given position
     /// </summary>
-    public Comrade(Vector2 position)
-    {
-        Position = position;
-        Animation = IdleAnimation;
-    }
+    public Comrade(Vector2 position) : base(position, IdleAnimation)
+    {}
 
     /// <summary>
     /// Moves the comrade the given speed in the given dir (true = right + left, false = up + down)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,13 @@ public class Player : AnimatedTile
 		get;
 		set;
 	}
+
+    /// <summary>
+    /// Creates a player with the given position
+    /// </summary>
+    public Player(Vector2 position) : base(position, MovingAnimation)
+    {}
+
 
     /// <summary>
 	/// Sets up the animations for the player

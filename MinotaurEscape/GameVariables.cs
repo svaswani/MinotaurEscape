@@ -14,10 +14,40 @@ using System.Text;
 
 public class GameVariables
 {
-	/// <summary>
-	/// The texture of the floor
-	/// </summary>
-	public static Texture2D FloorTexture;
+    /// <summary>
+    /// The size of tiles in the game
+    /// </summary>
+    public static int TileSize = 32;
+
+    /// <summary>
+    /// The radius of the torch's light
+    /// </summary>
+    public static int TorchLightRadius = 6;
+
+    /// <summary>
+    /// The speed of the player
+    /// </summary>
+    public static int PlayerSpeed = 100;
+
+    /// <summary>
+    /// The speed of the minotuar's movement
+    /// </summary>
+    public static int MinotuarSpeed = 100;
+
+    /// <summary>
+    /// The rate of the minotuar's in the maze (higher means less)
+    /// </summary>
+    public static int MinotuarRate = 300;
+
+    /// <summary>
+    /// The rate of the comrade's in the maze (higher means less)
+    /// </summary>
+    public static int ComradeRate = 100;
+
+    /// <summary>
+    /// The texture of the floor
+    /// </summary>
+    public static Texture2D FloorTexture;
     
     /// <summary>
     /// The texture of the exit
@@ -30,11 +60,6 @@ public class GameVariables
     public static Dictionary<string, Texture2D> WallTextures;
 
     /// <summary>
-	/// The size of tiles in the game
-	/// </summary>
-	public static int TileSize = 32;
-
-    /// <summary>
     /// The texture of the torch
     /// </summary>
     public static Texture2D TorchTexture;
@@ -45,34 +70,19 @@ public class GameVariables
 	public static Texture2D PlayerIdleTexture;
 
 	/// <summary>
-	/// The texture of the minotuar
+	/// The texture of the minotuar while moving
 	/// </summary>
-	public static Texture2D MinotuarTexture;
+	public static Texture2D MinotuarMovingTexture;
 
 	/// <summary>
 	/// The texture of the comrade being Idle
 	/// </summary>
 	public static Texture2D ComradeIdleTexture;
 
-	/// <summary>
-	/// The radius of the torch's light
-	/// </summary>
-	public static int TorchLightRadius = 6;
-
-	/// <summary>
-	/// The basic font of the game
-	/// </summary>
-	public static SpriteFont BasicFont;
-
-	/// <summary>
-	/// The speed of the player
-	/// </summary>
-	public static int PlayerSpeed;
-
-	/// <summary>
-	/// The speed of the minotuar's movement
-	/// </summary>
-	public static int MinotuarSpeed;
+    /// <summary>
+    /// The basic font of the game
+    /// </summary>
+    public static SpriteFont BasicFont;
 
 	/// <summary>
 	/// Texture of the comrade being picked up
@@ -95,22 +105,29 @@ public class GameVariables
     public static Texture2D MenuPlayButtonTexture;
 
     /// <summary>
-    /// The texture of soild shapes
+    /// The texture of soild white shapes
     /// </summary>
-    public static Texture2D SoildTexture;
+    public static Texture2D SoildWhiteTexture;
+
+    /// <summary>
+    /// The texture of soild black shapes
+    /// </summary>
+    public static Texture2D SoildBlackTexture;
 
     /// <summary>
     /// Loads the textures of the game
     /// </summary>
     public static void LoadTextures(ContentManager content, GraphicsDevice graphicsDevice)
     {
-        // Load the basic font and a white texture
+        // Load the basic font and a soild textures
             BasicFont = content.Load<SpriteFont>("Fonts/basic");
-            SoildTexture = new Texture2D(graphicsDevice, 1, 1);
-            SoildTexture.SetData(new Color[] { Color.White });
+            SoildWhiteTexture = new Texture2D(graphicsDevice, 1, 1);
+            SoildWhiteTexture.SetData(new Color[] { Color.White });
+            SoildBlackTexture = new Texture2D(graphicsDevice, 1, 1);
+            SoildBlackTexture.SetData(new Color[] { Color.Black });
 
         // Load the floor, exit and walls of the maze
-            FloorTexture = content.Load<Texture2D>("MazeTiles/floor");
+        FloorTexture = content.Load<Texture2D>("MazeTiles/floor");
             ExitTexture = content.Load<Texture2D>("MazeTiles/exit");
             string[] wallTypes = new string[] { "TTTT", "TTTF", "TTFT", "TTFF", "TFTT", "TFFT", "TFTF", "TFFF", "FFFF", "FTTT", "FTTF", "FTFT", "FFTT", "FFFT", "FFTF", "FTFF" };
             WallTextures = new Dictionary<string, Texture2D>();
@@ -120,9 +137,10 @@ public class GameVariables
         // Load the player's textures
             PlayerMovingTexture = content.Load<Texture2D>("Characters/player");
 
-        // Load the torch's and comrade's textures
+        // Load the torch's, comrade's, and minotuar's textures
             TorchTexture = content.Load<Texture2D>("Characters/torch");
             ComradeIdleTexture = content.Load<Texture2D>("Characters/comrade");
+            MinotuarMovingTexture = content.Load<Texture2D>("Characters/minotaur");
 
         //Load menu textures
             MenuPlayButtonTexture = content.Load<Texture2D>("Menu/playButton");
