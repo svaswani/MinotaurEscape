@@ -10,28 +10,19 @@ using System.Text;
 /// </summary>
 public class Animation
 {
-	/// <summary>
-	/// The rectangle of the current frame of the animation
-	/// </summary>
-	public Rectangle CurrentFrame
-	{
-		get;
-		set;
-	}
+    /// <summary>
+    /// If this animation is currently being preformed
+    /// </summary>
+    public bool Animating
+    {
+        get;
+        set;
+    }
 
-	/// <summary>
-	/// The current direction of the thing being animated
-	/// </summary>
-	public int Direction
-	{
-		get;
-		set;
-	}
-
-	/// <summary>
-	/// The texture of this animation
-	/// </summary>
-	public Texture2D Texture
+    /// <summary>
+    /// The texture of this animation
+    /// </summary>
+    public Texture2D Texture
 	{
 		get;
 		set;
@@ -71,8 +62,8 @@ public class Animation
             this.loop = loop;
             this.animationSpeed = animationSpeed;
 
-        // Get the starting frame
-            CurrentFrame = new Rectangle(0, 0, GameVariables.TileSize, GameVariables.TileSize);
+        // Set the start to 0
+            currentFrameNum = 0;
     }
 
 	/// <summary>
@@ -81,28 +72,36 @@ public class Animation
 	public void Reset()
 	{
         currentFrameNum = 0;
-        CurrentFrame = new Rectangle(0, 0, GameVariables.TileSize, GameVariables.TileSize);
 	}
 
 	/// <summary>
 	/// Gets the frame of the next step
 	/// </summary>
-	public Rectangle NextFrame()
-	{
+	public Rectangle NextFrame(int dir)
+    {
         // Check if the animation is done and if it loops reset it
-            if (currentFrameNum >= numFrames && loop)
-                    Reset();
+            if (currentFrameNum >= numFrames-1 && loop)
+                Reset();
             else if(currentFrameNum < numFrames && ++steps % animationSpeed == 0)
-                CurrentFrame = new Rectangle(++currentFrameNum * GameVariables.TileSize, Direction * GameVariables.TileSize, GameVariables.TileSize, GameVariables.TileSize);
+                currentFrameNum++;
 
         // Return the Current Frame
-            return CurrentFrame;
+            return CurrentFrame(dir);
 	}
 
-	/// <summary>
-	/// If the animation is at the end. (Only if it doesn't loop)
-	/// </summary>
-	public bool End()
+
+    /// <summary>
+    /// The rectangle of the current frame of the animation
+    /// </summary>
+    public Rectangle CurrentFrame(int dir)
+    {
+        return new Rectangle(currentFrameNum * GameVariables.TileSize, dir * GameVariables.TileSize, GameVariables.TileSize, GameVariables.TileSize);
+    }
+
+    /// <summary>
+    /// If the animation is at the end. (Only if it doesn't loop)
+    /// </summary>
+    public bool End()
 	{
         return currentFrameNum >= numFrames;
     }

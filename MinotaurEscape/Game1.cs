@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace MinotaurEscape
@@ -15,11 +16,16 @@ namespace MinotaurEscape
         SpriteBatch spriteBatch;
 
         // atributes
-        bool[] wasd = { false, false, false, false };
-        string[] wasdStr = { "W", "A", "S", "D" };
         Maze maze;
         Player player;
         MenuButton playButton;
+
+        // Used for keyboard input
+        private KeyboardState kbState, previousKbState;
+
+        // Used for player move input
+        private List<Keys> moveInput = new List<Keys>();
+
         public enum GameState
         {
             MainMenu,
@@ -45,13 +51,12 @@ namespace MinotaurEscape
 
             // Create the player
                 player = new Player();
-                player.Animating = false;
 
             //Set up the menu
-            playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
+                playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
 
             //Set initial state
-            stateGame = GameState.MainMenu;
+                stateGame = GameState.MainMenu;
 
             base.Initialize();
             
@@ -71,10 +76,10 @@ namespace MinotaurEscape
 
             // Setup all the animations of the game
                 player.SetupAnimations();
-                player.Animation = player.IdleAnimation; // Do this here for now, will be moved later to a more apporiate place
+                player.Animation = player.MovingAnimation; // Do this here for now, will be remove when Idle animation is created
 
             //Menu Textures
-            playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
+                playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
         }
 
         /// <summary>
@@ -135,35 +140,62 @@ namespace MinotaurEscape
 
         public void ProcessInput(GameTime gameTime)
         {
-            KeyboardState kbState = Keyboard.GetState();
-            if (kbState.IsKeyDown(Keys.W))
-            {
-                wasd[0] = true;
-                maze.Move(gameTime, 100, false);
-            }
-            else wasd[0] = false;
+            previousKbState = kbState;
+            kbState = Keyboard.GetState();
 
-            if (kbState.IsKeyDown(Keys.A))
-            {
-                wasd[1] = true;
-                maze.Move(gameTime, 100, true);
+            // Add the arrows just pressed to the list of arrows pressed
+                if (previousKbState.IsKeyUp(Keys.W) && kbState.IsKeyDown(Keys.W))
+                    moveInput.Add(Keys.W);
+                if (previousKbState.IsKeyUp(Keys.A) && kbState.IsKeyDown(Keys.A))
+                    moveInput.Add(Keys.A);
+                if (previousKbState.IsKeyUp(Keys.D) && kbState.IsKeyDown(Keys.D))
+                    moveInput.Add(Keys.D);
+                if (previousKbState.IsKeyUp(Keys.S) && kbState.IsKeyDown(Keys.S))
+                    moveInput.Add(Keys.S);
 
-            }
-            else wasd[1] = false;
+            // Remove the arrows released from the list of arrows pressed
+                if (kbState.IsKeyUp(Keys.W))
+                    moveInput.Remove(Keys.W);
+                if (kbState.IsKeyUp(Keys.S))
+                    moveInput.Remove(Keys.S);
+                if (kbState.IsKeyUp(Keys.A))
+                    moveInput.Remove(Keys.A);
+                if (kbState.IsKeyUp(Keys.D))
+                    moveInput.Remove(Keys.D);
 
+            // Set the player to animating if any arrows still pressed
+                player.MovingAnimation.Animating = moveInput.Count != 0;
 
-            if (kbState.IsKeyDown(Keys.S))
-            {
-                wasd[2] = true;
-                maze.Move(gameTime, -100, false);
+            // Check if the player is moving and either idle or already moving
+                if (moveInput.Count != 0 && (player.Animation == player.MovingAnimation || player.Animation == player.IdleAnimation))
+                {
+                    // Set the animation to moving just incase 
+                        player.Animation = player.MovingAnimation;
+
+                    // Check which was the last arrow pressed and move in that direction
+                        switch (moveInput[moveInput.Count - 1])
+                        {
+                            case Keys.W:
+                                maze.AttemptMove(gameTime, 100, false, player);
+                                player.Direction = 0;
+                                break;
+
+                            case Keys.S:
+                                maze.AttemptMove(gameTime, -100, false, player);
+                                player.Direction = 3;
+                                break;
+
+                            case Keys.D:
+                                maze.AttemptMove(gameTime, -100, true, player);
+                                player.Direction = 2;
+                                break;
+
+                            case Keys.A:
+                                maze.AttemptMove(gameTime, 100, true, player);
+                                player.Direction = 1;
+                                break;
+                        }
             }
-            else wasd[2] = false;
-            if (kbState.IsKeyDown(Keys.D))
-            {
-                wasd[3] = true;
-                maze.Move(gameTime, -100, true);
-            }
-            else wasd[3] = false;
         }
 
 

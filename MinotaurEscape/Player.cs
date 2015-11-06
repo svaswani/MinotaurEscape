@@ -67,7 +67,7 @@ public class Player : AnimatedTile
 	/// </summary>
     public override void SetupAnimations()
     {
-        IdleAnimation = new Animation(GameVariables.PlayerIdleTexture, 1, 1, true);
+        MovingAnimation = new Animation(GameVariables.PlayerMovingTexture, 1, 1, true);
     }
 }
 

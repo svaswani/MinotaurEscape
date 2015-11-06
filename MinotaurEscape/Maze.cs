@@ -146,5 +146,18 @@ namespace MinotaurEscape
                     moveable.Move(gameTime, speed, dir);
         }
 
+        /// <summary>
+        /// Moves the maze by the given speed in the given directional axis (true = left + right, false = up + down) but only if the given animatied tile will not be in a wall.
+        /// </summary>
+        public void AttemptMove(GameTime gameTime, int speed, bool dir, AnimatedTile tile)
+        {
+            // Attempt to move
+                Move(gameTime, speed, dir);
+
+            // Check if the given tile is in a wall and if he is undo move
+                if (IsInWall(tile))
+                    Move(gameTime, -speed, dir);
+        }
+
     }
 }

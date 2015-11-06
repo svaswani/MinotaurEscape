@@ -18,15 +18,16 @@ public abstract class AnimatedTile
 		get;
 		set;
 	}
+    
 
-	/// <summary>
-	/// If this tile is currently looping through an animation
-	/// </summary>
-	public bool Animating
-	{
-		get;
-		set;
-	}
+    /// <summary>
+    /// The current direction of the the animated tile
+    /// </summary>
+    public int Direction
+    {
+        get;
+        set;
+    }
 
 	/// <summary>
 	/// The size and position of this tile
@@ -42,10 +43,10 @@ public abstract class AnimatedTile
 	/// </summary>
 	public void Draw(SpriteBatch spriteBatch)
 	{
-        if (Animating)
-            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.NextFrame(), Color.White);
+        if (Animation.Animating)
+            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.NextFrame(Direction), Color.White);
         else
-            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.CurrentFrame, Color.White);
+            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.CurrentFrame(Direction), Color.White);
     }
 
     /// <summary>
