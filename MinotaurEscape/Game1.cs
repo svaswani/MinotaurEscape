@@ -19,7 +19,15 @@ namespace MinotaurEscape
         string[] wasdStr = { "W", "A", "S", "D" };
         Maze maze;
         Player player;
+        Comrade comrade;
+        Comrade comrade2;
+        
+        Torch torch;
         MenuButton playButton;
+        float ranx;
+        float rany;
+        int ranxint;
+        int ranyint;
         public enum GameState
         {
             MainMenu,
@@ -46,7 +54,19 @@ namespace MinotaurEscape
             // Create the player
                 player = new Player();
                 player.Animating = false;
+            
+            comrade = new Comrade();
+            comrade.Animating = false;
 
+            
+
+            comrade2 = new Comrade();
+            comrade2.Animating = false;
+
+            
+
+
+            //comrade.Rectangle = new Rectangle(ranxint * GameVariables.TileSize, ranyint * GameVariables.TileSize, GameVariables.TileSize, GameVariables.TileSize);
             //Set up the menu
             playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
 
@@ -73,8 +93,16 @@ namespace MinotaurEscape
                 player.SetupAnimations();
                 player.Animation = player.IdleAnimation; // Do this here for now, will be moved later to a more apporiate place
 
+            comrade.SetupAnimations();
+            comrade.Animation = comrade.IdleAnimation;
+
+            comrade2.SetupAnimations();
+            comrade2.Animation = comrade.IdleAnimation;
             //Menu Textures
             playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
+            comrade.random();
+            comrade2.random();
+
         }
 
         /// <summary>
@@ -140,6 +168,8 @@ namespace MinotaurEscape
             {
                 wasd[0] = true;
                 maze.Move(gameTime, 100, false);
+                comrade.Move(gameTime, 100, false);
+                comrade2.Move(gameTime, 100, false);
             }
             else wasd[0] = false;
 
@@ -147,7 +177,8 @@ namespace MinotaurEscape
             {
                 wasd[1] = true;
                 maze.Move(gameTime, 100, true);
-
+                comrade.Move(gameTime, 100, true);
+                comrade2.Move(gameTime, 100, true);
             }
             else wasd[1] = false;
 
@@ -156,12 +187,16 @@ namespace MinotaurEscape
             {
                 wasd[2] = true;
                 maze.Move(gameTime, -100, false);
+                comrade.Move(gameTime, -100, false);
+                comrade2.Move(gameTime, -100, false);
             }
             else wasd[2] = false;
             if (kbState.IsKeyDown(Keys.D))
             {
                 wasd[3] = true;
                 maze.Move(gameTime, -100, true);
+                comrade.Move(gameTime, -100, true);
+                comrade2.Move(gameTime, -100, true);
             }
             else wasd[3] = false;
         }
@@ -185,6 +220,16 @@ namespace MinotaurEscape
                 // Place the player at the center of the screen and draw him
                 player.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
                 player.Draw(spriteBatch);
+                
+
+                
+               
+                comrade.Draw(spriteBatch);
+                comrade2.Draw(spriteBatch);
+
+
+
+                //comrade.Draw(spriteBatch);
 
             }
 
