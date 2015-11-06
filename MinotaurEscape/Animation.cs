@@ -10,14 +10,6 @@ using System.Text;
 /// </summary>
 public class Animation
 {
-    /// <summary>
-    /// If this animation is currently being preformed
-    /// </summary>
-    public bool Animating
-    {
-        get;
-        set;
-    }
 
     /// <summary>
     /// The texture of this animation

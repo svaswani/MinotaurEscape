@@ -38,7 +38,7 @@ public class Player : AnimatedTile
 	/// <summary>
 	/// The animation of the player standing still
 	/// </summary>
-	public Animation IdleAnimation
+	public static Animation IdleAnimation
 	{
 		get;
 		set;
@@ -47,7 +47,7 @@ public class Player : AnimatedTile
 	/// <summary>
 	/// The animation of the player moving
 	/// </summary>
-	public Animation MovingAnimation
+	public static Animation MovingAnimation
 	{
 		get;
 		set;
@@ -56,7 +56,7 @@ public class Player : AnimatedTile
 	/// <summary>
 	/// The animation of the playerpicking up a comrade
 	/// </summary>
-	public Animation PickupAnimation
+	public static Animation PickupAnimation
 	{
 		get;
 		set;
@@ -65,7 +65,7 @@ public class Player : AnimatedTile
     /// <summary>
 	/// Sets up the animations for the player
 	/// </summary>
-    public override void SetupAnimations()
+    public static void SetupAnimations()
     {
         MovingAnimation = new Animation(GameVariables.PlayerMovingTexture, 1, 1, true);
     }

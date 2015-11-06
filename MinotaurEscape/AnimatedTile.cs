@@ -18,7 +18,17 @@ public abstract class AnimatedTile
 		get;
 		set;
 	}
-    
+
+
+    /// <summary>
+    /// If the animation is currently being preformed
+    /// </summary>
+    public bool Animating
+    {
+        get;
+        set;
+    }
+
 
     /// <summary>
     /// The current direction of the the animated tile
@@ -30,9 +40,9 @@ public abstract class AnimatedTile
     }
 
 	/// <summary>
-	/// The size and position of this tile
+	/// The position of this tile
 	/// </summary>
-	public Rectangle Rectangle
+	public Vector2 Position
 	{
 		get;
 		set;
@@ -43,15 +53,12 @@ public abstract class AnimatedTile
 	/// </summary>
 	public void Draw(SpriteBatch spriteBatch)
 	{
-        if (Animation.Animating)
-            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.NextFrame(Direction), Color.White);
-        else
-            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.CurrentFrame(Direction), Color.White);
-    }
+        Rectangle drawRect = new Rectangle(Position.ToPoint(),new Point(GameVariables.TileSize));
 
-    /// <summary>
-	/// Sets up the animations for this tile
-	/// </summary>
-	public abstract void SetupAnimations();
+        if (Animating)
+            spriteBatch.Draw(Animation.Texture, drawRect, Animation.NextFrame(Direction), Color.White);
+        else
+            spriteBatch.Draw(Animation.Texture, drawRect, Animation.CurrentFrame(Direction), Color.White);
+    }
 }
 

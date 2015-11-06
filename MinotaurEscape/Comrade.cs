@@ -12,7 +12,7 @@ public class Comrade : AnimatedTile, Movable
 	/// <summary>
 	/// The animation of the comrade Idle
 	/// </summary>
-	public virtual Animation IdleAnimation
+	public static Animation IdleAnimation
 	{
 		get;
 		set;
@@ -21,7 +21,7 @@ public class Comrade : AnimatedTile, Movable
 	/// <summary>
 	/// The animation of the comrade being picked up
 	/// </summary>
-	public virtual Animation PickupAnimation
+	public static Animation PickupAnimation
 	{
 		get;
 		set;
@@ -30,7 +30,7 @@ public class Comrade : AnimatedTile, Movable
     /// <summary>
     /// Moves the comrade the given speed in the given dir (true = right + left, false = up + down)
     /// </summary>
-    public virtual void Move(GameTime gameTime, int speed, bool dir)
+    public void Move(GameTime gameTime, int speed, bool dir)
 	{
 		throw new System.NotImplementedException();
 	}
@@ -38,7 +38,7 @@ public class Comrade : AnimatedTile, Movable
     /// <summary>
     /// Sets up the animations for this comrade
     /// </summary>
-    public override void SetupAnimations()
+    public static void SetupAnimations()
     {
         throw new NotImplementedException();
     }

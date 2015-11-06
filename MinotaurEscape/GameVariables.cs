@@ -56,7 +56,7 @@ public class GameVariables
 	/// <summary>
 	/// The radius of the torch's light
 	/// </summary>
-	public static int TorchLightRadius;
+	public static int TorchLightRadius = 4;
 
 	/// <summary>
 	/// The basic font of the game
@@ -106,8 +106,11 @@ public class GameVariables
             foreach (string wallType in wallTypes)
                 WallTextures.Add(wallType, content.Load<Texture2D>("MazeTiles/wall-" + wallType));
 
-        // Load the characters' texture
+        // Load the player's textures
             PlayerMovingTexture = content.Load<Texture2D>("Characters/player");
+
+        // Load the torch's texture
+            TorchTexture = content.Load<Texture2D>("Characters/torch");
 
         //Load menu textures
             MenuPlayButtonTexture = content.Load<Texture2D>("Menu/playButton");

@@ -48,6 +48,11 @@ namespace MinotaurEscape
         }
 
         /// <summary>
+        /// The torches in the maze
+        /// </summary>
+        private List<Torch> torches;
+
+        /// <summary>
         /// Creates a maze object from the given stream
         /// </summary>
         public Maze(Stream mazeStream, Viewport viewport)
@@ -60,7 +65,7 @@ namespace MinotaurEscape
 
             // load the entrance and set the position to it at the start
                 position = new Vector2(-reader.ReadInt32() * GameVariables.TileSize - GameVariables.TileSize / 2 + viewport.Width/2, -reader.ReadInt32() * GameVariables.TileSize - GameVariables.TileSize / 2 + viewport.Height/2);
-
+            
             // load the exit
                 exit = new Vector2(reader.ReadInt32()*GameVariables.TileSize, reader.ReadInt32()*GameVariables.TileSize);
 
@@ -76,8 +81,9 @@ namespace MinotaurEscape
                 }
                 reader.Close();
 
-            // Initalize the comrade and torch lists
+            // Initalize the movables and torch lists
                 Moveables = new List<Movable>();
+                torches = new List<Torch>();
         }
 
         /// <summary>
@@ -85,7 +91,7 @@ namespace MinotaurEscape
         /// </summary>
         public bool IsInWall(AnimatedTile tile)
         {
-            Vector2 relativePosition = new Vector2(tile.Rectangle.X - position.X, tile.Rectangle.Y - position.Y);
+            Vector2 relativePosition = new Vector2(tile.Position.X - position.X, tile.Position.Y - position.Y);
             return !tiles[(int)(relativePosition.X+GameVariables.TileSize/2) / GameVariables.TileSize][(int)(relativePosition.Y + GameVariables.TileSize / 2) / GameVariables.TileSize];
         }
 
@@ -94,28 +100,57 @@ namespace MinotaurEscape
         /// </summary>
         public bool IsInExit(AnimatedTile tile)
         {
-            return tile.Rectangle.Intersects(new Rectangle((exit+position).ToPoint(), new Point(GameVariables.TileSize)));
+            return new Rectangle(tile.Position.ToPoint(), new Point(GameVariables.TileSize)).Intersects(new Rectangle((exit+position).ToPoint(), new Point(GameVariables.TileSize)));
         }
 
         /// <summary>
         /// Draws the visible parts of the maze.
         /// </summary>
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Viewport viewport)
         {
-            // Draw each tile of the maze starting at the top left
-                for(int x=0;x< width; x++)
+            // Draw the tiles around the center of the vieport first
+                DrawAround(spriteBatch, new Vector2(viewport.Width/2, viewport.Height/2));
+
+            // Draw the tiles around every torch in the maze
+                foreach (Torch torch in torches)
+                    DrawAround(spriteBatch, torch.Position);
+
+            // Draw each torch in the maze now
+                foreach (Torch torch in torches)
+                    torch.Draw(spriteBatch);
+        }
+
+        // Draws the tiles around the given position (In relation to the screen)
+        private void DrawAround(SpriteBatch spriteBatch, Vector2 center)
+        {
+            // Get the position in relation to the maze
+                Vector2 centerPosition = (center - position) / GameVariables.TileSize;
+
+            // Loop through every tile to draw
+                for (int x = -GameVariables.TorchLightRadius; x < GameVariables.TorchLightRadius; x++)
                 {
-                    for(int y = 0; y < height; y++)
+                    for (int y = -GameVariables.TorchLightRadius; y < GameVariables.TorchLightRadius; y++)
                     {
-                        if (tiles[x][y])
-                            spriteBatch.Draw(GameVariables.FloorTexture, position+new Vector2(x * GameVariables.TileSize, y * GameVariables.TileSize));
-                        else
-                            spriteBatch.Draw(getWallImage(x, y), position + new Vector2(x * GameVariables.TileSize, y * GameVariables.TileSize));
+
+                        // Check if the current x and y will be in a sphere instead of a box
+                            if (Math.Abs(x) + Math.Abs(y) < GameVariables.TorchLightRadius)
+                            {
+
+                                // Draw the current tile
+                                    int drawX = (int)centerPosition.X + x, drawY = (int)centerPosition.Y + y;
+                                    if (drawX < 0 || drawY < 0 || drawX >= width || drawY >= height)
+                                        continue;
+                                    if (tiles[drawX][drawY])
+                                        spriteBatch.Draw(GameVariables.FloorTexture, position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize));
+                                    else
+                                        spriteBatch.Draw(getWallImage(drawX, drawY), position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize));
+
+                                // Draw the exit if in sight
+                                    if (new Vector2(x, drawY).Equals(exit))
+                                        spriteBatch.Draw(GameVariables.ExitTexture, position + exit);
+                            }
                     }
                 }
-
-            // Draw the exit
-                spriteBatch.Draw(GameVariables.ExitTexture, position+exit);
         }
 
         // Gets the wall texture that should be in the given position
@@ -159,5 +194,64 @@ namespace MinotaurEscape
                     Move(gameTime, -speed, dir);
         }
 
+        /// <summary>
+        /// Adds a torch to the maze from the given position in the given direction
+        /// </summary>
+        public void AddTorch(Vector2 fromPosition, int dir)
+        {
+            // Get the position in relation to the maze
+                Vector2 fromTilePosition = (fromPosition - position) / GameVariables.TileSize;
+                fromTilePosition = new Vector2((int)fromTilePosition.X, (int)fromTilePosition.Y);
+
+            // Check if wall at current position and if not move in the given direction
+                if (tiles[(int)fromTilePosition.X][(int)fromTilePosition.Y])
+                {
+                    // Change the position depending on the direction
+                        if (dir == 0)
+                            fromTilePosition.Y--;
+                        else if (dir == 1)
+                            fromTilePosition.X--;
+                        else if (dir == 2)
+                            fromTilePosition.X++;
+                        else if (dir == 3)
+                            fromTilePosition.Y++;
+                }
+
+            // Create a torch with the position and add it to the torch list and movables list
+                Torch torch = new Torch(fromTilePosition* GameVariables.TileSize+position);
+                Moveables.Add(torch);
+                torches.Add(torch);
+        }
+
+        /// <summary>
+        /// Checks if a torch can be placed in the maze from the given position in the given direction
+        /// </summary>
+        public bool CanPlaceTorch(Vector2 fromPosition, int dir)
+        {
+            // Get the position in relation to the maze
+                Vector2 fromTilePosition = (fromPosition - position) / GameVariables.TileSize;
+                fromTilePosition = new Vector2((int)fromTilePosition.X, (int)fromTilePosition.Y);
+
+            // Check if wall at current position and if not move in the given direction
+                if (tiles[(int)fromTilePosition.X][(int)fromTilePosition.Y])
+                {
+                    // Change the position depending on the direction
+                        if (dir == 0)
+                            fromTilePosition.Y--;
+                        else if (dir == 1)
+                            fromTilePosition.X--;
+                        else if (dir == 2)
+                            fromTilePosition.X++;
+                        else if (dir == 3)
+                            fromTilePosition.Y++;
+                }
+
+            // Make sure there is a wall where placing torch
+                if (tiles[(int)fromTilePosition.X][(int)fromTilePosition.Y])
+                    return false;
+
+            // Return if there is a torch with the position
+                return torches.Where(torch => torch.Position.Equals(fromTilePosition * GameVariables.TileSize + position)).Count() <= 0;
+        }
     }
 }

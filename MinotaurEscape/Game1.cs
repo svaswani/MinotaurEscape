@@ -49,8 +49,9 @@ namespace MinotaurEscape
         protected override void Initialize()
         {
 
-            // Create the player
+            // Create the player with 5 torches to start
                 player = new Player();
+                player.Torches = 5;
 
             //Set up the menu
                 playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
@@ -75,8 +76,9 @@ namespace MinotaurEscape
                 GameVariables.LoadTextures(Content);
 
             // Setup all the animations of the game
-                player.SetupAnimations();
-                player.Animation = player.MovingAnimation; // Do this here for now, will be remove when Idle animation is created
+                Player.SetupAnimations();
+                Torch.SetupAnimations();
+                player.Animation = Player.MovingAnimation; // Do this here for now, will be remove when Idle animation is created
 
             //Menu Textures
                 playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
@@ -127,7 +129,7 @@ namespace MinotaurEscape
                 }
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && stateGame == GameState.Play)
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape) && stateGame == GameState.Play)
             {
                 stateGame = GameState.MainMenu;
             }
@@ -140,8 +142,9 @@ namespace MinotaurEscape
 
         public void ProcessInput(GameTime gameTime)
         {
-            previousKbState = kbState;
-            kbState = Keyboard.GetState();
+            // Store the previous keyboard state and get the new one
+                previousKbState = kbState;
+                kbState = Keyboard.GetState();
 
             // Add the arrows just pressed to the list of arrows pressed
                 if (previousKbState.IsKeyUp(Keys.W) && kbState.IsKeyDown(Keys.W))
@@ -163,14 +166,12 @@ namespace MinotaurEscape
                 if (kbState.IsKeyUp(Keys.D))
                     moveInput.Remove(Keys.D);
 
-            // Set the player to animating if any arrows still pressed
-                player.MovingAnimation.Animating = moveInput.Count != 0;
-
             // Check if the player is moving and either idle or already moving
-                if (moveInput.Count != 0 && (player.Animation == player.MovingAnimation || player.Animation == player.IdleAnimation))
+                if (moveInput.Count != 0 && (player.Animation == Player.MovingAnimation || player.Animation == Player.IdleAnimation))
                 {
                     // Set the animation to moving just incase 
-                        player.Animation = player.MovingAnimation;
+                        player.Animation = Player.MovingAnimation;
+                        player.Animating = true;
 
                     // Check which was the last arrow pressed and move in that direction
                         switch (moveInput[moveInput.Count - 1])
@@ -195,7 +196,15 @@ namespace MinotaurEscape
                                 player.Direction = 1;
                                 break;
                         }
-            }
+                }
+
+            // Check if torch button was pressed and the player has a torch
+                if(previousKbState.IsKeyUp(Keys.Space) && kbState.IsKeyDown(Keys.Space) && player.Torches > 0 && maze.CanPlaceTorch(player.Position + new Vector2(GameVariables.TileSize / 2), player.Direction))
+                {
+                        // Add a torch to the maze from the player position and direction and then remove a torch from the player
+                            maze.AddTorch(player.Position+new Vector2(GameVariables.TileSize/2), player.Direction);
+                            player.Torches--;
+                }
         }
 
 
@@ -205,23 +214,26 @@ namespace MinotaurEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
             if (stateGame == GameState.Play)
             {
-                // TODO: Add your drawing code here
+                // Make background black
+                    GraphicsDevice.Clear(Color.Black);
 
                 // Draw the maze
-                maze.Draw(spriteBatch);
+                    maze.Draw(spriteBatch, GraphicsDevice.Viewport);
 
                 // Place the player at the center of the screen and draw him
-                player.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
-                player.Draw(spriteBatch);
+                    player.Position = new Vector2((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2);
+                    player.Draw(spriteBatch);
 
             }
 
             if (stateGame == GameState.MainMenu)
             {
+                // make beckground white
+                    GraphicsDevice.Clear(Color.White);
+
                 playButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
                 playButton.Draw(spriteBatch);
             }
