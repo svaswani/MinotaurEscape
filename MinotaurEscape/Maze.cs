@@ -13,6 +13,7 @@ namespace MinotaurEscape
     /// </summary>
     class Maze : Movable
     {
+        Comrade comrade = new Comrade();
 
         /// <summary>
         /// the wall and floor tiles of the maze
@@ -22,12 +23,12 @@ namespace MinotaurEscape
         /// <summary>
         /// the width of the maze
         /// </summary>
-        private int width;
+        public static int width { get; set; }
 
         /// <summary>
         /// The height of the maze
         /// </summary>
-        private int height;
+        public static int height { get; set; }
 
         /// <summary>
         /// The position of the maze
@@ -78,6 +79,7 @@ namespace MinotaurEscape
 
             // Initalize the comrade and torch lists
                 Moveables = new List<Movable>();
+            Moveables.Add(comrade);
         }
 
         /// <summary>

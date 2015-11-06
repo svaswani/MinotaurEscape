@@ -111,7 +111,11 @@ public class GameVariables
                 WallTextures.Add(wallType, content.Load<Texture2D>("MazeTiles/wall-" + wallType));
 
         // Load the characters' texture
-            PlayerIdleTexture = content.Load<Texture2D>("Characters/temporaryCharacter");
+            PlayerIdleTexture = content.Load<Texture2D>("Characters/player sprite");
+        MinotuarTexture = content.Load<Texture2D>("Characters/minotaur 16");
+        ComradeIdleTexture = content.Load<Texture2D>("Characters/comrade 16");
+        TorchTexture = content.Load<Texture2D>("Characters/torch 16");
+
 
         //Load menu textures
         MenuPlayButtonTexture = content.Load<Texture2D>("Menu/playButton");
