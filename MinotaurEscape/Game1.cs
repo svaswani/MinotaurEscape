@@ -41,30 +41,16 @@ namespace MinotaurEscape
         /// </summary>
         protected override void Initialize()
         {
-            /* Temporaily ask the player for a maze to load if maze doesn't exist */
-
-            // Create a stream for loading the file
-                Stream loadStream;
-
-            // Create a dialog for asking for save location
-                System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
-                dialog.Filter = "maze files (*.maz)|*.maz";
-
-            // Ask the user for a file to load
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && (loadStream = dialog.OpenFile()) != null)
-                    maze = new Maze(loadStream, GraphicsDevice.Viewport);
-                else
-                    Exit();
 
             // Create the player
                 player = new Player();
                 player.Animating = false;
 
             //Set up the menu
-                playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
+            playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
 
             //Set initial state
-            stateGame = GameState.Play;
+            stateGame = GameState.MainMenu;
 
             base.Initialize();
             
@@ -115,6 +101,22 @@ namespace MinotaurEscape
                 if (playButton.IsMouseInside() == true && playButton.stateMouse.LeftButton == ButtonState.Pressed)
                 {
                     stateGame = GameState.Play;
+
+                    /* Temporaily ask the player for a maze to load if maze doesn't exist */
+
+                    // Create a stream for loading the file
+                        Stream loadStream;
+
+                    // Create a dialog for asking for save location
+                        System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
+                        dialog.Filter = "maze files (*.maz)|*.maz";
+
+                    // Ask the user for a file to load
+                        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && (loadStream = dialog.OpenFile()) != null)
+                            maze = new Maze(loadStream, GraphicsDevice.Viewport);
+                        else
+                            Exit();
+
                 }
             }
 
