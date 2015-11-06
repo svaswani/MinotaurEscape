@@ -20,6 +20,8 @@ namespace MinotaurEscape
         Maze maze;
         Player player;
         MenuButton playButton;
+        MenuButton stopButton;
+        MenuButton menuTitle;
         public enum GameState
         {
             MainMenu,
@@ -49,6 +51,8 @@ namespace MinotaurEscape
 
             //Set up the menu
             playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
+            stopButton = new MenuButton(GameVariables.MenuStopButtonTexture);
+            menuTitle = new MenuButton(GameVariables.MenuTitleTexture);
 
             //Set initial state
             stateGame = GameState.MainMenu;
@@ -75,6 +79,8 @@ namespace MinotaurEscape
 
             //Menu Textures
             playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
+            stopButton.ButtonGraphic = GameVariables.MenuStopButtonTexture;
+            menuTitle.ButtonGraphic = GameVariables.MenuTitleTexture;
         }
 
         /// <summary>
@@ -119,6 +125,10 @@ namespace MinotaurEscape
                         else
                             Exit();
 
+                }
+                if (stopButton.IsMouseInside() == true && playButton.stateMouse.LeftButton == ButtonState.Pressed)
+                {
+                    Exit();
                 }
             }
 
@@ -191,7 +201,11 @@ namespace MinotaurEscape
             if (stateGame == GameState.MainMenu)
             {
                 playButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
+                stopButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (playButton.Rectangle.Y + playButton.Rectangle.Height + 50), GameVariables.TileSize, GameVariables.TileSize);
+                menuTitle.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - 490) / 2, 20, 490, 78);
+                stopButton.Draw(spriteBatch);
                 playButton.Draw(spriteBatch);
+                menuTitle.Draw(spriteBatch);
             }
             spriteBatch.End();
             base.Draw(gameTime);
