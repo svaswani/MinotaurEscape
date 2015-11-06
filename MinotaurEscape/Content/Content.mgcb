@@ -255,3 +255,9 @@
 /processorParam:TextureFormat=Color
 /build:Characters/comrade.png
 
+#begin Fonts/basic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Fonts/basic.spritefont
+

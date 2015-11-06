@@ -71,10 +71,10 @@ namespace MinotaurEscape
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+                spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load the textures of the game
-                GameVariables.LoadTextures(Content);
+                GameVariables.LoadTextures(Content, GraphicsDevice);
 
             // Setup all the animations of the game
                 Player.SetupAnimations();
@@ -250,6 +250,10 @@ namespace MinotaurEscape
                 // Place the player at the center of the screen and draw him
                     player.Position = new Vector2((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2);
                     player.Draw(spriteBatch);
+
+                // Draw the player's torch count
+                    spriteBatch.Draw(GameVariables.SoildTexture, new Rectangle(GraphicsDevice.Viewport.Width-160, 10, 150, 50), Color.White);
+                    spriteBatch.DrawString(GameVariables.BasicFont, "Torches: " + player.Torches, new Vector2(GraphicsDevice.Viewport.Width - 120, 25), Color.Black);
 
             }
 

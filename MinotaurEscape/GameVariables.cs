@@ -4,6 +4,7 @@
 //     Changes to this file will be lost if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -56,7 +57,7 @@ public class GameVariables
 	/// <summary>
 	/// The radius of the torch's light
 	/// </summary>
-	public static int TorchLightRadius = 4;
+	public static int TorchLightRadius = 6;
 
 	/// <summary>
 	/// The basic font of the game
@@ -94,10 +95,20 @@ public class GameVariables
     public static Texture2D MenuPlayButtonTexture;
 
     /// <summary>
+    /// The texture of soild shapes
+    /// </summary>
+    public static Texture2D SoildTexture;
+
+    /// <summary>
     /// Loads the textures of the game
     /// </summary>
-    public static void LoadTextures(ContentManager content)
+    public static void LoadTextures(ContentManager content, GraphicsDevice graphicsDevice)
     {
+        // Load the basic font and a white texture
+            BasicFont = content.Load<SpriteFont>("Fonts/basic");
+            SoildTexture = new Texture2D(graphicsDevice, 1, 1);
+            SoildTexture.SetData(new Color[] { Color.White });
+
         // Load the floor, exit and walls of the maze
             FloorTexture = content.Load<Texture2D>("MazeTiles/floor");
             ExitTexture = content.Load<Texture2D>("MazeTiles/exit");
