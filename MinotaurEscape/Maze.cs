@@ -59,7 +59,7 @@ namespace MinotaurEscape
                 height = reader.ReadInt32();
 
             // load the entrance and set the position to it at the start
-                position = new Vector2(-reader.ReadInt32() * GameVariables.TileSize + viewport.Width/2, -reader.ReadInt32() * GameVariables.TileSize + viewport.Height/2);
+                position = new Vector2(-reader.ReadInt32() * GameVariables.TileSize - GameVariables.TileSize / 2 + viewport.Width/2, -reader.ReadInt32() * GameVariables.TileSize - GameVariables.TileSize / 2 + viewport.Height/2);
 
             // load the exit
                 exit = new Vector2(reader.ReadInt32()*GameVariables.TileSize, reader.ReadInt32()*GameVariables.TileSize);
@@ -85,8 +85,8 @@ namespace MinotaurEscape
         /// </summary>
         public bool IsInWall(AnimatedTile tile)
         {
-            Vector2 relativePosition = new Vector2(tile.Rectangle.X + position.X, tile.Rectangle.Y + position.Y);
-            return !tiles[(int)relativePosition.X / GameVariables.TileSize][(int)relativePosition.Y / GameVariables.TileSize] || !tiles[((int)relativePosition.X + tile.Rectangle.Width) / GameVariables.TileSize][(int)relativePosition.Y / GameVariables.TileSize] || !tiles[(int)relativePosition.X / GameVariables.TileSize][((int)relativePosition.Y + tile.Rectangle.Height) / GameVariables.TileSize] || !tiles[((int)relativePosition.X + tile.Rectangle.Width) / GameVariables.TileSize][((int)relativePosition.Y + tile.Rectangle.Height) / GameVariables.TileSize];
+            Vector2 relativePosition = new Vector2(tile.Rectangle.X - position.X, tile.Rectangle.Y - position.Y);
+            return !tiles[(int)(relativePosition.X+GameVariables.TileSize/2) / GameVariables.TileSize][(int)(relativePosition.Y + GameVariables.TileSize / 2) / GameVariables.TileSize];
         }
 
         /// <summary>
