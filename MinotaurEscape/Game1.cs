@@ -24,15 +24,12 @@ namespace MinotaurEscape
         
         Torch torch;
         MenuButton playButton;
-<<<<<<< HEAD
         MenuButton stopButton;
         MenuButton menuTitle;
-=======
         float ranx;
         float rany;
         int ranxint;
         int ranyint;
->>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
         public enum GameState
         {
             MainMenu,
@@ -107,14 +104,11 @@ namespace MinotaurEscape
             comrade2.Animation = comrade.IdleAnimation;
             //Menu Textures
             playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
-<<<<<<< HEAD
             stopButton.ButtonGraphic = GameVariables.MenuStopButtonTexture;
             menuTitle.ButtonGraphic = GameVariables.MenuTitleTexture;
-=======
             comrade.random();
             comrade2.random();
 
->>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
         }
 
         /// <summary>

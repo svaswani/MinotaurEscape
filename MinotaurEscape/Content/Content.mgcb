@@ -211,17 +211,6 @@
 /processorParam:TextureFormat=Color
 /build:MazeTiles/exit.png
 
-#begin Characters/temporaryCharacter.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Characters/temporaryCharacter.jpg
-
 #begin Menu/playButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -233,28 +222,7 @@
 /processorParam:TextureFormat=Color
 /build:Menu/playButton.png
 
-<<<<<<< HEAD
-#begin Menu/stopButton.png
-=======
-#begin Characters/player sprite sheet.png
->>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Menu/stopButton.png
-
 #begin Menu/menuTitle.png
-=======
-/build:Characters/player sprite sheet.png
-
-#begin Characters/player sprite sheet column.jpg
->>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -263,10 +231,18 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
 /build:Menu/menuTitle.png
-=======
-/build:Characters/player sprite sheet column.jpg
+
+#begin Menu/stopButton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Menu/stopButton.png
 
 #begin Characters/player sprite.png
 /importer:TextureImporter
@@ -279,7 +255,7 @@
 /processorParam:TextureFormat=Color
 /build:Characters/player sprite.png
 
-#begin Characters/comrade 16.png
+#begin Characters/comrade.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -288,9 +264,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Characters/comrade 16.png
+/build:Characters/comrade.png
 
-#begin Characters/minotaur 16.png
+#begin Characters/minotaur.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -299,9 +275,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Characters/minotaur 16.png
+/build:Characters/minotaur.png
 
-#begin Characters/torch 16.png
+#begin Characters/torch.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -310,6 +286,5 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Characters/torch 16.png
->>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
+/build:Characters/torch.png
 

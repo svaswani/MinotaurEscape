@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/Characters/torch 16.png</SourceFile>
-  <SourceTime>2015-11-05T21:31:21.3183962-05:00</SourceTime>
-  <DestFile>C:/Users/fjame_000/MinotaurEscape/MinotaurEscape/Content/bin/WindowsGL/Characters/torch 16.xnb</DestFile>
-  <DestTime>2015-11-05T22:46:17.4209087-05:00</DestTime>
+  <SourceFile>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/Characters/minotaur.png</SourceFile>
+  <SourceTime>2015-11-06T04:02:24.3714416-05:00</SourceTime>
+  <DestFile>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape/MinotaurEscape/Content/bin/WindowsGL/Characters/minotaur.xnb</DestFile>
+  <DestTime>2015-11-06T13:05:53.5594461-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T13:14:44-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

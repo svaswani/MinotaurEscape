@@ -112,9 +112,9 @@ public class GameVariables
 
         // Load the characters' texture
             PlayerIdleTexture = content.Load<Texture2D>("Characters/player sprite");
-        MinotuarTexture = content.Load<Texture2D>("Characters/minotaur 16");
-        ComradeIdleTexture = content.Load<Texture2D>("Characters/comrade 16");
-        TorchTexture = content.Load<Texture2D>("Characters/torch 16");
+        MinotuarTexture = content.Load<Texture2D>("Characters/minotaur");
+        ComradeIdleTexture = content.Load<Texture2D>("Characters/comrade");
+        TorchTexture = content.Load<Texture2D>("Characters/torch");
 
 
         //Load menu textures
