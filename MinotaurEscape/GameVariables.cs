@@ -93,6 +93,10 @@ public class GameVariables
     /// </summary>
     public static Texture2D MenuPlayButtonTexture;
 
+    public static Texture2D MenuStopButtonTexture;
+
+    public static Texture2D MenuTitleTexture;
+
     /// <summary>
     /// Loads the textures of the game
     /// </summary>
@@ -115,6 +119,8 @@ public class GameVariables
 
         //Load menu textures
         MenuPlayButtonTexture = content.Load<Texture2D>("Menu/playButton");
+        MenuStopButtonTexture = content.Load<Texture2D>("Menu/stopButton");
+        MenuTitleTexture = content.Load<Texture2D>("Menu/menuTitle");
     }
 
 }

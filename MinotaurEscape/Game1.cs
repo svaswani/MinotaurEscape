@@ -24,10 +24,15 @@ namespace MinotaurEscape
         
         Torch torch;
         MenuButton playButton;
+<<<<<<< HEAD
+        MenuButton stopButton;
+        MenuButton menuTitle;
+=======
         float ranx;
         float rany;
         int ranxint;
         int ranyint;
+>>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
         public enum GameState
         {
             MainMenu,
@@ -69,6 +74,8 @@ namespace MinotaurEscape
             //comrade.Rectangle = new Rectangle(ranxint * GameVariables.TileSize, ranyint * GameVariables.TileSize, GameVariables.TileSize, GameVariables.TileSize);
             //Set up the menu
             playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
+            stopButton = new MenuButton(GameVariables.MenuStopButtonTexture);
+            menuTitle = new MenuButton(GameVariables.MenuTitleTexture);
 
             //Set initial state
             stateGame = GameState.MainMenu;
@@ -100,9 +107,14 @@ namespace MinotaurEscape
             comrade2.Animation = comrade.IdleAnimation;
             //Menu Textures
             playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
+<<<<<<< HEAD
+            stopButton.ButtonGraphic = GameVariables.MenuStopButtonTexture;
+            menuTitle.ButtonGraphic = GameVariables.MenuTitleTexture;
+=======
             comrade.random();
             comrade2.random();
 
+>>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
         }
 
         /// <summary>
@@ -147,6 +159,10 @@ namespace MinotaurEscape
                         else
                             Exit();
 
+                }
+                if (stopButton.IsMouseInside() == true && playButton.stateMouse.LeftButton == ButtonState.Pressed)
+                {
+                    Exit();
                 }
             }
 
@@ -236,7 +252,11 @@ namespace MinotaurEscape
             if (stateGame == GameState.MainMenu)
             {
                 playButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
+                stopButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (playButton.Rectangle.Y + playButton.Rectangle.Height + 50), GameVariables.TileSize, GameVariables.TileSize);
+                menuTitle.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - 490) / 2, 20, 490, 78);
+                stopButton.Draw(spriteBatch);
                 playButton.Draw(spriteBatch);
+                menuTitle.Draw(spriteBatch);
             }
             spriteBatch.End();
             base.Draw(gameTime);

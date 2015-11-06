@@ -233,7 +233,11 @@
 /processorParam:TextureFormat=Color
 /build:Menu/playButton.png
 
+<<<<<<< HEAD
+#begin Menu/stopButton.png
+=======
 #begin Characters/player sprite sheet.png
+>>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -242,9 +246,15 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
+<<<<<<< HEAD
+/build:Menu/stopButton.png
+
+#begin Menu/menuTitle.png
+=======
 /build:Characters/player sprite sheet.png
 
 #begin Characters/player sprite sheet column.jpg
+>>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -253,6 +263,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
+<<<<<<< HEAD
+/build:Menu/menuTitle.png
+=======
 /build:Characters/player sprite sheet column.jpg
 
 #begin Characters/player sprite.png
@@ -298,4 +311,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:Characters/torch 16.png
+>>>>>>> 9b38687d045fa50055b873d7348f05d1c080fa3c
 
