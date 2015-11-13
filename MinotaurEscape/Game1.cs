@@ -26,6 +26,7 @@ namespace MinotaurEscape
         MenuButton playButton;
         MenuButton stopButton;
         MenuButton menuTitle;
+        MenuButton pauseDeclare;
         float ranx;
         float rany;
         int ranxint;
@@ -33,7 +34,8 @@ namespace MinotaurEscape
         public enum GameState
         {
             MainMenu,
-            Play
+            Play,
+            Pause
         }
 
         GameState stateGame;
@@ -74,6 +76,8 @@ namespace MinotaurEscape
             stopButton = new MenuButton(GameVariables.MenuStopButtonTexture);
             menuTitle = new MenuButton(GameVariables.MenuTitleTexture);
 
+            pauseDeclare = new MenuButton(GameVariables.PauseDeclareTexture);
+
             //Set initial state
             stateGame = GameState.MainMenu;
 
@@ -106,6 +110,7 @@ namespace MinotaurEscape
             playButton.ButtonGraphic = GameVariables.MenuPlayButtonTexture;
             stopButton.ButtonGraphic = GameVariables.MenuStopButtonTexture;
             menuTitle.ButtonGraphic = GameVariables.MenuTitleTexture;
+            pauseDeclare.ButtonGraphic = GameVariables.PauseDeclareTexture;
             comrade.random();
             comrade2.random();
 
@@ -160,13 +165,28 @@ namespace MinotaurEscape
                 }
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && stateGame == GameState.Play)
+            if (stateGame == GameState.Play)
             {
-                stateGame = GameState.MainMenu;
+                ProcessInput(gameTime);
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    stateGame = GameState.MainMenu;
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) || Keyboard.GetState().IsKeyDown(Keys.RightShift))
+                {
+                    stateGame = GameState.Pause;
+                }
+            }
+
+            if (stateGame == GameState.Pause)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftControl) || Keyboard.GetState().IsKeyDown(Keys.RightControl))
+                {
+                    stateGame = GameState.Play;
+                }
             }
 
             // TODO: Add your update logic here
-            ProcessInput(gameTime);
 
             base.Update(gameTime);
         }
@@ -220,7 +240,7 @@ namespace MinotaurEscape
         {
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
-            if (stateGame == GameState.Play)
+            if (stateGame == GameState.Play || stateGame == GameState.Pause)
             {
                 // TODO: Add your drawing code here
 
@@ -243,10 +263,16 @@ namespace MinotaurEscape
 
             }
 
+            if (stateGame == GameState.Pause)
+            {
+                pauseDeclare.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - 750) / 2, (GraphicsDevice.Viewport.Height - 80) / 2, 750, 80);
+                pauseDeclare.Draw(spriteBatch);
+            }
+
             if (stateGame == GameState.MainMenu)
             {
-                playButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2, GameVariables.TileSize, GameVariables.TileSize);
-                stopButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (playButton.Rectangle.Y + playButton.Rectangle.Height + 50), GameVariables.TileSize, GameVariables.TileSize);
+                playButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - 32) / 2, (GraphicsDevice.Viewport.Height - 32) / 2, 32, 32);
+                stopButton.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - 32) / 2, (playButton.Rectangle.Y + playButton.Rectangle.Height + 50), 32, 32);
                 menuTitle.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - 490) / 2, 20, 490, 78);
                 stopButton.Draw(spriteBatch);
                 playButton.Draw(spriteBatch);

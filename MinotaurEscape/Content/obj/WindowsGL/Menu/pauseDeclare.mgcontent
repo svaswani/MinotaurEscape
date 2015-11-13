@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>J:/Minotaur/MinotaurEscape/Content/MazeTiles/floor.png</SourceFile>
-  <SourceTime>2015-11-06T12:23:26-05:00</SourceTime>
-  <DestFile>J:/Minotaur/MinotaurEscape/Content/bin/WindowsGL/MazeTiles/floor.xnb</DestFile>
-  <DestTime>2015-11-06T15:08:48-05:00</DestTime>
+  <SourceFile>J:/Minotaur/MinotaurEscape/Content/Menu/pauseDeclare.png</SourceFile>
+  <SourceTime>2015-11-13T15:31:48-05:00</SourceTime>
+  <DestFile>J:/Minotaur/MinotaurEscape/Content/bin/WindowsGL/Menu/pauseDeclare.xnb</DestFile>
+  <DestTime>2015-11-13T15:37:26-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T13:14:44-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
