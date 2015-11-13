@@ -35,7 +35,8 @@ namespace MinotaurEscape
         {
             MainMenu,
             Play,
-            Pause
+            Pause,
+            GameWon
         }
 
         GameState stateGame;
