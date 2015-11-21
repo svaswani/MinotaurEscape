@@ -8,6 +8,14 @@ using System.Text;
 /// </summary>
 public class Player : AnimatedTile
 {
+    public int lives = 3; // player lives
+    public int points; // 1 point for each comrade the player rescues 
+
+    public int Lives
+    {
+        get;
+        set;
+    }
 	/// <summary>
 	/// The number of torches the player has
 	/// </summary>
@@ -68,6 +76,20 @@ public class Player : AnimatedTile
     public override void SetupAnimations()
     {
         IdleAnimation = new Animation(GameVariables.PlayerIdleTexture, 1, 1, true);
+    }
+
+    // Method to decrement lives if player collides with Minotaur
+    public int DecrementLives()
+    {
+        lives--;
+        return lives;
+    }
+
+    // Method to increment points if player collides with 
+    public int IncrementPoint()
+    {
+        points++;
+        return points;
     }
 }
 
