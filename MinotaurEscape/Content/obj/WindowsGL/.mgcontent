@@ -30,5 +30,7 @@
     <File>J:/Minotaur/MinotaurEscape/Content/Characters/minotaur.png</File>
     <File>J:/Minotaur/MinotaurEscape/Content/Characters/torch.png</File>
     <File>J:/Minotaur/MinotaurEscape/Content/Menu/pauseDeclare.png</File>
+    <File>J:/Minotaur/MinotaurEscape/Content/Menu/wonDeclare.png</File>
+    <File>J:/Minotaur/MinotaurEscape/Content/Menu/replayButton.png</File>
   </SourceFiles>
 </SourceFileCollection>

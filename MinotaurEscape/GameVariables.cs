@@ -99,6 +99,10 @@ public class GameVariables
 
     public static Texture2D PauseDeclareTexture;
 
+    public static Texture2D WonDeclareTexture;
+
+    public static Texture2D ReplayButtonTexture;
+
     /// <summary>
     /// Loads the textures of the game
     /// </summary>
@@ -123,7 +127,9 @@ public class GameVariables
         MenuPlayButtonTexture = content.Load<Texture2D>("Menu/playButton");
         MenuStopButtonTexture = content.Load<Texture2D>("Menu/stopButton");
         MenuTitleTexture = content.Load<Texture2D>("Menu/menuTitle");
+        ReplayButtonTexture = content.Load<Texture2D>("Menu/replayButton");
 
+        WonDeclareTexture = content.Load<Texture2D>("Menu/wonDeclare");
         PauseDeclareTexture = content.Load<Texture2D>("Menu/pauseDeclare");
     }
 

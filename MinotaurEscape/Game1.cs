@@ -23,10 +23,13 @@ namespace MinotaurEscape
         Comrade comrade2;
         
         Torch torch;
-        MenuButton playButton;
-        MenuButton stopButton;
-        MenuButton menuTitle;
-        MenuButton pauseDeclare;
+        MenuItem playButton;
+        MenuItem stopButton;
+        MenuItem menuTitle;
+        MenuItem pauseDeclare;
+        MenuItem wonDeclare;
+        MenuItem replayButton;
+
         float ranx;
         float rany;
         int ranxint;
@@ -73,11 +76,13 @@ namespace MinotaurEscape
 
             //comrade.Rectangle = new Rectangle(ranxint * GameVariables.TileSize, ranyint * GameVariables.TileSize, GameVariables.TileSize, GameVariables.TileSize);
             //Set up the menu
-            playButton = new MenuButton(GameVariables.MenuPlayButtonTexture);
-            stopButton = new MenuButton(GameVariables.MenuStopButtonTexture);
-            menuTitle = new MenuButton(GameVariables.MenuTitleTexture);
+            playButton = new MenuItem(GameVariables.MenuPlayButtonTexture);
+            stopButton = new MenuItem(GameVariables.MenuStopButtonTexture);
+            menuTitle = new MenuItem(GameVariables.MenuTitleTexture);
+            replayButton = new MenuItem(GameVariables.ReplayButtonTexture);
 
-            pauseDeclare = new MenuButton(GameVariables.PauseDeclareTexture);
+            wonDeclare = new MenuItem(GameVariables.WonDeclareTexture);
+            pauseDeclare = new MenuItem(GameVariables.PauseDeclareTexture);
 
             //Set initial state
             stateGame = GameState.MainMenu;
@@ -112,6 +117,8 @@ namespace MinotaurEscape
             stopButton.ButtonGraphic = GameVariables.MenuStopButtonTexture;
             menuTitle.ButtonGraphic = GameVariables.MenuTitleTexture;
             pauseDeclare.ButtonGraphic = GameVariables.PauseDeclareTexture;
+            replayButton.ButtonGraphic = GameVariables.ReplayButtonTexture;
+            wonDeclare.ButtonGraphic = GameVariables.WonDeclareTexture;
             comrade.random();
             comrade2.random();
 
@@ -143,24 +150,9 @@ namespace MinotaurEscape
                 {
                     stateGame = GameState.Play;
 
-                    /* Temporaily ask the player for a maze to load if maze doesn't exist */
-
-                    // Create a stream for loading the file
-                        Stream loadStream;
-
-                    // Create a dialog for asking for save location
-                        System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
-                        dialog.Filter = "maze files (*.maz)|*.maz";
-                        dialog.InitialDirectory = Directory.GetCurrentDirectory()+"\\DefaultMazes\\";
-
-                    // Ask the user for a file to load
-                        if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && (loadStream = dialog.OpenFile()) != null)
-                            maze = new Maze(loadStream, GraphicsDevice.Viewport);
-                        else
-                            Exit();
-
+                    LoadMap();
                 }
-                if (stopButton.IsMouseInside() == true && playButton.stateMouse.LeftButton == ButtonState.Pressed)
+                if (stopButton.IsMouseInside() == true && stopButton.stateMouse.LeftButton == ButtonState.Pressed)
                 {
                     Exit();
                 }
@@ -187,9 +179,42 @@ namespace MinotaurEscape
                 }
             }
 
+            if (stateGame == GameState.GameWon)
+            {
+                if (replayButton.IsMouseInside() == true && replayButton.stateMouse.LeftButton == ButtonState.Pressed)
+                {
+                    stateGame = GameState.Play;
+                    LoadMap();
+                }
+
+                if (stopButton.IsMouseInside() == true && stopButton.stateMouse.LeftButton == ButtonState.Pressed)
+                {
+                    Exit();
+                }
+            }
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+        }
+
+        public void LoadMap()
+        {
+            /* Temporaily ask the player for a maze to load if maze doesn't exist */
+
+            // Create a stream for loading the file
+            Stream loadStream;
+
+            // Create a dialog for asking for save location
+            System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
+            dialog.Filter = "maze files (*.maz)|*.maz";
+            dialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\DefaultMazes\\";
+
+            // Ask the user for a file to load
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && (loadStream = dialog.OpenFile()) != null)
+                maze = new Maze(loadStream, GraphicsDevice.Viewport);
+            else
+                Exit();
         }
 
         public void ProcessInput(GameTime gameTime)
@@ -278,6 +303,16 @@ namespace MinotaurEscape
                 stopButton.Draw(spriteBatch);
                 playButton.Draw(spriteBatch);
                 menuTitle.Draw(spriteBatch);
+            }
+
+            if (stateGame == GameState.GameWon)
+            {
+                wonDeclare.Rectangle = new Rectangle((GraphicsDevice.Viewport.Width - 480) / 2, (GraphicsDevice.Viewport.Height - 180) / 2, 480, 180);
+                stopButton.Rectangle = new Rectangle(wonDeclare.Rectangle.X, wonDeclare.Rectangle.Y + wonDeclare.Rectangle.Height + 50, 32, 32);
+                replayButton.Rectangle = new Rectangle(wonDeclare.Rectangle.X + (wonDeclare.Rectangle.Width - 32), wonDeclare.Rectangle.Y + wonDeclare.Rectangle.Height + 50, 32, 32);
+                wonDeclare.Draw(spriteBatch);
+                stopButton.Draw(spriteBatch);
+                replayButton.Draw(spriteBatch);
             }
             spriteBatch.End();
             base.Draw(gameTime);
