@@ -62,7 +62,7 @@ public abstract class AnimatedTile
     /// </summary>
     public void Draw(SpriteBatch spriteBatch)
 	{
-        Rectangle drawRect = new Rectangle(Position.ToPoint(),new Point(GameVariables.TileSize));
+        Rectangle drawRect = new Rectangle(Position.ToPoint(),new Point(GameVariables.CharacterSize));
 
         if (Animating)
             spriteBatch.Draw(Animation.Texture, drawRect, Animation.NextFrame(Direction), Color.White);

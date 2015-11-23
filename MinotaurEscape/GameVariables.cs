@@ -15,29 +15,50 @@ using System.Text;
 public class GameVariables
 {
     /// <summary>
-    /// The size of tiles in the game
+    /// The size of tiles in the files
     /// </summary>
-    public static int TileSize = 32;
+    public static int TileSize = 64;
+
+    /// <summary>
+    /// The size of characters in the files
+    /// </summary>
+    public static int CharacterSize = (int)(TileSize*3/4.0);
+
+    /// <summary>
+    /// The size of the characters in the sprite sheets
+    /// </summary>
+    public static int TextureCharacterSize = 1024;
+
+    /// <summary>
+    /// The radius of the minimap's display
+    /// </summary>
+    public static int minimapRadius = 10;
+
+
+    /// <summary>
+    /// The size of the minimap's tiles
+    /// </summary>
+    public static int minimapSize = TileSize/10;
 
     /// <summary>
     /// The radius of the torch's light
     /// </summary>
-    public static int TorchLightRadius = 6;
+    public static int TorchLightRadius = 4;
 
     /// <summary>
     /// The speed of the player
     /// </summary>
-    public static int PlayerSpeed = 100;
+    public static int PlayerSpeed = 200;
 
     /// <summary>
     /// The speed of the minotuar's movement
     /// </summary>
-    public static int MinotuarSpeed = 100;
+    public static int MinotuarSpeed = 200;
 
     /// <summary>
     /// The rate of the minotuar's in the maze (higher means less)
     /// </summary>
-    public static int MinotuarRate = 200;
+    public static int MinotuarRate = 100;
 
     /// <summary>
     /// The rate of the comrade's in the maze (higher means less)

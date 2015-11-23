@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TTFF.png</SourceFile>
+  <SourceFile>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TTFF.png</SourceFile>
   <SourceTime>2015-10-28T17:48:55-04:00</SourceTime>
-  <DestFile>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/bin/WindowsGL/MazeTiles/wall-TTFF.xnb</DestFile>
-  <DestTime>2015-11-06T15:04:20.6076053-05:00</DestTime>
+  <DestFile>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/bin/WindowsGL/MazeTiles/wall-TTFF.xnb</DestFile>
+  <DestTime>2015-11-23T11:22:32.8134958-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T13:14:44-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

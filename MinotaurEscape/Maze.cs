@@ -26,13 +26,11 @@ namespace MinotaurEscape
         /// <summary>
         /// the width of the maze
         /// </summary>
-        public int Width;
         private int width;
 
         /// <summary>
         /// The height of the maze
         /// </summary>
-        public int Height;
         private int height;
 
         /// <summary>
@@ -68,6 +66,11 @@ namespace MinotaurEscape
         /// The minotaurs in the maze
         /// </summary>
         private List<Minotaur> minotaurs;
+
+        /// <summary>
+        /// The tiles rendered in the last draw call
+        /// </summary>
+        private List<Vector2> tilesRendered;
 
         /// <summary>
         /// Creates a maze object from the given stream
@@ -128,7 +131,7 @@ namespace MinotaurEscape
         public bool IsInWall(AnimatedTile tile)
         {
             Vector2 relativePosition = new Vector2(tile.Position.X - position.X, tile.Position.Y - position.Y);
-            return !tiles[(int)(relativePosition.X+GameVariables.TileSize/2) / GameVariables.TileSize][(int)(relativePosition.Y + GameVariables.TileSize / 2) / GameVariables.TileSize];
+            return !tiles[(int)(relativePosition.X+GameVariables.CharacterSize/2) / GameVariables.TileSize][(int)(relativePosition.Y + GameVariables.CharacterSize / 2) / GameVariables.TileSize];
         }
 
         /// <summary>
@@ -144,7 +147,7 @@ namespace MinotaurEscape
         /// </summary>
         public Comrade IntersectingComrade(AnimatedTile tile)
         {
-            Comrade[] comrade = comrades.Where(c => new Rectangle(tile.Position.ToPoint(), new Point(GameVariables.TileSize)).Intersects(new Rectangle(c.Position.ToPoint(), new Point(GameVariables.TileSize)))).ToArray();
+            Comrade[] comrade = comrades.Where(c => new Rectangle(tile.Position.ToPoint(), new Point(GameVariables.CharacterSize)).Intersects(new Rectangle(c.Position.ToPoint(), new Point(GameVariables.CharacterSize)))).ToArray();
             return comrade.Length > 0 ? comrade[0] : null;
         }
 
@@ -153,7 +156,7 @@ namespace MinotaurEscape
         /// </summary>
         public Minotaur IntersectingMinotuar(AnimatedTile tile)
         {
-            Minotaur[] minotaur = minotaurs.Where(m => new Rectangle(tile.Position.ToPoint(), new Point(GameVariables.TileSize)).Intersects(new Rectangle(m.Position.ToPoint(), new Point(GameVariables.TileSize)))).ToArray();
+            Minotaur[] minotaur = minotaurs.Where(m => new Rectangle(tile.Position.ToPoint(), new Point(GameVariables.CharacterSize)).Intersects(new Rectangle(m.Position.ToPoint(), new Point(GameVariables.CharacterSize)))).ToArray();
             return minotaur.Length > 0 ? minotaur[0] : null;
         }
 
@@ -163,7 +166,7 @@ namespace MinotaurEscape
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the tiles around the center of the vieport first
-                List<Vector2> tilesRendered = getAndDrawTiles(spriteBatch, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width/2, spriteBatch.GraphicsDevice.Viewport.Height/2));
+                tilesRendered = getAndDrawTiles(spriteBatch, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width/2, spriteBatch.GraphicsDevice.Viewport.Height/2));
 
             // Draw the tiles around every torch in the maze
                 foreach (Torch torch in torches)
@@ -189,6 +192,32 @@ namespace MinotaurEscape
             
         }
 
+        /// <summary>
+        /// Draws the minimap of the maze (with the given radius and position)
+        /// </summary>
+        public void DrawMinimap(SpriteBatch spriteBatch, int radius, Vector2 realPosition, Vector2 mapCenter)
+        {
+            // Get the position in relation to the maze
+                Vector2 centerPosition = (mapCenter - position) / GameVariables.TileSize-new Vector2(radius);
+
+            // Loop through every tile to draw
+                for (int x = 0; x < radius*2; x++)
+                {
+                    for (int y = 0; y < radius*2; y++)
+                    {
+
+                            // Draw the current tile
+                            int drawX = (int)centerPosition.X + x, drawY = (int)centerPosition.Y + y;
+                            if (drawX < 0 || drawY < 0 || drawX >= width || drawY >= height || !tilesRendered.Contains(new Vector2(drawX, drawY)))
+                                continue;
+                            if (tiles[drawX][drawY])
+                                spriteBatch.Draw(GameVariables.FloorTexture, new Rectangle((realPosition + new Vector2(x * GameVariables.minimapSize, y * GameVariables.minimapSize)).ToPoint(), new Point(GameVariables.minimapSize)), Color.White);
+                            else
+                                spriteBatch.Draw(getWallImage(drawX, drawY), new Rectangle((realPosition + new Vector2(x * GameVariables.minimapSize, y * GameVariables.minimapSize)).ToPoint(), new Point(GameVariables.minimapSize)), Color.White);
+                    }
+                }
+        }
+
         // Gets and draws the tiles around the given position
         private List<Vector2> getAndDrawTiles(SpriteBatch spriteBatch, Vector2 center)
         {
@@ -212,10 +241,11 @@ namespace MinotaurEscape
                                     int drawX = (int)centerPosition.X + x, drawY = (int)centerPosition.Y + y;
                                     if (drawX < 0 || drawY < 0 || drawX >= width || drawY >= height)
                                         continue;
-                                    if (tiles[drawX][drawY])
-                                        spriteBatch.Draw(GameVariables.FloorTexture, position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize));
-                                    else
-                                        spriteBatch.Draw(getWallImage(drawX, drawY), position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize));
+                                if (tiles[drawX][drawY])
+                                    spriteBatch.Draw(GameVariables.FloorTexture, new Rectangle((position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize)).ToPoint(), new Point(GameVariables.TileSize)), Color.White);
+                                else
+                                    spriteBatch.Draw(getWallImage(drawX, drawY), new Rectangle((position + new Vector2(drawX * GameVariables.TileSize, drawY * GameVariables.TileSize)).ToPoint(), new Point(GameVariables.TileSize)), Color.White);
+                            
 
                                 // Add the tile to the list
                                     tilesRendered.Add(new Vector2(drawX, drawY));

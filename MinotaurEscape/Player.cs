@@ -9,10 +9,13 @@ using System.Text;
 /// </summary>
 public class Player : AnimatedTile
 {
-	/// <summary>
-	/// The number of torches the player has
-	/// </summary>
-	public int Torches
+    public int Lives { get; set; }// player lives
+    public int Points { get; set; } // 1 point for each comrade the player rescues 
+
+    /// <summary>
+    /// The number of torches the player has
+    /// </summary>
+    public int Torches
 	{
 		get;
 		set;
@@ -66,8 +69,10 @@ public class Player : AnimatedTile
     /// <summary>
     /// Creates a player with the given position
     /// </summary>
-    public Player(Vector2 position) : base(position, MovingAnimation)
-    {}
+    public Player(int lives, Vector2 position) : base(position, MovingAnimation)
+    {
+        Lives = lives;
+    }
 
 
     /// <summary>

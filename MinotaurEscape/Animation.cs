@@ -87,7 +87,7 @@ public class Animation
     /// </summary>
     public Rectangle CurrentFrame(int dir)
     {
-        return new Rectangle(currentFrameNum * GameVariables.TileSize, dir * GameVariables.TileSize, GameVariables.TileSize, GameVariables.TileSize);
+        return new Rectangle(currentFrameNum * GameVariables.TextureCharacterSize, dir * GameVariables.TextureCharacterSize, GameVariables.TextureCharacterSize, GameVariables.TextureCharacterSize);
     }
 
     /// <summary>

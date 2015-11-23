@@ -21,7 +21,6 @@ namespace MinotaurEscape
         MenuButton playButton;
         MenuButton stopButton;
         MenuButton menuTitle;
-        List<Comrade> comrades = new List<Comrade>();
 
         // Used for keyboard input
         private KeyboardState kbState, previousKbState;
@@ -52,8 +51,8 @@ namespace MinotaurEscape
         protected override void Initialize()
         {
 
-            // Create the player with 5 torches to start
-                player = new Player(new Vector2((GraphicsDevice.Viewport.Width-GameVariables.TileSize)/2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2));
+            // Create the player with 5 torches and 5 lives to start
+                player = new Player(5, new Vector2((GraphicsDevice.Viewport.Width-GameVariables.TileSize)/2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2));
                 player.Torches = 5;
 
             //Set up the menu
@@ -243,10 +242,10 @@ namespace MinotaurEscape
                 }
 
             // Check if torch button was pressed and the player has a torch
-                if(previousKbState.IsKeyUp(Keys.Space) && kbState.IsKeyDown(Keys.Space) && player.Torches > 0 && maze.CanPlaceTorch(player.Position + new Vector2(GameVariables.TileSize / 2), player.Direction))
+                if(previousKbState.IsKeyUp(Keys.Space) && kbState.IsKeyDown(Keys.Space) && player.Torches > 0 && maze.CanPlaceTorch(player.Position + new Vector2(GameVariables.CharacterSize / 2), player.Direction))
                 {
                         // Add a torch to the maze from the player position and direction and then remove a torch from the player
-                            maze.AddTorch(player.Position+new Vector2(GameVariables.TileSize/2), player.Direction);
+                            maze.AddTorch(player.Position+new Vector2(GameVariables.CharacterSize / 2), player.Direction);
                             player.Torches--;
                 }
         }
@@ -265,20 +264,22 @@ namespace MinotaurEscape
                     GraphicsDevice.Clear(Color.Black);
 
                 // Draw the maze
-                    maze.Draw(spriteBatch);
-
-                // Draw the comrades
-                    foreach (Comrade comrade in comrades)
-                        comrade.Draw(spriteBatch);
+                   maze.Draw(spriteBatch);
 
                 // Place the player at the center of the screen and draw him
                     player.Position = new Vector2((GraphicsDevice.Viewport.Width - GameVariables.TileSize) / 2, (GraphicsDevice.Viewport.Height - GameVariables.TileSize) / 2);
                     player.Draw(spriteBatch);
 
-                // Draw the player's torch count
-                    spriteBatch.Draw(GameVariables.SoildWhiteTexture, new Rectangle(GraphicsDevice.Viewport.Width-160, 10, 150, 50), Color.White);
-                    spriteBatch.DrawString(GameVariables.BasicFont, "Torches: " + player.Torches, new Vector2(GraphicsDevice.Viewport.Width - 120, 25), Color.Black);
-                
+                // Draw the player's torch count, live count, and point count
+                    spriteBatch.Draw(GameVariables.SoildWhiteTexture, new Rectangle(GraphicsDevice.Viewport.Width-160, 10, 150, 100), Color.White);
+                    spriteBatch.DrawString(GameVariables.BasicFont, "Lives: " + player.Lives, new Vector2(GraphicsDevice.Viewport.Width - 120, 25), Color.Black);
+                    spriteBatch.DrawString(GameVariables.BasicFont, "Torches: " + player.Torches, new Vector2(GraphicsDevice.Viewport.Width - 120, 50), Color.Black);
+                    spriteBatch.DrawString(GameVariables.BasicFont, "Points: " + player.Points, new Vector2(GraphicsDevice.Viewport.Width - 120, 75), Color.Black);
+
+                // Draw the minimap
+                    spriteBatch.Draw(GameVariables.SoildWhiteTexture, new Rectangle(new Point(10), new Point(GameVariables.minimapRadius*GameVariables.minimapSize*2)), Color.White);
+                    maze.DrawMinimap(spriteBatch, GameVariables.minimapRadius, new Vector2(10), player.Position);
+
             }
 
             if (stateGame == GameState.MainMenu)
