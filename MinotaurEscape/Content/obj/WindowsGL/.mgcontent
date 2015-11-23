@@ -30,5 +30,8 @@
     <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Characters/minotaur.png</File>
     <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/menuTitle.png</File>
     <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/stopButton.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/pauseDeclare.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/replayButton.png</File>
+    <File>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/wonDeclare.png</File>
   </SourceFiles>
 </SourceFileCollection>

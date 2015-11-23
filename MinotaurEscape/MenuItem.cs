@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MinotaurEscape
 {
-    class MenuButton
+    class MenuItem
     {
-        public MenuButton(Texture2D texture)
+        public MenuItem(Texture2D texture)
         {
             ButtonGraphic = texture;
         }

@@ -44,7 +44,7 @@
     <Compile Include="GameVariables.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Maze.cs" />
-    <Compile Include="MenuButton.cs" />
+    <Compile Include="MenuItem.cs" />
     <Compile Include="Minotaur.cs" />
     <Compile Include="Movable.cs" />
     <Compile Include="Player.cs" />

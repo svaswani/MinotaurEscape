@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/stopButton.png</SourceFile>
-  <SourceTime>2015-11-06T12:57:01.9109957-05:00</SourceTime>
-  <DestFile>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/bin/WindowsGL/Menu/stopButton.xnb</DestFile>
-  <DestTime>2015-11-23T13:15:36.631942-05:00</DestTime>
+  <SourceFile>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/pauseDeclare.png</SourceFile>
+  <SourceTime>2015-11-23T11:14:32.3988272-05:00</SourceTime>
+  <DestFile>C:/Users/Andrew/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/bin/WindowsGL/Menu/pauseDeclare.xnb</DestFile>
+  <DestTime>2015-11-23T13:15:36.6930213-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T13:14:44-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
