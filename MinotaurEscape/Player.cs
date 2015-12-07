@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,13 @@ using System.Text;
 /// </summary>
 public class Player : AnimatedTile
 {
-    public int lives = 3; // player lives
-    public int points; // 1 point for each comrade the player rescues 
+    public int Lives { get; set; }// player lives
+    public int Points { get; set; } // 1 point for each comrade the player rescues 
 
-    public int Lives
-    {
-        get;
-        set;
-    }
-	/// <summary>
-	/// The number of torches the player has
-	/// </summary>
-	public int Torches
+    /// <summary>
+    /// The number of torches the player has
+    /// </summary>
+    public int Torches
 	{
 		get;
 		set;
@@ -46,7 +42,7 @@ public class Player : AnimatedTile
 	/// <summary>
 	/// The animation of the player standing still
 	/// </summary>
-	public Animation IdleAnimation
+	public static Animation IdleAnimation
 	{
 		get;
 		set;
@@ -55,7 +51,7 @@ public class Player : AnimatedTile
 	/// <summary>
 	/// The animation of the player moving
 	/// </summary>
-	public Animation MovingAnimation
+	public static Animation MovingAnimation
 	{
 		get;
 		set;
@@ -64,32 +60,28 @@ public class Player : AnimatedTile
 	/// <summary>
 	/// The animation of the playerpicking up a comrade
 	/// </summary>
-	public Animation PickupAnimation
+	public static Animation PickupAnimation
 	{
 		get;
 		set;
 	}
 
     /// <summary>
+    /// Creates a player with the given position
+    /// </summary>
+    public Player(int lives, Vector2 position) : base(position, MovingAnimation)
+    {
+        Lives = lives;
+    }
+
+
+    /// <summary>
 	/// Sets up the animations for the player
 	/// </summary>
-    public override void SetupAnimations()
+    public static void SetupAnimations()
     {
-        IdleAnimation = new Animation(GameVariables.PlayerIdleTexture, 1, 1, true);
-    }
-
-    // Method to decrement lives if player collides with Minotaur
-    public int DecrementLives()
-    {
-        lives--;
-        return lives;
-    }
-
-    // Method to increment points if player collides with 
-    public int IncrementPoint()
-    {
-        points++;
-        return points;
+        MovingAnimation = new Animation(GameVariables.PlayerMovingTexture, 48, 4, 250, true);
+        IdleAnimation = new Animation(GameVariables.PlayerIdleTexture, 48, 1, 1, true);
     }
 }
 

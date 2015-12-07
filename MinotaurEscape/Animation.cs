@@ -10,37 +10,25 @@ using System.Text;
 /// </summary>
 public class Animation
 {
-	/// <summary>
-	/// The rectangle of the current frame of the animation
-	/// </summary>
-	public Rectangle CurrentFrame
+
+    /// <summary>
+    /// The texture of this animation
+    /// </summary>
+    public Texture2D Texture
 	{
 		get;
 		set;
 	}
 
-	/// <summary>
-	/// The current direction of the thing being animated
-	/// </summary>
-	public int Direction
-	{
-		get;
-		set;
-	}
+    /// <summary>
+    /// The size of the character in the sheet
+    /// </summary>
+    private int characterSize;
 
-	/// <summary>
-	/// The texture of this animation
-	/// </summary>
-	public Texture2D Texture
-	{
-		get;
-		set;
-	}
-
-	/// <summary>
-	/// If looping this animation
-	/// </summary>
-	private bool loop;
+    /// <summary>
+    /// If looping this animation
+    /// </summary>
+    private bool loop;
 
     /// <summary>
 	/// The number of frames in this animation
@@ -55,24 +43,25 @@ public class Animation
     /// <summary>
 	/// The amount of steps between frames 
 	/// </summary>
-	private int animationSpeed;
+	private float animationSpeed;
 
     /// <summary>
 	/// The current steps of the animation
 	/// </summary>
-	private int steps;
+	private float elapsedTime;
 
     // Create an animation from the given texture and properties
-    public Animation(Texture2D texture, int numFrames, int animationSpeed, bool loop)
+    public Animation(Texture2D texture, int characterSize, int numFrames, float animationSpeed, bool loop)
     {
         // Store the given values
             Texture = texture;
+            this.characterSize = characterSize;
             this.numFrames = numFrames;
             this.loop = loop;
             this.animationSpeed = animationSpeed;
 
-        // Get the starting frame
-            CurrentFrame = new Rectangle(0, 0, GameVariables.TileSize, GameVariables.TileSize);
+        // Set the start to 0
+            currentFrameNum = 0;
     }
 
 	/// <summary>
@@ -81,28 +70,42 @@ public class Animation
 	public void Reset()
 	{
         currentFrameNum = 0;
-        CurrentFrame = new Rectangle(0, 0, GameVariables.TileSize, GameVariables.TileSize);
 	}
 
 	/// <summary>
 	/// Gets the frame of the next step
 	/// </summary>
-	public Rectangle NextFrame()
-	{
+	public Rectangle NextFrame(int dir, GameTime time)
+    {
         // Check if the animation is done and if it loops reset it
-            if (currentFrameNum >= numFrames && loop)
+            if ((elapsedTime += time.ElapsedGameTime.Milliseconds) >= animationSpeed)
+            {
+                if (currentFrameNum >= numFrames - 1 && loop)
                     Reset();
-            else if(currentFrameNum < numFrames && ++steps % animationSpeed == 0)
-                CurrentFrame = new Rectangle(++currentFrameNum * GameVariables.TileSize, Direction * GameVariables.TileSize, GameVariables.TileSize, GameVariables.TileSize);
+                else if (currentFrameNum < numFrames)
+                {
+                    elapsedTime = 0;
+                    currentFrameNum++;
+                }
+            }
 
         // Return the Current Frame
-            return CurrentFrame;
+            return CurrentFrame(dir);
 	}
 
-	/// <summary>
-	/// If the animation is at the end. (Only if it doesn't loop)
-	/// </summary>
-	public bool End()
+
+    /// <summary>
+    /// The rectangle of the current frame of the animation
+    /// </summary>
+    public Rectangle CurrentFrame(int dir)
+    {
+        return new Rectangle(currentFrameNum * characterSize, dir * characterSize, characterSize, characterSize);
+    }
+
+    /// <summary>
+    /// If the animation is at the end. (Only if it doesn't loop)
+    /// </summary>
+    public bool End()
 	{
         return currentFrameNum >= numFrames;
     }

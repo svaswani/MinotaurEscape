@@ -45,6 +45,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Maze.cs" />
     <Compile Include="MenuItem.cs" />
+    <Compile Include="Minotaur.cs" />
     <Compile Include="Movable.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
@@ -71,9 +72,15 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DefaultMazes\TestMaze-50x50.maz">
+    <None Include="DefaultMazes\Easy Maze.maz">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="DefaultMazes\Hard Maze.maz">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DefaultMazes\Normal Maze.maz">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">

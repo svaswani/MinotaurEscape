@@ -9,20 +9,42 @@ using System.Text;
 /// </summary>
 public class Torch : AnimatedTile, Movable
 {
+
+
+
+    /// <summary>
+    /// The animation of the torch idle
+    /// </summary>
+    public static Animation IdleAnimation
+    {
+        get;
+        set;
+    }
+
+    /// <summary>
+    /// Creates a torch with the given position
+    /// </summary>
+    public Torch(Vector2 position) : base(position, IdleAnimation)
+    {}
+
     /// <summary>
     /// Moves the torch the given speed in the given dir (true = right + left, false = up + down)
     /// </summary>
     public virtual void Move(GameTime gameTime, int speed, bool dir)
 	{
-		throw new System.NotImplementedException();
-	}
+        // Change the torch's position according to the given speed and direction
+            if (dir)
+                Position += new Vector2((int)(speed * gameTime.ElapsedGameTime.TotalSeconds), 0);
+            else
+                Position += new Vector2(0, (int)(speed * gameTime.ElapsedGameTime.TotalSeconds));
+    }
 
     /// <summary>
-    /// Sets up the animations for this torch
-    /// </summary>
-    public override void SetupAnimations()
+	/// Sets up the animations for the player
+	/// </summary>
+    public static void SetupAnimations()
     {
-        throw new NotImplementedException();
+        IdleAnimation = new Animation(GameVariables.TorchTexture, 1024, 1, 1, true);
     }
 }
 

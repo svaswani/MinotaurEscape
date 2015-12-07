@@ -4,33 +4,35 @@
   <Platform>WindowsGL</Platform>
   <Config />
   <SourceFiles>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/floor.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-FFFF.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-FFFT.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-FFTF.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-FFTT.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-FTFF.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-FTFT.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-FTTF.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-FTTT.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-TFFF.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-TFFT.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-TFTF.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-TFTT.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-TTFF.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-TTFT.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-TTTF.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/wall-TTTT.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/MazeTiles/exit.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Menu/playButton.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Menu/menuTitle.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Menu/stopButton.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Characters/player sprite.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Characters/comrade.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Characters/minotaur.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Characters/torch.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Menu/pauseDeclare.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Menu/wonDeclare.png</File>
-    <File>J:/Minotaur/MinotaurEscape/Content/Menu/replayButton.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/floor.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-FFFF.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-FFFT.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-FFTF.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-FFTT.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-FTFF.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-FTFT.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-FTTF.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-FTTT.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TFFF.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TFFT.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TFTF.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TFTT.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TTFF.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TTFT.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TTTF.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/wall-TTTT.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/MazeTiles/exit.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/playButton.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Characters/torch.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Characters/comrade.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Fonts/basic.spritefont</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Characters/minotaur.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/menuTitle.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/stopButton.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/pauseDeclare.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/replayButton.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Menu/wonDeclare.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Characters/player idle spritesheet.png</File>
+    <File>D:/Users/adw1035/OneDrive/Documents/RIT/GDAPS/MinotaurEscape - Solo/MinotaurEscape/Content/Characters/player run spritesheet.png</File>
   </SourceFiles>
 </SourceFileCollection>

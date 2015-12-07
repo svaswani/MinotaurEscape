@@ -45,6 +45,7 @@
     <Compile Include="GeneratedCode\Comrade.cs" />
     <Compile Include="GeneratedCode\GameVariables.cs" />
     <Compile Include="GeneratedCode\Maze.cs" />
+    <Compile Include="GeneratedCode\Minotaur.cs" />
     <Compile Include="GeneratedCode\Movable.cs" />
     <Compile Include="GeneratedCode\Player.cs" />
     <Compile Include="GeneratedCode\Torch.cs" />

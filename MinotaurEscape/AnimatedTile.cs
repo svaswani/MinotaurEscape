@@ -19,38 +19,55 @@ public abstract class AnimatedTile
 		set;
 	}
 
+
+    /// <summary>
+    /// If the animation is currently being preformed
+    /// </summary>
+    public bool Animating
+    {
+        get;
+        set;
+    }
+
+
+    /// <summary>
+    /// The current direction of the the animated tile
+    /// </summary>
+    public int Direction
+    {
+        get;
+        set;
+    }
+
 	/// <summary>
-	/// If this tile is currently looping through an animation
+	/// The position of this tile
 	/// </summary>
-	public bool Animating
+	public Vector2 Position
 	{
 		get;
 		set;
 	}
 
-	/// <summary>
-	/// The size and position of this tile
-	/// </summary>
-	public Rectangle Rectangle
-	{
-		get;
-		set;
-	}
-
-	/// <summary>
-	/// Draws the current frame of this tile to the given sprite batch
-	/// </summary>
-	public void Draw(SpriteBatch spriteBatch)
-	{
-        if (Animating)
-            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.NextFrame(), Color.White);
-        else
-            spriteBatch.Draw(Animation.Texture, Rectangle, Animation.CurrentFrame, Color.White);
+    /// <summary>
+    /// Creates an animated tile with the given position and current animation
+    /// </summary>
+    public AnimatedTile(Vector2 position, Animation animation)
+    {
+        Position = position;
+        Animation = animation;
     }
 
     /// <summary>
-	/// Sets up the animations for this tile
-	/// </summary>
-	public abstract void SetupAnimations();
+    /// Draws the current frame of this tile to the given sprite batch
+    /// </summary>
+    public void Draw(SpriteBatch spriteBatch, GameTime time)
+	{
+        Rectangle drawRect = new Rectangle(Position.ToPoint(), new Point(GameVariables.CharacterSize));
+
+        if (Animating)
+            spriteBatch.Draw(Animation.Texture, drawRect, Animation.NextFrame(Direction, time), Color.White);
+        else
+            spriteBatch.Draw(Animation.Texture, drawRect, Animation.CurrentFrame(Direction), Color.White);
+    }
 }
 
